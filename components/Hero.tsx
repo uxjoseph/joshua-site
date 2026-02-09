@@ -49,7 +49,7 @@ export const Hero: React.FC = () => {
 
       <motion.div style={{ y }} className="max-w-[90rem] mx-auto px-6 w-full relative z-10 flex flex-col items-center">
         
-        <FadeIn delay={0.2} className="mb-12">
+        <FadeIn delay={0.2} className="mb-12 hidden md:block">
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-zinc-100 bg-white/60 backdrop-blur-md shadow-sm cursor-default">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-900 opacity-20"></span>
@@ -72,20 +72,21 @@ export const Hero: React.FC = () => {
         <FadeIn delay={1.1} className="max-w-2xl mx-auto mb-16">
           <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed font-semibold break-keep text-balance">
             복잡한 기술을 가장 단순한 비즈니스 언어로 재해석합니다.<br/>
-            Joshua는 당신의 팀이 본질에 집중할 수 있도록 돕습니다.
+            JOSHUA는 당신의 팀이 본질에 집중할 수 있도록 돕습니다.
           </p>
         </FadeIn>
 
         <FadeIn delay={1.3}>
-           <motion.a 
+           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#contact" 
-            className="group relative flex items-center gap-6 bg-zinc-900 text-white pl-10 pr-3 py-3 rounded-full text-xl font-bold hover:bg-black transition-all shadow-2xl shadow-zinc-900/10 ring-1 ring-black/5"
+            href="#contact"
+            className="group relative flex items-center gap-3 md:gap-6 bg-zinc-900 text-white pl-6 md:pl-10 pr-2 md:pr-3 py-2 md:py-3 rounded-full text-base md:text-xl font-bold hover:bg-black transition-all shadow-2xl shadow-zinc-900/10 ring-1 ring-black/5"
           >
             <span>무료 상담하기</span>
-            <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black group-hover:rotate-45 transition-transform duration-300">
-              <ArrowRight size={24} strokeWidth={3} />
+            <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center text-black group-hover:rotate-45 transition-transform duration-300">
+              <ArrowRight size={20} className="md:hidden" strokeWidth={3} />
+              <ArrowRight size={24} className="hidden md:block" strokeWidth={3} />
             </div>
           </motion.a>
         </FadeIn>

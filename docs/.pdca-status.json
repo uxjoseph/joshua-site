@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-02-09T04:53:15.160Z",
+  "lastUpdated": "2026-02-09T08:45:52.097Z",
   "activeFeatures": [
     "_공식웹사이트"
   ],
@@ -15,9 +15,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-09T04:52:58.733Z",
-        "lastUpdated": "2026-02-09T04:53:15.160Z"
+        "lastUpdated": "2026-02-09T08:45:52.097Z"
       },
-      "lastFile": "/Users/kimseungkwon/Documents/JOSHUA/_공식웹사이트/components/Navbar.tsx"
+      "lastFile": "/Users/kimseungkwon/Documents/JOSHUA/_공식웹사이트/components/ContactFooter.tsx"
     }
   },
   "pipeline": {
@@ -28,7 +28,7 @@
   "session": {
     "startedAt": "2026-02-09T04:51:04.004Z",
     "onboardingCompleted": false,
-    "lastActivity": "2026-02-09T04:53:15.160Z"
+    "lastActivity": "2026-02-09T08:45:52.097Z"
   },
   "history": [
     {
@@ -45,6 +45,96 @@
     },
     {
       "timestamp": "2026-02-09T04:53:15.160Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:22:49.319Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:22:49.451Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:22:49.580Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:22:58.130Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:22:58.221Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:25:59.891Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:26:23.906Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:30:33.189Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:33:57.076Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:33:57.165Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:34:42.960Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:35:01.569Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:40:59.393Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:44:46.110Z",
+      "feature": "_공식웹사이트",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-09T08:45:52.097Z",
       "feature": "_공식웹사이트",
       "phase": "do",
       "action": "updated"

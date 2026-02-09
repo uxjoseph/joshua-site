@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-[90rem] mx-auto px-6 flex justify-between items-center">
           <a href="#" className="flex items-center gap-2 z-50 group">
-            <span className="text-xl font-extrabold tracking-tighter text-zinc-900 group-hover:opacity-70 transition-opacity">joshua.site</span>
+            <img src="/JOSHUA.png" alt="JOSHUA" className="h-4 brightness-0 group-hover:opacity-70 transition-opacity" />
           </a>
 
           {/* Desktop Menu */}
