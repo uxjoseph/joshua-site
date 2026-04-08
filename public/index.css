@@ -1,0 +1,113 @@
+/* Ghost-rendered article content styling */
+.ghost-content {
+  font-size: 1.125rem;
+  line-height: 1.85;
+  color: #3F3F46; /* zinc-700 */
+  word-break: keep-all;
+}
+
+.ghost-content h1,
+.ghost-content h2,
+.ghost-content h3,
+.ghost-content h4 {
+  font-weight: 700;
+  color: #18181B; /* zinc-900 */
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.ghost-content h2 { font-size: 2rem; }
+.ghost-content h3 { font-size: 1.5rem; }
+.ghost-content h4 { font-size: 1.25rem; }
+
+.ghost-content p {
+  margin-bottom: 1.5rem;
+}
+
+.ghost-content a {
+  color: #2563EB; /* blue-600 */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ghost-content a:hover {
+  color: #1D4ED8; /* blue-700 */
+}
+
+.ghost-content strong { font-weight: 700; color: #18181B; }
+.ghost-content em { font-style: italic; }
+
+.ghost-content ul,
+.ghost-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+.ghost-content ul { list-style: disc; }
+.ghost-content ol { list-style: decimal; }
+.ghost-content li { margin-bottom: 0.5rem; }
+
+.ghost-content blockquote {
+  border-left: 3px solid #18181B;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  color: #52525B; /* zinc-600 */
+  font-style: italic;
+}
+
+.ghost-content img,
+.ghost-content figure {
+  border-radius: 1rem;
+  margin: 2.5rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.ghost-content figure figcaption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #71717A; /* zinc-500 */
+  margin-top: 0.75rem;
+}
+
+.ghost-content code {
+  background: #F4F4F5; /* zinc-100 */
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.ghost-content pre {
+  background: #18181B; /* zinc-900 */
+  color: #FAFAFA;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+.ghost-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.ghost-content hr {
+  border: none;
+  border-top: 1px solid #E4E4E7; /* zinc-200 */
+  margin: 3rem 0;
+}
+
+/* Tailwind utility shim for line-clamp (used by Newsletter cards) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

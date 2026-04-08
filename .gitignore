@@ -25,3 +25,6 @@ npm-debug.log*
 
 # Vercel
 .vercel
+
+# Local working files (private profiles, drafts, etc.)
+temp/

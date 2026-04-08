@@ -33,3 +33,34 @@ export interface FaqItemProps {
   question: string;
   answer: string;
 }
+
+export interface Article {
+  id: string;
+  slug: string; // Ghost API 연동용
+  title: string;
+  excerpt: string;
+  date: string;
+  tag: 'Strategy' | 'Case Study' | 'Tech' | 'Automation';
+  image: string;
+  content?: string;
+}
+
+export interface EducationCase {
+  id: string;
+  year: string;
+  client: string;
+  industry: '제조' | 'IT' | '금융' | '유통' | '공공';
+  title: string;
+  description: string;
+  image?: string; // 목록 및 상세 메인 이미지
+  details?: {
+    target: string;
+    duration: string;
+    keyTopics: string[];
+    curriculum: {
+      session: string;
+      content: string;
+    }[];
+    gallery?: string[]; // 현장 사진 갤러리
+  };
+}

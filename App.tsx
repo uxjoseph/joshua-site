@@ -1,27 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Manifesto } from './components/Manifesto';
-import { FeatureSection } from './components/FeatureSection';
-import { ProcessSection } from './components/ProcessSection';
-import { PortfolioSection } from './components/PortfolioSection';
-import { FAQSection } from './components/FAQSection';
 import { ContactFooter } from './components/ContactFooter';
+import { Home } from './pages/Home';
+import { Newsletter } from './pages/Newsletter';
+import { Article } from './pages/Article';
+import { Education } from './pages/Education';
+import { ScrollToTop } from './components/ScrollToTop';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <Manifesto />
-        <FeatureSection />
-        <ProcessSection />
-        <PortfolioSection />
-        <FAQSection />
-      </main>
-      <ContactFooter />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-white">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/newsletter/:slug" element={<Article />} />
+          <Route path="/education" element={<Education />} />
+        </Routes>
+        <ContactFooter />
+      </div>
+    </Router>
   );
 }
 

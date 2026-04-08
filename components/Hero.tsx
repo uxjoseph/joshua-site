@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { FadeIn, CharReveal } from './FadeIn';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { subscribeMember } from '../lib/ghost';
+
+type SubscribeStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export const Hero: React.FC = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 200]);
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<SubscribeStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMessage(null);
+    const result = await subscribeMember(email);
+    if (result.ok) {
+      setStatus('success');
+      setEmail('');
+    } else {
+      setStatus('error');
+      setErrorMessage(result.error || '알 수 없는 오류가 발생했습니다.');
+    }
+  };
   
   return (
     <section className="relative h-screen flex flex-col justify-center items-center overflow-hidden bg-white text-center">
@@ -59,24 +79,57 @@ export const Hero: React.FC = () => {
           </div>
         </FadeIn>
 
-        {/* Hero Headline with Enhanced Motion */}
-        <div className="flex flex-col items-center mb-10 leading-[0.9] select-none">
+        {/* Hero Headline with Enhanced Motion - Restored Original Text */}
+        <div className="flex flex-col items-center mb-6 md:mb-8 leading-[0.9] select-none">
            <h1 className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-extrabold tracking-tighter text-zinc-900 flex justify-center">
-             <CharReveal text="AI 비즈니스" delay={0.4} />
+             <CharReveal text="당신의 첫번째" delay={0.4} />
            </h1>
-           <h1 className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-extrabold tracking-tighter text-zinc-300 flex justify-center">
-             <CharReveal text="혁신의 파트너" delay={0.7} />
+           <h1 className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-extrabold tracking-tighter text-zinc-900 flex justify-center">
+             <CharReveal text="AX 파트너" delay={0.7} />
            </h1>
         </div>
         
-        <FadeIn delay={1.1} className="max-w-2xl mx-auto mb-16">
-          <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed font-semibold break-keep text-balance">
-            복잡한 기술을 가장 단순한 비즈니스 언어로 재해석합니다.<br/>
-            JOSHUA는 당신의 팀이 본질에 집중할 수 있도록 돕습니다.
+        <FadeIn delay={1.1} className="max-w-2xl mx-auto mb-10">
+          <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed font-medium break-keep text-balance">
+            전략 설계부터 실행까지, JOSHUA가 함께합니다.<br/>
+            AI를 도입하는 게 아니라, 일하는 방식을 완전히 바꿔드립니다.
           </p>
         </FadeIn>
 
-        <FadeIn delay={1.3}>
+        {/* CEO Josh's Request: Lead Collection Form integrated between text and button */}
+        <FadeIn delay={1.3} className="w-full max-w-xl mx-auto mb-8">
+          <form
+            onSubmit={handleSubscribe}
+            className="relative flex items-center p-1 rounded-full border border-zinc-200 bg-white/80 backdrop-blur-md shadow-2xl shadow-zinc-200/20 group focus-within:border-zinc-400 transition-all duration-300"
+          >
+            <input
+              type="email"
+              required
+              disabled={status === 'submitting' || status === 'success'}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="뉴스레터 구독을 위한 이메일 입력"
+              className="flex-1 bg-transparent px-8 py-3.5 text-base md:text-lg text-zinc-900 placeholder:text-zinc-400 focus:outline-none disabled:opacity-60"
+            />
+            <button
+              type="submit"
+              disabled={status === 'submitting' || status === 'success'}
+              className="bg-zinc-100 text-zinc-900 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-zinc-200 transition-colors disabled:opacity-60"
+            >
+              {status === 'submitting' ? '신청 중…' : status === 'success' ? '신청 완료' : '구독하기'}
+            </button>
+          </form>
+          {status === 'success' && (
+            <p className="mt-3 text-sm text-zinc-600 text-center">
+              메일함에서 확인 링크를 눌러주시면 구독이 완료됩니다.
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="mt-3 text-sm text-red-500 text-center">{errorMessage}</p>
+          )}
+        </FadeIn>
+
+        <FadeIn delay={1.5}>
            <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
