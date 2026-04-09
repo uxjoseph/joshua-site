@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { FadeIn, CharReveal } from './FadeIn';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { subscribeMember } from '../lib/ghost';
 
 type SubscribeStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export const Hero: React.FC = () => {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 200]);
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<SubscribeStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -28,7 +26,7 @@ export const Hero: React.FC = () => {
   };
   
   return (
-    <section className="relative h-screen flex flex-col justify-center items-center overflow-hidden bg-white text-center">
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-white text-center py-28 md:py-32">
       
       {/* Background: Clean & Subtle Gradient */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -67,9 +65,9 @@ export const Hero: React.FC = () => {
         />
       </div>
 
-      <motion.div style={{ y }} className="max-w-[90rem] mx-auto px-6 w-full relative z-10 flex flex-col items-center">
-        
-        <FadeIn delay={0.2} className="mb-12 hidden md:block">
+      <div className="max-w-[90rem] mx-auto px-6 w-full relative z-10 flex flex-col items-center">
+
+        <FadeIn delay={0.2} className="mb-8 hidden md:block">
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-zinc-100 bg-white/60 backdrop-blur-md shadow-sm cursor-default">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-900 opacity-20"></span>
@@ -80,16 +78,16 @@ export const Hero: React.FC = () => {
         </FadeIn>
 
         {/* Hero Headline with Enhanced Motion - Restored Original Text */}
-        <div className="flex flex-col items-center mb-6 md:mb-8 leading-[0.9] select-none">
-           <h1 className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-extrabold tracking-tighter text-zinc-900 flex justify-center">
+        <div className="flex flex-col items-center mb-5 md:mb-6 leading-[0.9] select-none">
+           <h1 className="text-[12vw] md:text-[7.5rem] lg:text-[9rem] font-extrabold tracking-tighter text-zinc-900 flex justify-center">
              <CharReveal text="당신의 첫번째" delay={0.4} />
            </h1>
-           <h1 className="text-[12vw] md:text-[8.5rem] lg:text-[10rem] font-extrabold tracking-tighter text-zinc-900 flex justify-center">
+           <h1 className="text-[12vw] md:text-[7.5rem] lg:text-[9rem] font-extrabold tracking-tighter text-zinc-900 flex justify-center">
              <CharReveal text="AX 파트너" delay={0.7} />
            </h1>
         </div>
-        
-        <FadeIn delay={1.1} className="max-w-2xl mx-auto mb-10">
+
+        <FadeIn delay={1.1} className="max-w-2xl mx-auto mb-8">
           <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed font-medium break-keep text-balance">
             전략 설계부터 실행까지, JOSHUA가 함께합니다.<br/>
             AI를 도입하는 게 아니라, 일하는 방식을 완전히 바꿔드립니다.
@@ -97,7 +95,7 @@ export const Hero: React.FC = () => {
         </FadeIn>
 
         {/* CEO Josh's Request: Lead Collection Form integrated between text and button */}
-        <FadeIn delay={1.3} className="w-full max-w-xl mx-auto mb-8">
+        <FadeIn delay={1.3} className="w-full max-w-xl mx-auto mb-6">
           <form
             onSubmit={handleSubscribe}
             className="relative flex items-center p-1 rounded-full border border-zinc-200 bg-white/80 backdrop-blur-md shadow-2xl shadow-zinc-200/20 group focus-within:border-zinc-400 transition-all duration-300"
@@ -108,7 +106,7 @@ export const Hero: React.FC = () => {
               disabled={status === 'submitting' || status === 'success'}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="뉴스레터 구독을 위한 이메일 입력"
+              placeholder="이메일로 AI 소식 받아보기"
               className="flex-1 bg-transparent px-8 py-3.5 text-base md:text-lg text-zinc-900 placeholder:text-zinc-400 focus:outline-none disabled:opacity-60"
             />
             <button
@@ -144,7 +142,7 @@ export const Hero: React.FC = () => {
           </motion.a>
         </FadeIn>
 
-      </motion.div>
+      </div>
     </section>
   );
 };
