@@ -34,34 +34,36 @@ export const Hero: React.FC = () => {
         {/* Base Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 via-white to-white" />
 
-        {/* Moving Soft Gradient Orbs */}
-        <motion.div 
-          animate={{ 
+        {/* Moving Soft Gradient Orbs — desktop only.
+            Mobile freeze incident: 3 large blur-[150px] orbs animating on Infinity
+            killed iOS Safari GPU and stalled Hero render. */}
+        <motion.div
+          animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
             scale: [1, 1.2, 1],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-blue-100/20 blur-[150px] mix-blend-multiply" 
+          className="hidden md:block absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-blue-100/20 blur-[150px] mix-blend-multiply"
         />
-        
-        <motion.div 
-          animate={{ 
+
+        <motion.div
+          animate={{
             x: [0, -100, 0],
             y: [0, 100, 0],
             scale: [1, 1.1, 1],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-indigo-50/30 blur-[150px] mix-blend-multiply" 
+          className="hidden md:block absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-indigo-50/30 blur-[150px] mix-blend-multiply"
         />
 
-         <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             x: [0, 50, 0],
             scale: [1, 1.3, 1],
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-          className="absolute top-[20%] right-[20%] w-[40vw] h-[40vw] rounded-full bg-violet-50/20 blur-[120px] mix-blend-multiply" 
+          className="hidden md:block absolute top-[20%] right-[20%] w-[40vw] h-[40vw] rounded-full bg-violet-50/20 blur-[120px] mix-blend-multiply"
         />
       </div>
 
