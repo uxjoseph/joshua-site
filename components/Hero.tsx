@@ -109,12 +109,12 @@ export const Hero: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="이메일로 AI 소식 받아보기"
-              className="flex-1 bg-transparent px-8 py-3.5 text-base md:text-lg text-zinc-900 placeholder:text-zinc-400 focus:outline-none disabled:opacity-60"
+              className="min-w-0 flex-1 bg-transparent px-5 md:px-8 py-3.5 text-sm md:text-lg text-zinc-900 placeholder:text-zinc-400 focus:outline-none disabled:opacity-60"
             />
             <button
               type="submit"
               disabled={status === 'submitting' || status === 'success'}
-              className="bg-zinc-100 text-zinc-900 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-zinc-200 transition-colors disabled:opacity-60"
+              className="shrink-0 whitespace-nowrap bg-zinc-100 text-zinc-900 px-4 md:px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider md:tracking-widest hover:bg-zinc-200 transition-colors disabled:opacity-60"
             >
               {status === 'submitting' ? '신청 중…' : status === 'success' ? '신청 완료' : '구독하기'}
             </button>
@@ -134,6 +134,20 @@ export const Hero: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('contact');
+              if (!el) return;
+              // PortfolioSection cards expand on mouseenter, which fires as the
+              // page scrolls under the stationary cursor and shifts layout —
+              // breaking the scroll target. Block pointer events during the scroll.
+              document.body.style.pointerEvents = 'none';
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              window.setTimeout(() => {
+                document.body.style.pointerEvents = '';
+                el.scrollIntoView({ block: 'start' });
+              }, 900);
+            }}
             className="group relative flex items-center gap-3 md:gap-6 bg-zinc-900 text-white pl-6 md:pl-10 pr-2 md:pr-3 py-2 md:py-3 rounded-full text-base md:text-xl font-bold hover:bg-black transition-all shadow-2xl shadow-zinc-900/10 ring-1 ring-black/5"
           >
             <span>무료 상담하기</span>

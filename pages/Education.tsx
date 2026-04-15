@@ -103,8 +103,19 @@ export const Education: React.FC = () => {
               초급자 대상의 생성형 AI 활용부터 전문 개발자를 위한 RAG 아키텍처 실습까지, <br className="hidden md:block" />
               고객사의 환경에 최적화된 맞춤형 커리큘럼을 제안해 드립니다.
             </p>
-            <a 
+            <a
               href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('contact');
+                if (!el) return;
+                document.body.style.pointerEvents = 'none';
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.setTimeout(() => {
+                  document.body.style.pointerEvents = '';
+                  el.scrollIntoView({ block: 'start' });
+                }, 900);
+              }}
               className="inline-block bg-white text-zinc-950 px-12 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all shadow-xl relative z-10"
             >
               교육 상담 신청하기

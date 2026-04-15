@@ -39,6 +39,21 @@ export const Navbar: React.FC = () => {
     }
   };
 
+  // Smooth scroll to #contact while blocking pointer events to prevent
+  // PortfolioSection cards from expanding under the cursor mid-scroll.
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const el = document.getElementById('contact');
+    if (!el) return;
+    document.body.style.pointerEvents = 'none';
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => {
+      document.body.style.pointerEvents = '';
+      el.scrollIntoView({ block: 'start' });
+    }, 900);
+  };
+
   return (
     <>
       <motion.nav 
@@ -72,10 +87,11 @@ export const Navbar: React.FC = () => {
                 </Link>
               ))}
             </div>
-            <motion.a 
+            <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              href="#contact" 
+              href="#contact"
+              onClick={handleContactClick}
               className="px-6 py-3 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors"
             >
               Contact
@@ -121,13 +137,13 @@ export const Navbar: React.FC = () => {
                   </motion.span>
                 </Link>
               ))}
-              <motion.a 
+              <motion.a
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                href="#contact" 
-                className="mt-8 w-full text-center px-6 py-5 rounded-xl bg-black text-white text-lg font-bold" 
-                onClick={() => setIsMobileMenuOpen(false)}
+                href="#contact"
+                onClick={handleContactClick}
+                className="mt-8 w-full text-center px-6 py-5 rounded-xl bg-black text-white text-lg font-bold"
               >
                 Start Project
               </motion.a>
