@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 
+type ContactStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 export const ContactFooter: React.FC = () => {
+  const [status, setStatus] = useState<ContactStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get('name') || ''),
+      email: String(formData.get('email') || ''),
+      message: String(formData.get('message') || ''),
+    };
+
+    setStatus('submitting');
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || '문의 전송에 실패했습니다.');
+      }
+      setStatus('success');
+      form.reset();
+    } catch (err) {
+      setStatus('error');
+      setErrorMessage(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');
+    }
+  };
+
   return (
     <footer id="contact" className="bg-white text-zinc-900 pt-32 md:pt-48 px-6 border-t border-zinc-100">
       <div className="max-w-[90rem] mx-auto">
@@ -33,8 +69,7 @@ export const ContactFooter: React.FC = () => {
 
           <FadeIn delay={0.3} className="w-full">
              <form
-               action="https://formspree.io/f/xgolvkaa"
-               method="POST"
+               onSubmit={handleSubmit}
                className="space-y-8"
              >
                <div className="group relative">
@@ -42,8 +77,9 @@ export const ContactFooter: React.FC = () => {
                     type="text"
                     name="name"
                     required
+                    disabled={status === 'submitting' || status === 'success'}
                     placeholder="이름 / 회사명"
-                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold"
+                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold disabled:opacity-60"
                  />
                </div>
                <div className="group relative">
@@ -51,8 +87,9 @@ export const ContactFooter: React.FC = () => {
                     type="email"
                     name="email"
                     required
+                    disabled={status === 'submitting' || status === 'success'}
                     placeholder="이메일 주소"
-                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold"
+                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold disabled:opacity-60"
                  />
                </div>
                <div className="group relative">
@@ -60,16 +97,31 @@ export const ContactFooter: React.FC = () => {
                     name="message"
                     rows={1}
                     required
+                    disabled={status === 'submitting' || status === 'success'}
                     placeholder="프로젝트에 대해 알려주세요"
-                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold resize-none h-32"
+                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold resize-none h-32 disabled:opacity-60"
                  ></textarea>
                </div>
 
                <div className="pt-8">
-                 <button type="submit" className="flex items-center gap-6 text-xl font-extrabold uppercase tracking-widest group hover:opacity-70 transition-opacity">
-                   문의 보내기 <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
+                 <button
+                   type="submit"
+                   disabled={status === 'submitting' || status === 'success'}
+                   className="flex items-center gap-6 text-xl font-extrabold uppercase tracking-widest group hover:opacity-70 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                 >
+                   {status === 'submitting' ? '전송 중…' : status === 'success' ? '전송 완료' : '문의 보내기'}
+                   <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
                  </button>
                </div>
+
+               {status === 'success' && (
+                 <p className="text-sm text-zinc-600 font-medium pt-4">
+                   문의해주셔서 감사합니다. 곧 회신 메일을 보내드리겠습니다.
+                 </p>
+               )}
+               {status === 'error' && (
+                 <p className="text-sm text-red-500 font-medium pt-4">{errorMessage}</p>
+               )}
              </form>
           </FadeIn>
         </div>
