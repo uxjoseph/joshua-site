@@ -1,8 +1,25 @@
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 
 type ContactStatus = 'idle' | 'submitting' | 'success' | 'error';
+
+const CATEGORIES = [
+  '프로젝트 의뢰',
+  '기업 교육',
+  '강연·외부 활동',
+  '기타 문의',
+];
+
+const SOURCES = [
+  '검색 (구글·네이버)',
+  '소셜 (LinkedIn · YouTube · Threads)',
+  '뉴스레터',
+  '지인 추천',
+  '컨퍼런스·행사',
+  '뉴스·아티클',
+  '기타',
+];
 
 export const ContactFooter: React.FC = () => {
   const [status, setStatus] = useState<ContactStatus>('idle');
@@ -14,8 +31,13 @@ export const ContactFooter: React.FC = () => {
     const formData = new FormData(form);
     const payload = {
       name: String(formData.get('name') || ''),
+      company: String(formData.get('company') || ''),
       email: String(formData.get('email') || ''),
+      phone: String(formData.get('phone') || ''),
+      category: String(formData.get('category') || ''),
       message: String(formData.get('message') || ''),
+      source: String(formData.get('source') || ''),
+      consent: formData.get('consent') === 'on',
     };
 
     setStatus('submitting');
@@ -38,6 +60,10 @@ export const ContactFooter: React.FC = () => {
       setErrorMessage(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');
     }
   };
+
+  const isLocked = status === 'submitting' || status === 'success';
+  const inputClass = "w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold disabled:opacity-60";
+  const selectClass = `${inputClass} appearance-none pr-10 cursor-pointer`;
 
   return (
     <footer id="contact" className="bg-white text-zinc-900 pt-32 md:pt-48 px-6 border-t border-zinc-100">
@@ -77,9 +103,19 @@ export const ContactFooter: React.FC = () => {
                     type="text"
                     name="name"
                     required
-                    disabled={status === 'submitting' || status === 'success'}
-                    placeholder="이름 / 회사명"
-                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold disabled:opacity-60"
+                    disabled={isLocked}
+                    placeholder="이름 *"
+                    className={inputClass}
+                 />
+               </div>
+               <div className="group relative">
+                 <input
+                    type="text"
+                    name="company"
+                    required
+                    disabled={isLocked}
+                    placeholder="회사 이름 *"
+                    className={inputClass}
                  />
                </div>
                <div className="group relative">
@@ -87,26 +123,81 @@ export const ContactFooter: React.FC = () => {
                     type="email"
                     name="email"
                     required
-                    disabled={status === 'submitting' || status === 'success'}
-                    placeholder="이메일 주소"
-                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold disabled:opacity-60"
+                    disabled={isLocked}
+                    placeholder="이메일 주소 *"
+                    className={inputClass}
                  />
+               </div>
+               <div className="group relative">
+                 <input
+                    type="tel"
+                    name="phone"
+                    required
+                    disabled={isLocked}
+                    placeholder="연락처 *  (- 없이 번호만 입력)"
+                    inputMode="numeric"
+                    pattern="[0-9]+"
+                    className={inputClass}
+                 />
+               </div>
+               <div className="group relative">
+                 <select
+                    name="category"
+                    required
+                    disabled={isLocked}
+                    defaultValue=""
+                    className={selectClass}
+                 >
+                    <option value="" disabled>문의 유형을 선택해주세요 *</option>
+                    {CATEGORIES.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                 </select>
+                 <ChevronDown size={24} className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" />
                </div>
                <div className="group relative">
                  <textarea
                     name="message"
                     rows={1}
                     required
-                    disabled={status === 'submitting' || status === 'success'}
-                    placeholder="프로젝트에 대해 알려주세요"
-                    className="w-full bg-transparent border-b-2 border-zinc-100 py-6 text-xl md:text-2xl focus:outline-none focus:border-black transition-colors placeholder:text-zinc-300 font-bold resize-none h-32 disabled:opacity-60"
+                    disabled={isLocked}
+                    placeholder="문의 내용을 알려주세요 *"
+                    className={`${inputClass} resize-none h-32`}
                  ></textarea>
                </div>
+               <div className="group relative">
+                 <select
+                    name="source"
+                    required
+                    disabled={isLocked}
+                    defaultValue=""
+                    className={selectClass}
+                 >
+                    <option value="" disabled>유입 경로를 선택해주세요 *</option>
+                    {SOURCES.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                 </select>
+                 <ChevronDown size={24} className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" />
+               </div>
+
+               <label className="flex items-start gap-3 pt-4 cursor-pointer select-none group">
+                 <input
+                    type="checkbox"
+                    name="consent"
+                    required
+                    disabled={isLocked}
+                    className="mt-1 w-5 h-5 accent-black cursor-pointer disabled:cursor-not-allowed"
+                 />
+                 <span className="text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-900 transition-colors">
+                   개인정보 수집·이용에 동의합니다 <span className="text-zinc-400">(필수)</span>
+                 </span>
+               </label>
 
                <div className="pt-8">
                  <button
                    type="submit"
-                   disabled={status === 'submitting' || status === 'success'}
+                   disabled={isLocked}
                    className="flex items-center gap-6 text-xl font-extrabold uppercase tracking-widest group hover:opacity-70 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                  >
                    {status === 'submitting' ? '전송 중…' : status === 'success' ? '전송 완료' : '문의 보내기'}

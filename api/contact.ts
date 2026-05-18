@@ -110,41 +110,76 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   let name = '';
+  let company = '';
   let email = '';
+  let phone = '';
+  let category = '';
   let message = '';
+  let source = '';
+  let consent = false;
 
   try {
     const contentType = req.headers.get('content-type') || '';
     if (contentType.includes('application/json')) {
       const body = (await req.json()) as Record<string, unknown>;
       name = String(body.name ?? '').trim();
+      company = String(body.company ?? '').trim();
       email = String(body.email ?? '').trim();
+      phone = String(body.phone ?? '').trim();
+      category = String(body.category ?? '').trim();
       message = String(body.message ?? '').trim();
+      source = String(body.source ?? '').trim();
+      consent = body.consent === true || body.consent === 'on';
     } else {
       const formData = await req.formData();
       name = String(formData.get('name') ?? '').trim();
+      company = String(formData.get('company') ?? '').trim();
       email = String(formData.get('email') ?? '').trim();
+      phone = String(formData.get('phone') ?? '').trim();
+      category = String(formData.get('category') ?? '').trim();
       message = String(formData.get('message') ?? '').trim();
+      source = String(formData.get('source') ?? '').trim();
+      consent = formData.get('consent') === 'on';
     }
   } catch {
     return jsonError('Invalid request body', 400);
   }
 
-  if (!name || !email || !message) {
-    return jsonError('이름, 이메일, 메시지를 모두 입력해주세요.', 400);
+  if (!name || !company || !email || !phone || !category || !message || !source) {
+    return jsonError('모든 필수 항목을 입력해주세요.', 400);
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return jsonError('이메일 형식이 올바르지 않습니다.', 400);
   }
+  if (!/^[0-9]+$/.test(phone)) {
+    return jsonError('연락처는 하이픈 없이 숫자만 입력해주세요.', 400);
+  }
+  if (!consent) {
+    return jsonError('개인정보 수집·이용에 동의해주세요.', 400);
+  }
 
   const resend = new Resend(apiKey);
+
+  const notifyText = [
+    `이름: ${name}`,
+    `회사: ${company}`,
+    `이메일: ${email}`,
+    `연락처: ${phone}`,
+    `문의 유형: ${category}`,
+    `유입 경로: ${source}`,
+    '',
+    '문의 내용',
+    '──────────',
+    message,
+    '',
+  ].join('\n');
 
   const notify = await resend.emails.send({
     from: FROM_ADDRESS,
     to: NOTIFY_TO,
     replyTo: email,
-    subject: `[joshua.site 문의] ${name}`,
-    text: `이름/회사: ${name}\n이메일: ${email}\n\n메시지\n──────────\n${message}\n`,
+    subject: `[joshua.site 문의] ${category} — ${name} (${company})`,
+    text: notifyText,
   });
 
   if (notify.error) {
