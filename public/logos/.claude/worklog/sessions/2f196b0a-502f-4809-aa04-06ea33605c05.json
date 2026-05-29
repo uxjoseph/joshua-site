@@ -1,0 +1,20 @@
+{
+  "session_id": "2f196b0a-502f-4809-aa04-06ea33605c05",
+  "project_dir": "/Users/jungjaeho/dev/joshua-site/public/logos",
+  "project_name": "logos",
+  "transcript_path": "/Users/jungjaeho/.claude/projects/-Users-jungjaeho-dev-joshua-site/2f196b0a-502f-4809-aa04-06ea33605c05.jsonl",
+  "first_seen": "2026-05-29T16:45:29+0900",
+  "first_seen_epoch": 1780040729,
+  "last_seen": "2026-05-29T17:20:46+0900",
+  "last_seen_epoch": 1780042846,
+  "turn_count": 5,
+  "last_event": "Stop",
+  "last_log_epoch": 1780042305,
+  "git": {
+    "branch": "main",
+    "first_head": "d6f69f0",
+    "head": "d6f69f0",
+    "dirty": true
+  },
+  "ended_by": null
+}
