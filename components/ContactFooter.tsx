@@ -218,7 +218,7 @@ export const ContactFooter: React.FC = () => {
         </div>
 
         <div className="py-12 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-400 uppercase tracking-widest border-t border-zinc-100 font-bold">
-          <p>© 2025 JOSHUA All rights reserved.</p>
+          <p>© {new Date().getFullYear()} JOSHUA All rights reserved.</p>
           <div className="flex gap-8 mt-4 md:mt-0">
              <a href="https://www.youtube.com/@builderjoshkim" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">YouTube</a>
              <a href="https://www.linkedin.com/in/uxjosh/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>

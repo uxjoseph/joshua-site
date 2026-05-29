@@ -3,8 +3,8 @@ import { Resend } from 'resend';
 export const config = { runtime: 'edge' };
 
 const FROM_ADDRESS = 'JOSHUA <hello@joshua.site>';
-const NOTIFY_TO = 'joshproductletter@gmail.com';
-const CALENDLY_URL = 'https://calendly.com/tuemarz/coffeechat-with-josh-kim';
+const NOTIFY_TO = 'hello@joshua.site';
+const CALENDLY_URL = 'https://calendly.com/ahnwh331-joshua/30min';
 
 const SITE_URL = 'https://joshua.site';
 const LOGO_URL = `${SITE_URL}/JOSHUA.png`;
@@ -30,7 +30,7 @@ JOSHUA AX Consultancy
 joshua.site
 `;
 
-const AUTO_REPLY_HTML = `<!DOCTYPE html>
+const buildAutoReplyHtml = () => `<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -87,7 +87,7 @@ const AUTO_REPLY_HTML = `<!DOCTYPE html>
           <tr>
             <td style="padding:24px 48px;text-align:center;">
               <p style="margin:0;font-size:11px;color:#a1a1aa;line-height:1.6;">
-                © 2025 JOSHUA AX Consultancy. All rights reserved.<br>
+                © ${new Date().getFullYear()} JOSHUA AX Consultancy. All rights reserved.<br>
                 이 메일은 joshua.site 문의 폼을 통해 자동 발송되었습니다.
               </p>
             </td>
@@ -192,7 +192,7 @@ export default async function handler(req: Request): Promise<Response> {
     to: email,
     subject: AUTO_REPLY_SUBJECT,
     text: AUTO_REPLY_TEXT,
-    html: AUTO_REPLY_HTML,
+    html: buildAutoReplyHtml(),
   });
 
   if (autoReply.error) {
