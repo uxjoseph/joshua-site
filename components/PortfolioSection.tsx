@@ -45,6 +45,34 @@ const projects = [
     category: "Creative AI & AX",
     year: "2026",
     image: "/portfolio/ax-2026-52.png"
+  },
+  {
+    title: "SK그룹 임원 리더십 포럼 AI 페르소나 라이브 인터랙션 시스템",
+    description: "사장단 토론이 사회자 진행에 전적으로 의존하던 SK 이천포럼에서, 사전 학습된 AI 페르소나가 라이브 아바타로 응답하고 모더레이터가 단일 컨트롤 패널에서 송출·자막·패널을 실시간 조정할 수 있도록 구축한 SK그룹 임원 리더십 포럼 전용 컨버세이셔널 AI 시스템입니다.",
+    category: "Conversational AI",
+    year: "2026",
+    image: "/portfolio/ax-2026-60.png"
+  },
+  {
+    title: "SK그룹 22개 계열사 조직문화 진단 통합 분석 및 데이터 인텔리전스 대시보드",
+    description: "22개 계열사 약 3만 4천 건 응답 데이터를 PPT로 수기 정리하며 8주가 소요되던 조직문화 진단 사이클을, Raw XLS 업로드만으로 5개 영역 점수·주관식 분석·Heatmap·Alert까지 1일 내 자동화한 SK그룹 전사 조직문화 인텔리전스 대시보드입니다.",
+    category: "Data Intelligence",
+    year: "2026",
+    image: "/portfolio/ax-2026-70.png"
+  },
+  {
+    title: "SK그룹 CEO 시그널 인텔리전스 및 일일 자동 브리핑 시스템",
+    description: "다양한 채널에 분산된 시장·경쟁사 시그널을 수기로 정리해 매일 일관된 브리핑이 어려웠던 CEO 의사결정 환경을, 페르소나별 코멘트와 경쟁사 매트릭스까지 자동 큐레이션하여 매일 텔레그램으로 자동 브리핑하도록 구축한 SK그룹 CEO 전용 인사이트 인텔리전스 플랫폼입니다.",
+    category: "Data Intelligence",
+    year: "2026",
+    image: "/portfolio/ax-2026-80.png"
+  },
+  {
+    title: "SK그룹 글로벌 비즈니스 영어 자료 작성·발표 통합 코칭 AI 에이전트",
+    description: "외부 1:1 코칭에 의존하던 임직원의 영문 자료 작성·발표 준비를, 직무·산업별 영문 콘텐츠 큐레이션과 발음 코칭, 압박 Q&A 롤플레잉, 사내 글로서리 연동까지 단일 에이전트로 통합한 SK그룹 글로벌 비즈니스 커뮤니케이션 AI 코칭 솔루션입니다.",
+    category: "AI Coaching",
+    year: "2026",
+    image: "/portfolio/ax-2026-90.png"
   }
 ];
 
