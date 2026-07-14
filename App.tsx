@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { ContactFooter } from './components/ContactFooter';
 import { Home } from './pages/Home';
-import { Newsletter } from './pages/Newsletter';
-import { Article } from './pages/Article';
+// Newsletter / Article pages temporarily disabled at the router level per 2026-07-14
+// direction. Files kept intact for possible reactivation.
+// import { Newsletter } from './pages/Newsletter';
+// import { Article } from './pages/Article';
 import { Education } from './pages/Education';
 import { ScrollToTop } from './components/ScrollToTop';
 
@@ -16,8 +18,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/newsletter" element={<Newsletter />} />
-          <Route path="/newsletter/:slug" element={<Article />} />
+          <Route path="/newsletter" element={<Navigate to="/" replace />} />
+          <Route path="/newsletter/:slug" element={<Navigate to="/" replace />} />
           <Route path="/education" element={<Education />} />
         </Routes>
         <ContactFooter />

@@ -6,7 +6,6 @@ import { Link, useLocation } from 'react-router-dom';
 const navItems = [
   { label: 'Philosophy', href: '/#intro' },
   { label: 'Works', href: '/#portfolio' },
-  { label: 'Newsletter', href: '/newsletter' },
   { label: 'Corporate Education', href: '/education' },
 ];
 

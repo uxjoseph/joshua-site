@@ -1,30 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { FadeIn, CharReveal } from './FadeIn';
 import { motion } from 'framer-motion';
-import { subscribeMember } from '../lib/ghost';
-
-type SubscribeStatus = 'idle' | 'submitting' | 'success' | 'error';
+// Newsletter subscribe form temporarily removed per 2026-07-14 direction.
+// lib/ghost.ts subscribeMember() left intact for possible reactivation.
 
 export const Hero: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<SubscribeStatus>('idle');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('submitting');
-    setErrorMessage(null);
-    const result = await subscribeMember(email);
-    if (result.ok) {
-      setStatus('success');
-      setEmail('');
-    } else {
-      setStatus('error');
-      setErrorMessage(result.error || '알 수 없는 오류가 발생했습니다.');
-    }
-  };
-  
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-white text-center py-28 md:py-32">
       
@@ -94,39 +75,6 @@ export const Hero: React.FC = () => {
             전략 설계부터 실행까지, JOSHUA가 함께합니다.<br/>
             AI를 도입하는 게 아니라, 일하는 방식을 완전히 바꿔드립니다.
           </p>
-        </FadeIn>
-
-        {/* CEO Josh's Request: Lead Collection Form integrated between text and button */}
-        <FadeIn delay={1.3} className="w-full max-w-xl mx-auto mb-6">
-          <form
-            onSubmit={handleSubscribe}
-            className="relative flex items-center p-1 rounded-full border border-zinc-200 bg-white/80 backdrop-blur-md shadow-2xl shadow-zinc-200/20 group focus-within:border-zinc-400 transition-all duration-300"
-          >
-            <input
-              type="email"
-              required
-              disabled={status === 'submitting' || status === 'success'}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="이메일로 AI 소식 받아보기"
-              className="min-w-0 flex-1 bg-transparent px-5 md:px-8 py-3.5 text-sm md:text-lg text-zinc-900 placeholder:text-zinc-400 focus:outline-none disabled:opacity-60"
-            />
-            <button
-              type="submit"
-              disabled={status === 'submitting' || status === 'success'}
-              className="shrink-0 whitespace-nowrap bg-zinc-100 text-zinc-900 px-4 md:px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider md:tracking-widest hover:bg-zinc-200 transition-colors disabled:opacity-60"
-            >
-              {status === 'submitting' ? '신청 중…' : status === 'success' ? '신청 완료' : '구독하기'}
-            </button>
-          </form>
-          {status === 'success' && (
-            <p className="mt-3 text-sm text-zinc-600 text-center">
-              메일함에서 확인 링크를 눌러주시면 구독이 완료됩니다.
-            </p>
-          )}
-          {status === 'error' && (
-            <p className="mt-3 text-sm text-red-500 text-center">{errorMessage}</p>
-          )}
         </FadeIn>
 
         <FadeIn delay={1.5}>
