@@ -87,8 +87,8 @@ export const ContactFooter: React.FC = () => {
              <div className="space-y-4">
                <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 block mb-4">오피스</span>
                <p className="text-xl font-medium text-zinc-600 max-w-sm">
-                 서울특별시 동작구 시흥대로 606,<br/>
-                 오피스동 532호
+                 서울특별시 구로구 디지털로26길 43,<br/>
+                 L동 502,503호
                </p>
              </div>
           </FadeIn>
