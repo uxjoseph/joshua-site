@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 
@@ -217,8 +218,27 @@ export const ContactFooter: React.FC = () => {
           </FadeIn>
         </div>
 
+        <div className="pt-12 pb-8 border-t border-zinc-100">
+          <div className="text-xs text-zinc-400 leading-relaxed space-y-1 not-italic">
+            <p>
+              <span className="text-zinc-500">(주)조슈아앤컴퍼니</span>
+              <span className="mx-2 text-zinc-300">|</span>대표 김승권
+              <span className="mx-2 text-zinc-300">|</span>개인정보보호책임자 김승권
+              <span className="mx-2 text-zinc-300">|</span>사업자등록번호 189-87-03956
+            </p>
+            <p>
+              주소 서울특별시 구로구 디지털로26길 43, L동 502,503호
+              <span className="mx-2 text-zinc-300">|</span>
+              이메일 <a href="mailto:hello@joshua.site" className="hover:text-black transition-colors">hello@joshua.site</a>
+            </p>
+            <p className="pt-2">
+              <Link to="/privacy" className="font-semibold text-zinc-500 hover:text-black transition-colors">개인정보 처리방침</Link>
+            </p>
+          </div>
+        </div>
+
         <div className="py-12 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-400 uppercase tracking-widest border-t border-zinc-100 font-bold">
-          <p>© {new Date().getFullYear()} JOSHUA All rights reserved.</p>
+          <p>© {new Date().getFullYear()} (주)조슈아앤컴퍼니 All rights reserved.</p>
           <div className="flex gap-8 mt-4 md:mt-0">
              <a href="https://www.youtube.com/@builderjoshkim" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">YouTube</a>
              <a href="https://www.linkedin.com/in/uxjosh/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
