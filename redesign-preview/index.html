@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>조슈아앤컴퍼니 — 교육부터 구축, 운영까지 AX 파트너 (개편 홈 초안 v2)</title>
+  <meta name="description" content="joshua.site 전면 개편 홈 초안 v2 — 로컬 프리뷰 전용" />
+  <link rel="icon" href="/JOSHUA.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root {
+      --canvas:#f5f5f5; --canvas-soft:#fafafa; --card:#ffffff;
+      --strong:#f0efed; --dark:#0c0a09; --dark-elev:#1c1917;
+      --hairline:#e7e5e4; --hairline-strong:#d6d3d1;
+      --ink:#0c0a09; --body:#4e4e4e; --muted:#777169; --muted-soft:#a8a29e;
+      --on-dark:#ffffff; --on-dark-soft:#a8a29e;
+      --g-sky:#a8c8e8; --g-mint:#a7e5d3; --g-peach:#f4c5a8; --g-lavender:#c8b8e0;
+      --font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
+      --r-md:8px; --r-xl:16px; --r-xxl:24px; --pill:9999px;
+      --max-w:1200px; --shadow:0 4px 16px rgba(0,0,0,.04);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--canvas);color:var(--body);font-family:var(--font);font-size:16px;letter-spacing:.16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    img{max-width:100%}
+
+    h1,h2{font-weight:300;color:var(--ink);word-break:keep-all}
+    h1{font-size:clamp(2.25rem,6.4vw,4.25rem);line-height:1.08;letter-spacing:-.04em}
+    h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.16;letter-spacing:-.03em;margin-bottom:1.2rem}
+    h1 strong,h2 strong{font-weight:600}
+    h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;color:var(--ink);line-height:1.4}
+    .overline{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+    .lead{color:var(--body);font-size:clamp(1rem,2.2vw,1.125rem);max-width:42rem;word-break:keep-all}
+    .dim{color:var(--muted)}
+
+    .section{padding:clamp(4rem,9vw,6.5rem) 1.5rem}
+    .soft{background:var(--canvas-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+    .inner{max-width:var(--max-w);margin:0 auto}
+    .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+    .sec-link{font-size:.9rem;font-weight:600;color:var(--ink);white-space:nowrap}
+    .sec-link::after{content:" →"}
+
+    /* nav */
+    .nav{position:fixed;inset:0 0 auto;z-index:50;background:rgba(245,245,245,.88);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+    .nav.scrolled{border-bottom-color:var(--hairline)}
+    .nav-inner{max-width:var(--max-w);margin:0 auto;height:64px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.6rem}
+    .brand img{height:22px;width:auto;display:block}
+    .links{display:none;gap:1.8rem;align-items:center}
+    @media(min-width:960px){.links{display:flex}}
+    .links>a,.drop>button{font-size:.9375rem;font-weight:500;color:var(--body);transition:color .2s;background:none;border:none;cursor:pointer;font-family:inherit;letter-spacing:inherit;display:flex;align-items:center;gap:.3rem}
+    .links>a:hover,.drop>button:hover{color:var(--ink)}
+    .drop{position:relative}
+    .drop-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xl);box-shadow:0 12px 32px rgba(0,0,0,.08);padding:.5rem;min-width:300px;opacity:0;pointer-events:none;translate:0 6px;transition:opacity .18s,translate .18s}
+    .drop:hover .drop-menu,.drop:focus-within .drop-menu{opacity:1;pointer-events:auto;translate:0 0}
+    .drop-item{display:block;padding:.85rem 1rem;border-radius:10px}
+    .drop-item:hover{background:var(--canvas-soft)}
+    .drop-item .t{font-weight:600;color:var(--ink);font-size:.95rem;display:flex;gap:.5rem;align-items:center}
+    .drop-item .d{font-size:.8rem;color:var(--muted);margin-top:.15rem}
+    .tag{font-size:.62rem;font-weight:700;letter-spacing:.06em;padding:.14rem .5rem;border-radius:var(--pill);background:var(--strong);color:var(--muted);text-transform:uppercase}
+    .tag.new{background:var(--dark);color:#fff}
+    .caret{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+
+    .btn{display:inline-block;font-weight:500;font-size:.9375rem;padding:.75rem 1.5rem;border-radius:var(--pill);border:1px solid transparent;cursor:pointer;text-align:center;transition:background .2s,border-color .2s;word-break:keep-all}
+    .btn-primary{background:#292524;color:#fff}
+    .btn-primary:hover{background:var(--dark)}
+    .btn-outline{border-color:var(--hairline-strong);color:var(--ink)}
+    .btn-outline:hover{border-color:var(--ink)}
+    .btn-sm{padding:.55rem 1.15rem}
+
+    /* hero */
+    .hero{position:relative;padding:10.5rem 1.5rem 0;text-align:center;overflow:hidden}
+    .hero::before{content:"";position:absolute;width:48rem;height:48rem;border-radius:50%;filter:blur(70px);left:50%;top:-17rem;transform:translateX(-55%);background:radial-gradient(circle,var(--g-sky) 0%,transparent 65%);opacity:.5;pointer-events:none}
+    .hero::after{content:"";position:absolute;width:30rem;height:30rem;border-radius:50%;filter:blur(60px);right:-9rem;top:9rem;background:radial-gradient(circle,var(--g-mint) 0%,transparent 65%);opacity:.4;pointer-events:none}
+    .hero-inner{position:relative;max-width:900px;margin:0 auto}
+    .badge-live{display:inline-flex;align-items:center;gap:.55rem;padding:.45rem 1.1rem;border-radius:var(--pill);border:1px solid var(--hairline);background:rgba(255,255,255,.65);backdrop-filter:blur(8px);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:1.8rem}
+    .badge-live .dot{width:7px;height:7px;border-radius:50%;background:var(--ink);position:relative}
+    .badge-live .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--ink);opacity:.15;animation:ping 1.8s infinite}
+    @keyframes ping{0%{transform:scale(.6);opacity:.4}80%,100%{transform:scale(1.6);opacity:0}}
+    .hero .lead{margin:1.5rem auto 0}
+    .hero .lead strong{color:var(--ink);font-weight:600}
+    .hero-cta{margin-top:2.4rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+    .proof-band{margin:3rem auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem 2rem;max-width:52rem}
+    @media(min-width:760px){.proof-band{grid-template-columns:repeat(4,1fr)}}
+    .proof-band .n{display:block;font-weight:200;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+    .proof-band .l{display:block;font-size:.78rem;color:var(--muted);margin-top:.2rem}
+
+    /* logo marquee */
+    .logos{border-top:1px solid var(--hairline);margin-top:4.5rem;padding:1.8rem 0 2.4rem;position:relative}
+    .logos>p{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-soft);margin-bottom:1.4rem;text-align:center}
+    .marquee{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
+    .marquee-track{display:flex;width:max-content;animation:marquee 42s linear infinite}
+    .marquee:hover .marquee-track{animation-play-state:paused}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .marquee-track>div{display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0 2.6rem;height:44px}
+    /* 흰색 채움 SVG 대비: 전부 잉크 실루엣으로 통일 (다크 사이트의 brightness-0 invert와 대칭) */
+    .marquee-track img{height:26px;width:auto;object-fit:contain;filter:brightness(0) opacity(.45);transition:filter .25s}
+    .marquee-track img:hover{filter:brightness(0) opacity(.85)}
+    @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:100%;justify-content:center}}
+
+    /* journey */
+    .grid3{display:grid;gap:1rem;margin-top:2.4rem}
+    @media(min-width:900px){.grid3{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xl);padding:1.9rem 1.6rem;transition:box-shadow .25s;position:relative;overflow:hidden}
+    .card:hover{box-shadow:var(--shadow)}
+    .card p{font-size:.9375rem;word-break:keep-all}
+    .step-en{font-size:.75rem;font-weight:700;letter-spacing:.14em;color:var(--muted-soft);text-transform:uppercase;margin-bottom:1.1rem;display:block}
+    .card h3{margin-bottom:.55rem}
+    .card ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.45rem}
+    .card li{font-size:.875rem;color:var(--muted);padding-left:1.1rem;position:relative}
+    .card li::before{content:"—";position:absolute;left:0;color:var(--muted-soft)}
+    .card .more{display:inline-block;margin-top:1.2rem;font-size:.85rem;font-weight:600;color:var(--ink)}
+    .card .more::after{content:" →"}
+    .orb::before{content:"";position:absolute;width:14rem;height:14rem;border-radius:50%;filter:blur(40px);opacity:.5;top:-6rem;right:-5rem;pointer-events:none}
+    .orb-sky::before{background:radial-gradient(circle,var(--g-sky),transparent 70%)}
+    .orb-mint::before{background:radial-gradient(circle,var(--g-mint),transparent 70%)}
+    .orb-peach::before{background:radial-gradient(circle,var(--g-peach),transparent 70%)}
+    .orb>*{position:relative}
+
+    /* solutions */
+    .sol-grid{display:grid;gap:1rem;margin-top:2.4rem}
+    @media(min-width:900px){.sol-grid{grid-template-columns:7fr 5fr}}
+    .sol-talos{background:var(--dark);border-radius:var(--r-xxl);padding:2.6rem 2.2rem;color:var(--on-dark-soft);position:relative;overflow:hidden}
+    .sol-talos::before{content:"";position:absolute;width:22rem;height:22rem;border-radius:50%;filter:blur(60px);opacity:.28;top:-8rem;right:-6rem;background:radial-gradient(circle,var(--g-peach),transparent 70%)}
+    .sol-talos>*{position:relative}
+    .sol-talos .mark{font-weight:800;letter-spacing:.22em;color:#fff;font-size:1rem}
+    .sol-talos h3{color:#fff;font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:300;letter-spacing:-.02em;margin:.9rem 0 .6rem}
+    .sol-talos h3 strong{font-weight:600}
+    .sol-talos p{font-size:.95rem;word-break:keep-all;max-width:34rem}
+    .sol-talos .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.2rem}
+    .sol-talos .chips span{font-size:.72rem;font-weight:600;padding:.3rem .8rem;border-radius:var(--pill);border:1px solid rgba(255,255,255,.18);color:var(--on-dark-soft)}
+    .sol-talos .btn{margin-top:1.6rem;background:#fff;color:var(--ink)}
+    .sol-talos .btn:hover{background:var(--strong)}
+    .sol-no{font-size:.66rem;font-weight:600;letter-spacing:.08em;color:var(--on-dark-soft);margin-left:.7rem;text-transform:uppercase}
+    .sol-micky{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xxl);padding:2.6rem 2.2rem;position:relative;overflow:hidden}
+    .sol-micky::before{content:"";position:absolute;width:20rem;height:20rem;border-radius:50%;filter:blur(55px);opacity:.4;top:-7rem;right:-6rem;background:radial-gradient(circle,var(--g-sky),transparent 70%)}
+    .sol-micky>*{position:relative}
+    .sol-micky .mark{font-weight:800;letter-spacing:.22em;color:var(--ink);font-size:1rem}
+    .sol-micky .mark .sol-no{color:var(--muted-soft)}
+    .sol-micky h3{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:300;letter-spacing:-.02em;margin:.9rem 0 .6rem}
+    .sol-micky h3 strong{font-weight:600}
+    .sol-micky p{font-size:.95rem;word-break:keep-all;max-width:34rem}
+    .sol-micky .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.2rem}
+    .sol-micky .chips span{font-size:.72rem;font-weight:600;padding:.3rem .8rem;border-radius:var(--pill);border:1px solid var(--hairline-strong);color:var(--muted)}
+    .sol-micky .btn{margin-top:1.6rem}
+
+    /* technology — 다크 인버전 신뢰 섹션 */
+    .tech{background:var(--dark);color:var(--on-dark-soft)}
+    .tech .overline{color:var(--on-dark-soft)}
+    .tech h2{color:#fff}
+    .tech .lead{color:var(--on-dark-soft)}
+    .tech-grid{display:grid;gap:1rem;margin-top:2.6rem}
+    @media(min-width:900px){.tech-grid{grid-template-columns:repeat(4,1fr)}}
+    @media(min-width:640px) and (max-width:899px){.tech-grid{grid-template-columns:repeat(2,1fr)}}
+    .tech-card{background:var(--dark-elev);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-xl);padding:1.7rem 1.5rem}
+    .tech-card .no{font-size:.72rem;font-weight:700;letter-spacing:.14em;color:rgba(244,197,168,.8);text-transform:uppercase}
+    .tech-card h3{color:#fff;font-size:1.05rem;margin:.8rem 0 .5rem}
+    .tech-card p{font-size:.86rem;color:var(--on-dark-soft);word-break:keep-all}
+    .tech-proof{margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:.8rem 2.2rem;font-size:.85rem}
+    .tech-proof strong{color:#fff;font-weight:600}
+
+    /* portfolio */
+    .pf-feature{display:grid;gap:1rem;margin-top:2.4rem}
+    @media(min-width:900px){.pf-feature{grid-template-columns:repeat(3,1fr)}}
+    .pf-card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xl);overflow:hidden;transition:box-shadow .25s;display:flex;flex-direction:column}
+    .pf-card:hover{box-shadow:var(--shadow)}
+    .pf-card .thumb{aspect-ratio:16/10;background:var(--strong);overflow:hidden}
+    .pf-card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s}
+    .pf-card:hover .thumb img{transform:scale(1.03)}
+    .pf-card .pad{padding:1.4rem 1.5rem 1.6rem}
+    .pf-card .cat{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-soft)}
+    .pf-card h3{font-size:1.02rem;margin:.6rem 0 .5rem}
+    .pf-card p{font-size:.86rem;color:var(--muted);word-break:keep-all;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .pf-list{margin-top:1.4rem;border-top:1px solid var(--hairline)}
+    .pf-row{display:grid;grid-template-columns:2.4rem 1fr auto;gap:1rem;align-items:baseline;padding:1.15rem .25rem;border-bottom:1px solid var(--hairline);transition:background .2s}
+    .pf-row:hover{background:var(--canvas-soft)}
+    .pf-row .no{font-size:.8rem;font-weight:600;color:var(--muted-soft);font-variant-numeric:tabular-nums}
+    .pf-row .t{font-weight:500;color:var(--ink);font-size:.98rem;word-break:keep-all}
+    .pf-row .meta{display:flex;gap:.6rem;align-items:center;white-space:nowrap}
+    .pf-row .meta .tag{font-size:.66rem}
+    .pf-row .meta .yr{font-size:.8rem;color:var(--muted-soft);font-variant-numeric:tabular-nums}
+    @media(max-width:640px){.pf-row{grid-template-columns:2rem 1fr}.pf-row .meta{grid-column:2;margin-top:.2rem}}
+
+    /* education */
+    .edu-feature{display:grid;gap:1rem;margin-top:2.4rem}
+    @media(min-width:900px){.edu-feature{grid-template-columns:repeat(4,1fr)}}
+    @media(min-width:640px) and (max-width:899px){.edu-feature{grid-template-columns:repeat(2,1fr)}}
+    .edu-card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xl);overflow:hidden}
+    .edu-card .thumb{aspect-ratio:4/3;background:var(--strong);overflow:hidden}
+    .edu-card .thumb img{width:100%;height:100%;object-fit:cover}
+    .edu-card .pad{padding:1.1rem 1.2rem 1.3rem}
+    .edu-card .client{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+    .edu-card h3{font-size:.95rem;margin-top:.45rem;line-height:1.45}
+    .edu-tbl{margin-top:1.6rem;border-top:1px solid var(--hairline)}
+    .edu-row{display:grid;grid-template-columns:3.4rem 9rem 1fr;gap:1rem;padding:1rem .25rem;border-bottom:1px solid var(--hairline);align-items:baseline}
+    .edu-row:hover{background:var(--canvas-soft)}
+    .edu-row .yr{font-size:.8rem;color:var(--muted-soft);font-variant-numeric:tabular-nums}
+    .edu-row .cl{font-weight:600;color:var(--ink);font-size:.92rem}
+    .edu-row .ti{font-size:.92rem;color:var(--body);word-break:keep-all}
+    @media(max-width:640px){.edu-row{grid-template-columns:3rem 1fr}.edu-row .ti{grid-column:2}}
+
+    /* insights */
+    .ins{display:grid;gap:1rem;margin-top:2.4rem}
+    @media(min-width:900px){.ins{grid-template-columns:repeat(3,1fr)}}
+    .ins a.card{display:block}
+    .ins .cat{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-soft)}
+    .ins h3{font-size:1.05rem;margin:.7rem 0 .5rem;line-height:1.45}
+    .ins p{color:var(--muted);font-size:.875rem}
+
+    /* team + about */
+    .about{display:grid;gap:2.5rem;margin-top:1rem}
+    @media(min-width:900px){.about{grid-template-columns:5fr 7fr;gap:4rem}}
+    .team{display:grid;gap:1rem;margin-top:2rem}
+    @media(min-width:640px){.team{grid-template-columns:repeat(3,1fr)}}
+    .tm{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xl);padding:1.4rem 1.3rem}
+    .tm img{width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:1rem;background:var(--strong)}
+    .tm .n{font-weight:600;color:var(--ink)}
+    .tm .r{font-size:.78rem;color:var(--muted);margin-bottom:.6rem}
+    .tm p{font-size:.84rem;color:var(--muted);word-break:keep-all}
+
+    /* faq */
+    .faq{border-top:1px solid var(--hairline);margin-top:2.2rem}
+    .faq details{border-bottom:1px solid var(--hairline)}
+    .faq summary{cursor:pointer;padding:1.3rem 2.25rem 1.3rem .25rem;font-weight:500;font-size:1.05rem;color:var(--ink);list-style:none;position:relative;word-break:keep-all}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"+";position:absolute;right:.5rem;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:300;font-size:1.35rem;transition:transform .2s}
+    .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+    .faq details p{padding:0 .25rem 1.35rem;color:var(--body);font-size:.95rem;max-width:46rem;word-break:keep-all}
+
+    /* contact form */
+    .contact-grid{display:grid;gap:2.5rem;text-align:left}
+    @media(min-width:960px){.contact-grid{grid-template-columns:5fr 7fr;gap:4rem;align-items:start}}
+    .contact-form{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xxl);padding:clamp(1.5rem,3.5vw,2.4rem);display:flex;flex-direction:column;gap:1.1rem}
+    .field{display:flex;flex-direction:column;gap:.4rem;flex:1}
+    .frow{display:flex;flex-direction:column;gap:1.1rem}
+    @media(min-width:640px){.frow{flex-direction:row}}
+    .field label{font-size:.85rem;font-weight:500;color:var(--body-strong,#292524)}
+    .req{color:var(--muted);font-weight:400}
+    .field input,.field select,.field textarea{background:var(--card);border:1px solid var(--hairline-strong);border-radius:var(--r-md);color:var(--ink);font-family:var(--font);font-size:1rem;padding:.65rem 1rem;min-height:44px;transition:border-color .2s,box-shadow .2s}
+    .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777169' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer}
+    .field textarea{resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+    .field .invalid{border-color:#dc2626}
+    .consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.85rem;color:var(--body);cursor:pointer;word-break:keep-all}
+    .consent input{margin-top:.2rem;accent-color:var(--ink);width:1.05rem;height:1.05rem;flex-shrink:0}
+    .form-msg{font-size:.9rem;min-height:1.4em;word-break:keep-all}
+    .form-msg.ok{color:#16a34a}.form-msg.err{color:#dc2626}.form-msg.info{color:var(--muted)}
+
+    /* cta */
+    .cta{position:relative;overflow:hidden}
+    .cta::before{content:"";position:absolute;width:34rem;height:34rem;border-radius:50%;filter:blur(70px);left:50%;bottom:-18rem;transform:translateX(-50%);background:radial-gradient(circle,var(--g-lavender),transparent 65%);opacity:.4;pointer-events:none}
+    .cta .inner{position:relative}
+    .cta .btn{margin-top:2rem}
+    .sla{margin-top:1rem;font-size:.85rem;color:var(--muted)}
+
+    /* footer */
+    footer{border-top:1px solid var(--hairline);padding:3.4rem 1.5rem 2.6rem;background:var(--canvas)}
+    .foot{max-width:var(--max-w);margin:0 auto}
+    .foot-top{display:grid;gap:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid var(--hairline)}
+    @media(min-width:900px){.foot-top{grid-template-columns:5fr 7fr}}
+    .foot-brand img{height:24px;width:auto;margin-bottom:1rem}
+    .foot-brand p{font-size:.88rem;color:var(--muted);word-break:keep-all;max-width:22rem}
+    .foot-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
+    @media(min-width:640px){.foot-cols{grid-template-columns:repeat(3,1fr)}}
+    .foot-cols h4{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-soft);margin-bottom:.8rem}
+    .foot-cols a,.foot-cols span{display:block;font-size:.9rem;color:var(--body);padding:.22rem 0}
+    .foot-cols a:hover{color:var(--ink)}
+    .foot-legal{padding-top:1.6rem;display:flex;flex-direction:column;gap:.5rem;font-size:.8rem;color:var(--muted)}
+    .foot-legal .row{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+    .foot-legal a{text-decoration:underline;text-underline-offset:3px}
+    .todo{background:#fff7e6;color:#8a6d1a;border-radius:6px;padding:0 .4rem;font-size:.78rem}
+
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="JOSHUA 홈"><img src="/JOSHUA.png" alt="JOSHUA" /></a>
+      <nav class="links" aria-label="주요 메뉴">
+        <a href="#education">교육</a>
+        <div class="drop">
+          <button type="button" aria-haspopup="true">솔루션 <span class="caret"></span></button>
+          <div class="drop-menu" role="menu">
+            <a class="drop-item" href="#solutions" role="menuitem">
+              <span class="t">TALOS <span class="tag new">Solution 01</span></span>
+              <span class="d">제조 AX 온톨로지 — 데이터를 연결하면 공장이 답합니다</span>
+            </a>
+            <a class="drop-item" href="#solutions" role="menuitem">
+              <span class="t">MICKY <span class="tag new">Solution 02</span></span>
+              <span class="d">AI 회의록 — 쌓인 회의 맥락이 곧 팀의 에이전트가 됩니다</span>
+            </a>
+          </div>
+        </div>
+        <a href="#work">사례</a>
+        <a href="#insights">인사이트</a>
+        <a href="#about">회사소개</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#contact">문의하기</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="badge-live reveal"><span class="dot"></span>독립 AX 파트너</p>
+        <h1 class="reveal">배우는 것에서 끝나지 않는 AX,<br /><strong>교육부터 구축, 운영까지</strong></h1>
+        <p class="lead reveal">
+          많은 기업이 AI를 도입하고 싶지만, 방법을 모르고 있습니다.<br />
+          <strong>조슈아앤컴퍼니는 조직의 이해부터 시스템 구축, 온톨로지 운영까지 끝까지 책임지는 독립 AX 파트너입니다.</strong>
+        </p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" href="#contact">무료 상담하기</a>
+          <a class="btn btn-outline" href="#work">사례 보기</a>
+        </div>
+        <div class="proof-band reveal">
+          <div><span class="n">12곳</span><span class="l">기업교육 진행 조직</span></div>
+          <div><span class="n">10건</span><span class="l">엔터프라이즈 AX 프로젝트</span></div>
+          <div><span class="n">75,000건</span><span class="l">RAG로 체계화한 지식자산</span></div>
+          <div><span class="n">8주→1일</span><span class="l">조직문화 진단 리포트 자동화</span></div>
+        </div>
+      </div>
+      <div class="logos reveal">
+        <p>Partners &amp; Clients — 국내외 선도 기업이 JOSHUA와 함께합니다</p>
+        <div class="marquee">
+          <div class="marquee-track" id="logo-track">
+            <div><img src="/logos/samsung.svg" alt="삼성" /></div>
+            <div><img src="/logos/lg.svg" alt="LG전자" /></div>
+            <div><img src="/logos/skhynix.svg" alt="SK하이닉스" /></div>
+            <div><img src="/logos/skinnovation.svg" alt="SK이노베이션" /></div>
+            <div><img src="/logos/sk.svg" alt="SK주식회사" /></div>
+            <div><img src="/logos/kakaobank.svg" alt="카카오뱅크" /></div>
+            <div><img src="/logos/kakaomobility.svg" alt="카카오모빌리티" /></div>
+            <div><img src="/logos/dell.svg" alt="델 테크놀로지스" /></div>
+            <div><img src="/logos/salesforce.svg" alt="세일즈포스" /></div>
+            <div><img src="/logos/shinhan.svg" alt="신한" /></div>
+            <div><img src="/logos/madup.svg" alt="매드업" /></div>
+            <div><img src="/logos/innocean.svg" alt="이노션" /></div>
+            <div><img src="/logos/beautyselection.png" alt="뷰티셀렉션" /></div>
+            <div><img src="/logos/lguplus.svg" alt="LG U+" /></div>
+            <div><img src="/logos/millie.png" alt="밀리의서재" /></div>
+            <div><img src="/logos/weolbu.png" alt="월급쟁이부자들" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="section soft" id="journey">
+      <div class="inner">
+        <p class="overline reveal">The AX Journey</p>
+        <h2 class="reveal">AX는 일회성 프로젝트가 아니라<br /><strong>여정</strong>입니다</h2>
+        <p class="lead reveal">이해하고(Learn), 구축하고(Build), 운영합니다(Run). 세 단계가 한 팀 안에서 이어질 때, AX는 조직에 남습니다.</p>
+        <div class="grid3 reveal">
+          <article class="card orb orb-sky">
+            <span class="step-en">01 · Learn — 기업교육</span>
+            <h3>조직이 AI를 이해하게 만듭니다</h3>
+            <p>카카오뱅크·신한은행·LG전자가 선택한, 실무에 바로 적용되는 AI 교육.</p>
+            <ul>
+              <li>임원 특강 — 'AI Agent 시대' 의사결정 전략</li>
+              <li>직무별 실습 워크숍 — 금융·디자인·제조</li>
+              <li>8주 집중 트레이닝 — 비개발자도 자동화 도구 제작</li>
+            </ul>
+            <a class="more" href="#education">교육 사례 보기</a>
+          </article>
+          <article class="card orb orb-mint">
+            <span class="step-en">02 · Build — AX 구축</span>
+            <h3>현업이 매일 쓰는 시스템을 만듭니다</h3>
+            <p>데모로 끝나는 AI가 아니라, 75,000건 지식자산을 답하게 만든 실전 구축력.</p>
+            <ul>
+              <li>업무 자동화 — 8주 걸리던 리포트를 1일로</li>
+              <li>SKT·디자인 에이전시 출신의 UX 설계</li>
+              <li>MVP 4~8주 — 발견부터 정착까지 책임 리드</li>
+            </ul>
+            <a class="more" href="#work">구축 사례 보기</a>
+          </article>
+          <article class="card orb orb-peach">
+            <span class="step-en">03 · Run — 솔루션</span>
+            <h3>온톨로지 위에서 지속 운영합니다</h3>
+            <p>구축이 끝나도 AX는 계속됩니다. 산업 지식을 온톨로지로 연결한 설치형 솔루션.</p>
+            <ul>
+              <li>산업 지식그래프(온톨로지) 설계·설치</li>
+              <li>현업 앱 배포 — 6주 내 프로덕션</li>
+              <li>자사 솔루션 — TALOS(제조) · MICKY(팀 지능)</li>
+            </ul>
+            <a class="more" href="#solutions">솔루션 보기</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section class="section" id="solutions">
+      <div class="inner">
+        <p class="overline reveal">Solutions</p>
+        <h2 class="reveal">직접 만들어 팔고 있는 <strong>솔루션</strong></h2>
+        <p class="lead reveal">컨설팅만 하는 회사가 아닙니다. 온톨로지 기술을 제품으로 만들어 직접 운영합니다.</p>
+        <div class="sol-grid reveal">
+          <article class="sol-talos">
+            <span class="mark">TALOS <span class="sol-no">Solution 01 · 제조</span></span>
+            <h3>제조 AX 온톨로지의 시작, <strong>탈로스</strong></h3>
+            <p>설비·공정·문서·사람의 지식을 하나의 온톨로지로 연결하고, 6주 안에 현업이 쓰는 AI 앱을 만듭니다. 제조업을 위한 첫 번째 솔루션입니다.</p>
+            <div class="chips"><span>산업 지식그래프</span><span>근본원인분석</span><span>예지보전</span><span>현장점검 디지털화</span></div>
+            <a class="btn" href="https://talos-nine.vercel.app" target="_blank" rel="noopener">TALOS 자세히 보기</a>
+          </article>
+          <article class="sol-micky">
+            <span class="mark">MICKY <span class="sol-no">Solution 02 · 팀 지능</span></span>
+            <h3>회의에만 집중하세요,<br /><strong>나머지는 미키가</strong></h3>
+            <p>봇 없이 회의를 녹음·분석해 요약·액션·발표자료까지 자동 생성하고, 쌓인 회의 맥락이 팀만 아는 에이전트가 되는 AI 회의록 서비스입니다. 한국어 직급·존댓말 맥락까지 보존합니다.</p>
+            <div class="chips"><span>Bot-Free 녹음</span><span>Meeting-to-X</span><span>팀 지식그래프</span><span>미이행 약속 추적</span></div>
+            <a class="btn btn-outline" href="https://micky.joshua.site" target="_blank" rel="noopener">MICKY 베타 신청</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY -->
+    <section class="section tech" id="technology">
+      <div class="inner">
+        <p class="overline reveal">Technology</p>
+        <h2 class="reveal">온톨로지, 말로 하는 회사는 많습니다.<br /><strong>우리는 배포해 봤습니다</strong></h2>
+        <p class="lead reveal">조슈아앤컴퍼니의 기술력은 슬라이드가 아니라 지금 돌아가는 시스템으로 증명합니다.</p>
+        <div class="tech-grid reveal">
+          <article class="tech-card">
+            <span class="no">01 · Ontology</span>
+            <h3>산업 지식그래프 설계</h3>
+            <p>설비·문서·회의·사람의 지식을 개념 그래프로 연결하는 온톨로지 엔지니어링. TALOS(제조)와 MICKY 팀 브레인에 실제 구현돼 있습니다.</p>
+          </article>
+          <article class="tech-card">
+            <span class="no">02 · RAG at Scale</span>
+            <h3>75,000건 지식자산 체계화</h3>
+            <p>SK그룹 전사 경영 지식 75,000건을 RAG로 구조화해, 선대회장 화법·음성으로 응답하는 시스템까지 프로덕션 배포했습니다.</p>
+          </article>
+          <article class="tech-card">
+            <span class="no">03 · Agent Orchestration</span>
+            <h3>멀티에이전트 오케스트레이션</h3>
+            <p>SK 이천포럼에서 AI 페르소나가 사장단 토론에 라이브로 응답했습니다. 에이전트 마켓플레이스·자동 QA 파이프라인까지 운영 경험 보유.</p>
+          </article>
+          <article class="tech-card">
+            <span class="no">04 · Agentic Delivery</span>
+            <h3>에이전틱 개발 방법론</h3>
+            <p>8주 걸리던 진단 리포트를 1일로 줄인 자동화, MVP 4~8주·솔루션 앱 6주 프로덕션. 속도 자체가 방법론의 증거입니다.</p>
+          </article>
+        </div>
+        <p class="tech-proof reveal">
+          <span>검증 환경 — <strong>SK그룹 15개 계열사</strong> 운영 시스템</span>
+          <span>데이터 규모 — <strong>75,000건 지식 · 34,000건 응답 분석</strong></span>
+          <span>납품 형태 — <strong>웹 앱 · 대시보드 · 에이전트 · 온톨로지</strong></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- WORK / PORTFOLIO -->
+    <section class="section soft" id="work">
+      <div class="inner">
+        <div class="sec-head">
+          <div>
+            <p class="overline reveal">Featured Case Studies</p>
+            <h2 class="reveal" style="margin-bottom:0">결과로 증명한 <strong>프로젝트</strong></h2>
+          </div>
+          <a class="sec-link reveal" href="#contact">프로젝트 문의하기</a>
+        </div>
+        <div class="pf-feature reveal">
+          <article class="pf-card">
+            <div class="thumb"><img src="/portfolio/ax-2026-02.png" alt="SK그룹 전사 경영 지식 AX 전환" loading="lazy" /></div>
+            <div class="pad">
+              <span class="cat">Enterprise AX · 2026</span>
+              <h3>지식자산 75,000건 — 전사 경영 지식이 답하기 시작하다</h3>
+              <p>SK그룹의 핵심 지식 자산을 RAG 기반으로 체계화하고, 선대회장의 화법과 음성으로 응답·발표자료를 자동 생성하는 엔터프라이즈 AX 시스템.</p>
+            </div>
+          </article>
+          <article class="pf-card">
+            <div class="thumb"><img src="/portfolio/ax-2026-70.png" alt="SK그룹 조직문화 진단 통합 분석 대시보드" loading="lazy" /></div>
+            <div class="pad">
+              <span class="cat">Data Intelligence · 2026</span>
+              <h3>8주 → 1일 — 22개 계열사 조직문화 진단 자동화</h3>
+              <p>34,000건 응답을 8주간 수기 정리하던 진단 사이클을, Raw XLS 업로드만으로 점수·주관식 분석·Heatmap·Alert까지 1일 내 자동화한 SK그룹 대시보드.</p>
+            </div>
+          </article>
+          <article class="pf-card">
+            <div class="thumb"><img src="/portfolio/ax-2026-60.png" alt="SK그룹 임원 리더십 포럼 AI 페르소나 라이브 인터랙션" loading="lazy" /></div>
+            <div class="pad">
+              <span class="cat">Conversational AI · 2026</span>
+              <h3>이천포럼 — 사장단 토론에 AI 페르소나가 라이브로 답하다</h3>
+              <p>사전 학습된 AI 페르소나가 라이브 아바타로 응답하고, 모더레이터가 단일 컨트롤 패널에서 송출·자막·패널을 실시간 조정한 SK그룹 임원 리더십 포럼 시스템.</p>
+            </div>
+          </article>
+        </div>
+        <div class="pf-list reveal">
+          <div class="pf-row"><span class="no">04</span><span class="t">SK그룹 전사 AI 역량 혁신 플랫폼 및 구성원 활동 데이터 인텔리전스</span><span class="meta"><span class="tag">AX Governance</span><span class="yr">2026</span></span></div>
+          <div class="pf-row"><span class="no">05</span><span class="t">SK그룹 HRD 교육운영 지능화 및 AI 에이전트 오케스트레이션 시스템</span><span class="meta"><span class="tag">Enterprise AX</span><span class="yr">2026</span></span></div>
+          <div class="pf-row"><span class="no">06</span><span class="t">SK그룹 교육그룹 전사 성과지표(PI) 실시간 통합 관리 및 데이터 인텔리전스</span><span class="meta"><span class="tag">Data Intelligence</span><span class="yr">2026</span></span></div>
+          <div class="pf-row"><span class="no">07</span><span class="t">SK그룹 인재개발 AI 오케스트레이션 및 오프라인 교육 운영 통합 플랫폼</span><span class="meta"><span class="tag">Enterprise AX</span><span class="yr">2026</span></span></div>
+          <div class="pf-row"><span class="no">08</span><span class="t">SK그룹 사내 교육 플랫폼 AI 멀티모달 이미지 생성 및 자동 QA 시스템</span><span class="meta"><span class="tag">Creative AI &amp; AX</span><span class="yr">2026</span></span></div>
+          <div class="pf-row"><span class="no">09</span><span class="t">SK그룹 CEO 시그널 인텔리전스 및 일일 자동 브리핑 시스템</span><span class="meta"><span class="tag">Data Intelligence</span><span class="yr">2026</span></span></div>
+          <div class="pf-row"><span class="no">10</span><span class="t">SK그룹 글로벌 비즈니스 영어 자료 작성·발표 통합 코칭 AI 에이전트</span><span class="meta"><span class="tag">AI Coaching</span><span class="yr">2026</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="inner">
+        <div class="sec-head">
+          <div>
+            <p class="overline reveal">Corporate Education</p>
+            <h2 class="reveal" style="margin-bottom:0">기업이 다시 찾는 <strong>교육</strong></h2>
+          </div>
+          <a class="sec-link reveal" href="#contact">교육 문의하기</a>
+        </div>
+        <div class="edu-feature reveal">
+          <article class="edu-card">
+            <div class="thumb"><img src="/portfolio/education/IMG_0340.jpg" alt="카카오뱅크 임원 특강 현장" loading="lazy" /></div>
+            <div class="pad">
+              <span class="client">카카오뱅크 · 2026</span>
+              <h3>임원 대상 'AI Agent 시대' 특강</h3>
+            </div>
+          </article>
+          <article class="edu-card">
+            <div class="thumb"><img src="/portfolio/education/IMG_0627.jpg" alt="신한은행 AI Transformation 워크숍 현장" loading="lazy" /></div>
+            <div class="pad">
+              <span class="client">신한은행 · 2026</span>
+              <h3>AI Transformation 전략 및 실습</h3>
+            </div>
+          </article>
+          <article class="edu-card">
+            <div class="thumb"><img src="/portfolio/education/IMG_0344.jpg" alt="SK이노베이션 Claude Co-Work 강의 현장" loading="lazy" /></div>
+            <div class="pad">
+              <span class="client">SK이노베이션 · 2025</span>
+              <h3>Claude Co-Work 강의</h3>
+            </div>
+          </article>
+          <article class="edu-card">
+            <div class="thumb"><img src="/portfolio/education/IMG_0872.jpg" alt="밀리의서재 멀티에이전트 시스템 강의 현장" loading="lazy" /></div>
+            <div class="pad">
+              <span class="client">밀리의 서재 · 2025</span>
+              <h3>멀티에이전트 시스템 강의</h3>
+            </div>
+          </article>
+        </div>
+        <div class="edu-tbl reveal">
+          <div class="edu-row"><span class="yr">2026</span><span class="cl">카카오모빌리티</span><span class="ti">디자인과 AI 에이전트</span></div>
+          <div class="edu-row"><span class="yr">2026</span><span class="cl">LG전자</span><span class="ti">AI 시대의 디자인 &amp; Figma MCP 디자인 자동화</span></div>
+          <div class="edu-row"><span class="yr">2025</span><span class="cl">삼성전자</span><span class="ti">AI 교육 영상 콘텐츠 정기 납품</span></div>
+          <div class="edu-row"><span class="yr">2025</span><span class="cl">뷰티셀렉션</span><span class="ti">8주 Claude Code 트레이닝</span></div>
+          <div class="edu-row"><span class="yr">2025</span><span class="cl">월급쟁이부자들</span><span class="ti">멀티에이전트 &amp; Claude Co-Work 자동화 사례</span></div>
+          <div class="edu-row"><span class="yr">2025</span><span class="cl">SK하이닉스</span><span class="ti">AI 활용 기업 교육</span></div>
+          <div class="edu-row"><span class="yr">2025</span><span class="cl">삼성금융연수원</span><span class="ti">AI 활용 기업 교육</span></div>
+          <div class="edu-row"><span class="yr">2025</span><span class="cl">충남대학교</span><span class="ti">AI RISE 학술회 초청 강의</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section class="section soft" id="insights">
+      <div class="inner">
+        <div class="sec-head">
+          <div>
+            <p class="overline reveal">Insights &amp; Newsletter</p>
+            <h2 class="reveal" style="margin-bottom:0">AX를 먼저 겪은 사람의 <strong>기록</strong></h2>
+          </div>
+          <a class="sec-link reveal" href="#contact">뉴스레터 구독하기</a>
+        </div>
+        <div class="ins reveal">
+          <article class="card">
+            <span class="cat">Definition</span>
+            <h3>제조 AX란 무엇인가 — DX와 무엇이 다른가</h3>
+            <p>정의형 콘텐츠 (발행 예정) · SEO/GEO 타깃</p>
+          </article>
+          <article class="card">
+            <span class="cat">Ontology</span>
+            <h3>AI 도입 전에 온톨로지가 먼저인 이유</h3>
+            <p>정의형 콘텐츠 (발행 예정) · SEO/GEO 타깃</p>
+          </article>
+          <article class="card">
+            <span class="cat">Newsletter</span>
+            <h3>조쉬의 뉴스레터 — 아카이브 통합 예정</h3>
+            <p>기존 발행분을 joshua.site로 이전합니다</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + TEAM + FAQ -->
+    <section class="section" id="about">
+      <div class="inner">
+        <div class="about">
+          <div class="reveal">
+            <p class="overline">About Joshua &amp; Company</p>
+            <h2>결정은 귀사가,<br /><strong>실행은 조슈아가</strong></h2>
+          </div>
+          <div class="reveal">
+            <p class="lead">조슈아앤컴퍼니는 특정 벤더에 종속되지 않는 독립 AX 컨설팅·구현사입니다. SKT·거대 디자인 에이전시 출신 전문가가 UX가 담긴 제품을 만들고, 구성원의 AI 리터러시를 올려 변화가 조직에 정착하도록 돕습니다.</p>
+            <div class="team">
+              <div class="tm">
+                <img src="https://ca.slack-edge.com/T0AM6SX80RK-U0AMA9YLLAW-ddfb8e554307-512" alt="조쉬" loading="lazy" onerror="this.style.display='none'" />
+                <p class="n">조쉬</p>
+                <p class="r">CEO / Visionary</p>
+                <p>AI 오케스트레이션 총괄 및 비즈니스 전략 설계. 다양한 기업의 AX 혁신을 이끌고 있습니다.</p>
+              </div>
+              <div class="tm">
+                <img src="/team-jaeho.jpg" alt="정재호" loading="lazy" />
+                <p class="n">정재호</p>
+                <p class="r">개발팀장 / FDE</p>
+                <p>다양한 산업군의 비즈니스 워크플로우를 기술적으로 해석하고 최적의 AI 아키텍처를 구현합니다.</p>
+              </div>
+              <div class="tm">
+                <img src="/team-ian.png" alt="이안" loading="lazy" />
+                <p class="n">이안</p>
+                <p class="r">개발 스태프</p>
+                <p>프로덕트 구현과 운영을 담당하며, 요구사항을 빠르고 견고한 코드로 옮깁니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq reveal" style="margin-top:3.5rem">
+          <details>
+            <summary>Joshua는 어떤 기업에게 적합한가요?</summary>
+            <p>AI 도입을 고민하지만 시작점을 모르는 기업, 반복 업무로 인한 비효율을 겪는 기업, 그리고 구성원들의 디지털 리터러시를 높이고 싶은 모든 조직에 적합합니다.</p>
+          </details>
+          <details>
+            <summary>개발 지식이 전혀 없어도 의뢰할 수 있나요?</summary>
+            <p>물론입니다. Joshua는 비개발자도 이해할 수 있는 언어로 소통하며, 기획부터 설계, 개발, 교육까지 전 과정을 책임지고 리드합니다.</p>
+          </details>
+          <details>
+            <summary>프로젝트 기간은 보통 얼마나 걸리나요?</summary>
+            <p>프로젝트 규모에 따라 다르지만, MVP(최소 기능 제품) 기준 보통 4주~8주 정도 소요됩니다. 발견 단계부터 정착까지 꼼꼼하게 관리합니다.</p>
+          </details>
+          <details>
+            <summary>유지보수는 어떻게 진행되나요?</summary>
+            <p>프로젝트 종료 후에도 안정화 기간을 제공하며, 필요 시 월 단위 유지보수 계약을 통해 지속적인 업데이트와 모니터링을 지원합니다.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section cta soft" id="contact">
+      <div class="inner contact-grid">
+        <div class="reveal contact-copy">
+          <p class="overline">Contact</p>
+          <h2>어디서부터 시작할지,<br /><strong>30분이면 정리됩니다</strong></h2>
+          <p class="lead">교육이든, 구축이든, 솔루션이든 — 무엇이 먼저인지부터 함께 정리해드립니다.</p>
+          <p class="sla">영업일 1일 내 답변드립니다.<br />
+            <a href="https://calendly.com/ahnwh331-joshua/30min" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">30분 커피챗 바로 예약하기</a> ·
+            <a href="mailto:hello@joshua.site" style="text-decoration:underline;text-underline-offset:3px">hello@joshua.site</a>
+          </p>
+        </div>
+        <form id="contact-form" class="contact-form reveal" novalidate>
+          <div class="field"><label for="c-name">이름 <span class="req">*</span></label><input id="c-name" name="name" type="text" required autocomplete="name" /></div>
+          <div class="field"><label for="c-company">회사 이름 <span class="req">*</span></label><input id="c-company" name="company" type="text" required autocomplete="organization" /></div>
+          <div class="frow">
+            <div class="field"><label for="c-email">이메일 주소 <span class="req">*</span></label><input id="c-email" name="email" type="email" required autocomplete="email" /></div>
+            <div class="field"><label for="c-phone">연락처 <span class="req">*</span></label><input id="c-phone" name="phone" type="tel" required inputmode="numeric" placeholder="- 없이 번호만" autocomplete="tel" /></div>
+          </div>
+          <div class="field"><label for="c-category">문의 유형 <span class="req">*</span></label>
+            <select id="c-category" name="category" required>
+              <option value="" disabled selected>문의 유형을 선택해주세요</option>
+              <option>프로젝트 의뢰 (AX 구축)</option>
+              <option>기업 교육</option>
+              <option>솔루션 도입 (TALOS · MICKY)</option>
+              <option>강연·외부 활동</option>
+              <option>기타 문의</option>
+            </select>
+          </div>
+          <div class="field"><label for="c-message">문의 내용 <span class="req">*</span></label><textarea id="c-message" name="message" rows="4" required placeholder="문의 내용을 알려주세요"></textarea></div>
+          <div class="field"><label for="c-source">유입 경로 <span class="req">*</span></label>
+            <select id="c-source" name="source" required>
+              <option value="" disabled selected>유입 경로를 선택해주세요</option>
+              <option>검색 (구글·네이버)</option>
+              <option>AI 검색 (ChatGPT·Perplexity 등)</option>
+              <option>소셜 (LinkedIn · YouTube · Threads)</option>
+              <option>뉴스레터</option>
+              <option>지인 추천</option>
+              <option>컨퍼런스·행사</option>
+              <option>뉴스·아티클</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <label class="consent"><input type="checkbox" name="consent" required /> <span>개인정보 수집·이용에 동의합니다 <span class="req">(필수)</span></span></label>
+          <button type="submit" class="btn btn-primary" id="c-submit">무료 상담 신청하기</button>
+          <p class="form-msg" id="c-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img src="/JOSHUA.png" alt="JOSHUA" />
+          <p>교육부터 구축, 운영까지 — 독립 AX 컨설팅·구현사 조슈아앤컴퍼니입니다.</p>
+        </div>
+        <div class="foot-cols">
+          <div>
+            <h4>Services</h4>
+            <a href="#education">기업교육</a>
+            <a href="#work">AX 구축</a>
+            <a href="#solutions">솔루션 — TALOS</a>
+            <a href="#insights">인사이트</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#about">회사소개</a>
+            <a href="#contact">문의하기</a>
+            <span class="dim" title="실구현 시 /privacy 라우트">개인정보처리방침 (준비 중)</span>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:hello@joshua.site">hello@joshua.site</a>
+            <span>010-7565-9060</span>
+            <span>서울특별시 구로구 디지털로26길 43,<br />L동 502,503호</span>
+          </div>
+        </div>
+      </div>
+      <div class="foot-legal">
+        <div class="row">
+          <span>상호: 주식회사 조슈아앤컴퍼니</span>
+          <span>대표: 김승권</span>
+          <span>사업자등록번호: 189-87-03956</span>
+        </div>
+        <div class="row">
+          <a href="https://www.youtube.com/@builderjoshkim" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://www.linkedin.com/in/uxjosh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.threads.com/@joshproductletter" target="_blank" rel="noopener noreferrer">Threads</a>
+        </div>
+        <span>© <span id="year">2026</span> JOSHUA All rights reserved. — 로컬 초안 프리뷰 v2</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 24), { passive:true });
+    // 로고 마퀴: 트랙을 2배로 복제해 무한 루프
+    const track = document.getElementById('logo-track');
+    track.innerHTML += track.innerHTML;
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 문의 폼 — 기존 joshua.site /api/contact(Resend) 파이프라인과 동일 페이로드
+    const cform = document.getElementById('contact-form');
+    const cmsg = document.getElementById('c-msg');
+    const cbtn = document.getElementById('c-submit');
+    cform.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      cform.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+      const fd = new FormData(cform);
+      const data = {
+        name: String(fd.get('name')||'').trim(),
+        company: String(fd.get('company')||'').trim(),
+        email: String(fd.get('email')||'').trim(),
+        phone: String(fd.get('phone')||'').replace(/[^0-9]/g,''),
+        category: String(fd.get('category')||''),
+        message: String(fd.get('message')||'').trim(),
+        source: String(fd.get('source')||''),
+        consent: fd.get('consent') === 'on',
+      };
+      const fail = (sel, text) => { const el = cform.querySelector(sel); if (el){ el.classList.add('invalid'); el.focus(); } cmsg.textContent = text; cmsg.className = 'form-msg err'; };
+      if (!data.name) return fail('[name=name]','이름을 입력해주세요.');
+      if (!data.company) return fail('[name=company]','회사 이름을 입력해주세요.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return fail('[name=email]','이메일 형식이 올바르지 않습니다.');
+      if (!/^[0-9]{9,11}$/.test(data.phone)) return fail('[name=phone]','연락처는 - 없이 숫자만 입력해주세요.');
+      if (!data.category) return fail('[name=category]','문의 유형을 선택해주세요.');
+      if (!data.message) return fail('[name=message]','문의 내용을 입력해주세요.');
+      if (!data.source) return fail('[name=source]','유입 경로를 선택해주세요.');
+      if (!data.consent) return fail('[name=consent]','개인정보 수집·이용에 동의해주세요.');
+      cbtn.disabled = true; cbtn.textContent = '전송 중…';
+      try {
+        const res = await fetch('/api/contact', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(data) });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.ok) throw new Error(body.error || 'preview');
+        cmsg.textContent = '문의해주셔서 감사합니다. 곧 회신 메일을 보내드리겠습니다.';
+        cmsg.className = 'form-msg ok'; cbtn.textContent = '전송 완료';
+      } catch (_) {
+        // 로컬 프리뷰에는 API가 없다 — 검증 통과를 확인시키고 실구현 연결 지점을 명시
+        cmsg.textContent = '✓ 입력 검증 통과 — 프리뷰 모드입니다. 실구현 시 기존 /api/contact(Resend → hello@joshua.site)로 전송됩니다.';
+        cmsg.className = 'form-msg info';
+        cbtn.disabled = false; cbtn.textContent = '무료 상담 신청하기';
+      }
+    });
+  </script>
+</body>
+</html>
