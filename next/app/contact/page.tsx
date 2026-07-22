@@ -15,11 +15,10 @@ export default function ContactPage() {
         <div className="inner contact-grid">
           <div className="reveal contact-copy">
             <p className="overline">Contact</p>
-            <h2>어디서부터 시작할지,<br /><strong>30분이면 정리됩니다</strong></h2>
+            <h2>어디서부터 시작할지,<br /><strong>무료로 빠르게 상담해보세요</strong></h2>
             <p className="lead">교육이든, 구축이든, 솔루션이든 — 무엇이 먼저인지부터 함께 정리해드립니다.</p>
             <p className="sla">
-              영업일 1일 내 답변드립니다.<br />
-              <a href={SITE.calendly} target="_blank" rel="noopener" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>30분 커피챗 바로 예약하기</a>{' · '}
+              영업일 1일 내 답변드립니다.{' · '}
               <a href={`mailto:${SITE.email}`} style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>{SITE.email}</a>
             </p>
           </div>

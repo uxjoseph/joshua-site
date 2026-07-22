@@ -18,7 +18,6 @@ export function Footer() {
               <Link href="/work">AX 구축</Link>
               <Link href="/solutions/talos">솔루션 — TALOS</Link>
               <Link href="/solutions/micky">솔루션 — MICKY</Link>
-              <Link href="/insights">인사이트</Link>
             </div>
             <div>
               <h4>Company</h4>

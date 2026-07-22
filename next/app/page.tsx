@@ -33,15 +33,15 @@ export default function Home() {
           </h1>
           <p className="lead reveal">
             많은 기업이 AI를 도입하고 싶지만, 방법을 모르고 있습니다.<br />
-            <strong>조슈아앤컴퍼니는 조직의 이해부터 시스템 구축, 온톨로지 운영까지 끝까지 책임지는 독립 AX 파트너입니다.</strong>
+            <strong>조슈아앤컴퍼니는 조직의 이해부터 시스템 구축, 온톨로지 운영까지<br />끝까지 책임지는 독립 AX 파트너입니다.</strong>
           </p>
           <div className="hero-cta reveal">
             <Link className="btn btn-primary" href="/contact">무료 상담하기</Link>
             <Link className="btn btn-outline" href="/work">사례 보기</Link>
           </div>
           <div className="proof-band reveal">
-            <div><span className="n">12곳</span><span className="l">기업교육 진행 조직</span></div>
-            <div><span className="n">10건</span><span className="l">엔터프라이즈 AX 프로젝트</span></div>
+            <div><span className="n">30곳+</span><span className="l">기업교육·강연 진행 조직</span></div>
+            <div><span className="n">20건+</span><span className="l">엔터프라이즈 AX 프로젝트</span></div>
             <div><span className="n">75,000건</span><span className="l">RAG로 체계화한 지식자산</span></div>
             <div><span className="n">8주→1일</span><span className="l">조직문화 진단 리포트 자동화</span></div>
           </div>
@@ -109,8 +109,8 @@ export default function Home() {
       <section className="section" id="solutions">
         <div className="inner">
           <p className="overline reveal">Solutions</p>
-          <h2 className="reveal">직접 만들어 팔고 있는 <strong>솔루션</strong></h2>
-          <p className="lead reveal">말로만 하는 기술은 팔 수 없습니다. 온톨로지 기술을 제품으로 만들어 직접 운영하고, 그 검증된 엔진을 귀사 프로젝트에 그대로 씁니다.</p>
+          <h2 className="reveal">AX 성공 도입을 위한 <strong>솔루션</strong></h2>
+          <p className="lead reveal">어디서부터 시작해야 할지 막막한 대표님을 위해, AX의 첫 시작을 도와드리는 솔루션을 직접 만들어 운영합니다. 검증된 엔진은 귀사 프로젝트에도 그대로 쓰입니다.</p>
           <div className="sol-grid reveal">
             <article className="sol-talos">
               <span className="mark">TALOS <span className="sol-no">Solution 01 · 제조</span></span>
@@ -121,8 +121,8 @@ export default function Home() {
             </article>
             <article className="sol-micky">
               <span className="mark">MICKY <span className="sol-no">Solution 02 · 팀 지능</span></span>
-              <h3>회의에만 집중하세요,<br /><strong>나머지는 미키가</strong></h3>
-              <p>봇 없이 회의를 녹음·분석해 요약·액션·발표자료까지 자동 생성하고, 쌓인 회의 맥락이 팀만 아는 에이전트가 되는 AI 회의록 서비스입니다. 한국어 직급·존댓말 맥락까지 보존합니다.</p>
+              <h3>회의만 해도, 에이전트와<br /><strong>산출물이 만들어집니다</strong></h3>
+              <p>회의만 진행하면 요약·액션·발표자료 같은 산출물이 자동으로 만들어지고, 쌓인 회의 맥락은 팀만 아는 에이전트로 자라납니다. 봇 없이 녹음하고, 한국어 직급·존댓말 맥락까지 보존합니다.</p>
               <div className="chips"><span>Bot-Free 녹음</span><span>Meeting-to-X</span><span>팀 지식그래프</span><span>미이행 약속 추적</span></div>
               <Link className="btn btn-outline" href="/solutions/micky">MICKY 자세히 보기</Link>
             </article>
@@ -134,8 +134,8 @@ export default function Home() {
       <section className="section tech" id="technology">
         <div className="inner">
           <p className="overline reveal">Technology</p>
-          <h2 className="reveal">온톨로지, 말로 하는 회사는 많습니다.<br /><strong>우리는 배포해 봤습니다</strong></h2>
-          <p className="lead reveal">조슈아앤컴퍼니의 기술력은 슬라이드가 아니라 지금 돌아가는 시스템으로 증명합니다.</p>
+          <h2 className="reveal">온톨로지를 직접 설계하고,<br /><strong>고객사에 배포하고 있습니다</strong></h2>
+          <p className="lead reveal">조슈아앤컴퍼니는 온톨로지를 직접 수행하는 회사입니다. 기술력은 슬라이드가 아니라 고객사에서 지금 돌아가는 시스템으로 증명합니다.</p>
           <div className="tech-grid reveal">
             <article className="tech-card">
               <span className="no">01 · Ontology</span>
@@ -239,39 +239,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INSIGHTS */}
-      <section className="section soft" id="insights">
-        <div className="inner">
-          <div className="sec-head">
-            <div>
-              <p className="overline reveal">Insights &amp; Newsletter</p>
-              <h2 className="reveal" style={{ marginBottom: 0 }}>AX를 먼저 겪은 사람의 <strong>기록</strong></h2>
-            </div>
-            <Link className="sec-link reveal" href="/insights">인사이트 전체 보기</Link>
-          </div>
-          <p className="lead reveal">이론이 아니라 구축 현장에서 나온 기록입니다. AX를 검토 중이라면 여기서부터 읽어보세요.</p>
-          <div className="ins reveal">
-            <Link className="card" href="/insights/what-is-ax">
-              <span className="cat">Definition</span>
-              <h3>제조 AX란 무엇인가 — DX와 무엇이 다른가</h3>
-              <p>정의형 인사이트 · 5분 읽기</p>
-            </Link>
-            <Link className="card" href="/insights/ontology-first">
-              <span className="cat">Ontology</span>
-              <h3>AI 도입 전에 온톨로지가 먼저인 이유</h3>
-              <p>정의형 인사이트 · 6분 읽기</p>
-            </Link>
-            <Link className="card" href="/insights">
-              <span className="cat">Newsletter</span>
-              <h3>조쉬의 뉴스레터 — 아카이브 통합 예정</h3>
-              <p>기존 발행분을 joshua.site로 이전합니다</p>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* ABOUT + TEAM + FAQ */}
-      <section className="section" id="about">
+      {/* 인사이트 홈 섹션은 조쉬 지시(2026-07-22)로 비노출 — /insights 라우트는 SEO용으로 유지 */}
+      <section className="section soft" id="about">
         <div className="inner">
           <div className="about">
             <div className="reveal">
@@ -307,15 +277,14 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section className="section cta soft" id="contact">
+      <section className="section cta" id="contact">
         <div className="inner contact-grid">
           <div className="reveal contact-copy">
             <p className="overline">Contact</p>
-            <h2>어디서부터 시작할지,<br /><strong>30분이면 정리됩니다</strong></h2>
+            <h2>어디서부터 시작할지,<br /><strong>무료로 빠르게 상담해보세요</strong></h2>
             <p className="lead">교육이든, 구축이든, 솔루션이든 — 무엇이 먼저인지부터 함께 정리해드립니다.</p>
             <p className="sla">
-              영업일 1일 내 답변드립니다.<br />
-              <a href={SITE.calendly} target="_blank" rel="noopener" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>30분 커피챗 바로 예약하기</a>{' · '}
+              영업일 1일 내 답변드립니다.{' · '}
               <a href={`mailto:${SITE.email}`} style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>{SITE.email}</a>
             </p>
           </div>
