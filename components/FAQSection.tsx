@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePostHog } from '@posthog/react';
 
 const faqs = [
   { q: "Joshua는 어떤 기업에게 적합한가요?", a: "AI 도입을 고민하지만 시작점을 모르는 기업, 반복 업무로 인한 비효율을 겪는 기업, 그리고 구성원들의 디지털 리터러시를 높이고 싶은 모든 조직에 적합합니다." },
@@ -12,6 +13,7 @@ const faqs = [
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const posthog = usePostHog();
 
   return (
     <section className="py-40 px-6 max-w-[90rem] mx-auto">
@@ -31,8 +33,14 @@ export const FAQSection: React.FC = () => {
             {faqs.map((faq, idx) => (
               <FadeIn key={idx} delay={idx * 0.1}>
                 <div className="group">
-                  <button 
-                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                  <button
+                    onClick={() => {
+                      const isOpening = openIndex !== idx;
+                      setOpenIndex(isOpening ? idx : null);
+                      if (isOpening) {
+                        posthog?.capture('faq_item_opened', { question: faq.q, faq_index: idx });
+                      }
+                    }}
                     className="w-full flex justify-between items-start py-10 text-left hover:bg-zinc-50 transition-colors -mx-4 px-6 rounded-lg"
                   >
                     <span className="text-xl md:text-2xl font-semibold text-zinc-900 w-[90%] leading-snug">

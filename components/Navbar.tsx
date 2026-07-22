@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import { usePostHog } from '@posthog/react';
 
 const navItems = [
   { label: 'Philosophy', href: '/#intro' },
@@ -13,6 +14,7 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const posthog = usePostHog();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,7 @@ export const Navbar: React.FC = () => {
 
   // Handle anchor scrolling for items on the same page
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
+    posthog?.capture('navbar_link_clicked', { href });
     if (href.startsWith('/#') && location.pathname === '/') {
       e.preventDefault();
       const id = href.replace('/#', '');
@@ -42,6 +45,7 @@ export const Navbar: React.FC = () => {
   // PortfolioSection cards from expanding under the cursor mid-scroll.
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    posthog?.capture('navbar_contact_clicked');
     setIsMobileMenuOpen(false);
     const el = document.getElementById('contact');
     if (!el) return;

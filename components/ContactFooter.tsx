@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { FadeIn } from './FadeIn';
+import { usePostHog } from '@posthog/react';
 
 type ContactStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -25,19 +26,22 @@ const SOURCES = [
 export const ContactFooter: React.FC = () => {
   const [status, setStatus] = useState<ContactStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const posthog = usePostHog();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const category = String(formData.get('category') || '');
+    const source = String(formData.get('source') || '');
     const payload = {
       name: String(formData.get('name') || ''),
       company: String(formData.get('company') || ''),
       email: String(formData.get('email') || ''),
       phone: String(formData.get('phone') || ''),
-      category: String(formData.get('category') || ''),
+      category,
       message: String(formData.get('message') || ''),
-      source: String(formData.get('source') || ''),
+      source,
       consent: formData.get('consent') === 'on',
     };
 
@@ -54,11 +58,14 @@ export const ContactFooter: React.FC = () => {
       if (!res.ok || !data.ok) {
         throw new Error(data.error || '문의 전송에 실패했습니다.');
       }
+      posthog?.capture('contact_form_submitted', { category, source });
       setStatus('success');
       form.reset();
     } catch (err) {
+      const message = err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.';
+      posthog?.capture('contact_form_failed', { category, source, error_message: message });
       setStatus('error');
-      setErrorMessage(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');
+      setErrorMessage(message);
     }
   };
 
@@ -240,9 +247,9 @@ export const ContactFooter: React.FC = () => {
         <div className="py-12 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-400 uppercase tracking-widest border-t border-zinc-100 font-bold">
           <p>© {new Date().getFullYear()} (주)조슈아앤컴퍼니 All rights reserved.</p>
           <div className="flex gap-8 mt-4 md:mt-0">
-             <a href="https://www.youtube.com/@builderjoshkim" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">YouTube</a>
-             <a href="https://www.linkedin.com/in/uxjosh/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
-             <a href="https://www.threads.com/@joshproductletter" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Threads</a>
+             <a href="https://www.youtube.com/@builderjoshkim" target="_blank" rel="noopener noreferrer" onClick={() => posthog?.capture('social_link_clicked', { platform: 'youtube' })} className="hover:text-black transition-colors">YouTube</a>
+             <a href="https://www.linkedin.com/in/uxjosh/" target="_blank" rel="noopener noreferrer" onClick={() => posthog?.capture('social_link_clicked', { platform: 'linkedin' })} className="hover:text-black transition-colors">LinkedIn</a>
+             <a href="https://www.threads.com/@joshproductletter" target="_blank" rel="noopener noreferrer" onClick={() => posthog?.capture('social_link_clicked', { platform: 'threads' })} className="hover:text-black transition-colors">Threads</a>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePostHog } from '@posthog/react';
 
 const projects = [
   {
@@ -78,6 +79,7 @@ const projects = [
 
 export const PortfolioSection: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const posthog = usePostHog();
 
   return (
     <section id="portfolio" className="py-32 px-6 bg-zinc-950 text-white relative min-h-screen">
@@ -139,7 +141,14 @@ export const PortfolioSection: React.FC = () => {
             <FadeIn key={idx} delay={idx * 0.05} fullWidth>
               <div 
                 className="group border-t border-zinc-800/50 py-12 flex flex-col lg:flex-row lg:items-start justify-between cursor-pointer relative transition-all duration-500 hover:pl-6"
-                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseEnter={() => {
+                  setHoveredIndex(idx);
+                  posthog?.capture('portfolio_project_viewed', {
+                    project_title: project.title,
+                    project_category: project.category,
+                    project_index: idx,
+                  });
+                }}
                 onClick={() => setHoveredIndex(hoveredIndex === idx ? null : idx)}
               >
                 <div className="flex flex-col gap-4 z-20 pointer-events-none w-full lg:max-w-xl xl:max-w-2xl">

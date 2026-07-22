@@ -3,8 +3,11 @@ import { FadeIn } from '../components/FadeIn';
 import { Briefcase, Calendar, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import metadata from '../metadata.json';
+import { usePostHog } from '@posthog/react';
 
 export const Education: React.FC = () => {
+  const posthog = usePostHog();
+
   return (
     <div className="pt-40 pb-32 px-6 bg-white min-h-screen">
       <div className="max-w-[90rem] mx-auto">
@@ -107,6 +110,7 @@ export const Education: React.FC = () => {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
+                posthog?.capture('education_cta_clicked');
                 const el = document.getElementById('contact');
                 if (!el) return;
                 document.body.style.pointerEvents = 'none';

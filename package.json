@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@posthog/react": "^1.10.3",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.555.0",
+    "posthog-js": "^1.406.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.14.0",

@@ -2,10 +2,13 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { FadeIn, CharReveal } from './FadeIn';
 import { motion } from 'framer-motion';
+import { usePostHog } from '@posthog/react';
 // Newsletter subscribe form temporarily removed per 2026-07-14 direction.
 // lib/ghost.ts subscribeMember() left intact for possible reactivation.
 
 export const Hero: React.FC = () => {
+  const posthog = usePostHog();
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-white text-center py-28 md:py-32">
       
@@ -84,6 +87,7 @@ export const Hero: React.FC = () => {
             href="#contact"
             onClick={(e) => {
               e.preventDefault();
+              posthog?.capture('hero_cta_clicked');
               const el = document.getElementById('contact');
               if (!el) return;
               // PortfolioSection cards expand on mouseenter, which fires as the
