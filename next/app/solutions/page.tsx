@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: '솔루션 — TALOS · MICKY',
@@ -20,18 +21,18 @@ export default function SolutionsPage() {
           </p>
           <div className="sol-grid reveal" style={{ marginTop: '3rem' }}>
             <article className="sol-talos">
-              <span className="mark">TALOS <span className="sol-no">Solution 01 · 제조</span></span>
-              <h3>제조 AX 온톨로지의 시작, <strong>탈로스</strong></h3>
-              <p>설비·공정·문서·사람의 지식을 하나의 온톨로지로 연결하고, 6주 안에 현업이 쓰는 AI 앱을 만듭니다.</p>
-              <div className="chips"><span>산업 지식그래프</span><span>근본원인분석</span><span>예지보전</span><span>현장점검 디지털화</span></div>
-              <Link className="btn" href="/solutions/talos">TALOS 자세히 보기</Link>
-            </article>
-            <article className="sol-micky">
-              <span className="mark">MICKY <span className="sol-no">Solution 02 · 팀 지능</span></span>
-              <h3>회의에만 집중하세요,<br /><strong>나머지는 미키가</strong></h3>
-              <p>봇 없이 회의를 녹음·분석해 요약·액션·발표자료까지 자동 생성하고, 쌓인 회의 맥락이 팀만 아는 에이전트가 됩니다.</p>
+              <span className="mark">MICKY <span className="sol-no">Solution 01 · 팀 지능</span></span>
+              <h3>AI 네이티브 조직을 위한<br /><strong>회의록 에이전트 솔루션</strong></h3>
+              <p>회의만 진행하면 요약·액션·발표자료 같은 산출물이 자동으로 만들어지고, 쌓인 회의 맥락은 팀만 아는 에이전트로 자라납니다.</p>
               <div className="chips"><span>Bot-Free 녹음</span><span>Meeting-to-X</span><span>팀 지식그래프</span><span>미이행 약속 추적</span></div>
-              <Link className="btn btn-outline" href="/solutions/micky">MICKY 자세히 보기</Link>
+              <Link className="btn" href="/solutions/micky">MICKY 자세히 보기</Link>
+              <Image className="sol-shot" src="/micky-app.webp" alt="MICKY 앱 화면 — 회의 요약·주요 결정·액션 아이템과 미키 스튜디오" width={896} height={494} />
+            </article>
+            <article className="sol-next">
+              <span className="tag">준비 중</span>
+              <span className="mark-lite">TALOS</span>
+              <span className="t">제조 AX 온톨로지 솔루션</span>
+              <p style={{ fontSize: '.9rem' }}>제조업의 설비·공정·문서 지식을 하나의 온톨로지로 연결하는 두 번째 솔루션을 준비하고 있습니다.</p>
             </article>
           </div>
         </div>

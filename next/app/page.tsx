@@ -97,7 +97,7 @@ export default function Home() {
               <ul>
                 <li>산업 지식그래프(온톨로지) 설계·설치</li>
                 <li>현업 앱 배포 — 6주 내 프로덕션</li>
-                <li>자사 솔루션 — TALOS(제조) · MICKY(팀 지능)</li>
+                <li>자사 솔루션 — MICKY(팀 지능) · TALOS(제조, 준비 중)</li>
               </ul>
               <Link className="more" href="/solutions">솔루션 보기</Link>
             </article>
@@ -113,18 +113,18 @@ export default function Home() {
           <p className="lead reveal">어디서부터 시작해야 할지 막막한 대표님을 위해, AX의 첫 시작을 도와드리는 솔루션을 직접 만들어 운영합니다. 검증된 엔진은 귀사 프로젝트에도 그대로 쓰입니다.</p>
           <div className="sol-grid reveal">
             <article className="sol-talos">
-              <span className="mark">TALOS <span className="sol-no">Solution 01 · 제조</span></span>
-              <h3>제조 AX 온톨로지의 시작, <strong>탈로스</strong></h3>
-              <p>설비·공정·문서·사람의 지식을 하나의 온톨로지로 연결하고, 6주 안에 현업이 쓰는 AI 앱을 만듭니다. 제조업을 위한 첫 번째 솔루션입니다.</p>
-              <div className="chips"><span>산업 지식그래프</span><span>근본원인분석</span><span>예지보전</span><span>현장점검 디지털화</span></div>
-              <Link className="btn" href="/solutions/talos">TALOS 자세히 보기</Link>
-            </article>
-            <article className="sol-micky">
-              <span className="mark">MICKY <span className="sol-no">Solution 02 · 팀 지능</span></span>
-              <h3>회의만 해도, 에이전트와<br /><strong>산출물이 만들어집니다</strong></h3>
+              <span className="mark">MICKY <span className="sol-no">Solution 01 · 팀 지능</span></span>
+              <h3>AI 네이티브 조직을 위한<br /><strong>회의록 에이전트 솔루션</strong></h3>
               <p>회의만 진행하면 요약·액션·발표자료 같은 산출물이 자동으로 만들어지고, 쌓인 회의 맥락은 팀만 아는 에이전트로 자라납니다. 봇 없이 녹음하고, 한국어 직급·존댓말 맥락까지 보존합니다.</p>
               <div className="chips"><span>Bot-Free 녹음</span><span>Meeting-to-X</span><span>팀 지식그래프</span><span>미이행 약속 추적</span></div>
-              <Link className="btn btn-outline" href="/solutions/micky">MICKY 자세히 보기</Link>
+              <Link className="btn" href="/solutions/micky">MICKY 자세히 보기</Link>
+              <Image className="sol-shot" src="/micky-app.webp" alt="MICKY 앱 화면 — 회의 요약·주요 결정·액션 아이템과 미키 스튜디오" width={896} height={494} />
+            </article>
+            <article className="sol-next">
+              <span className="tag">준비 중</span>
+              <span className="mark-lite">TALOS</span>
+              <span className="t">제조 AX 온톨로지 솔루션</span>
+              <p style={{ fontSize: '.9rem' }}>제조업의 설비·공정·문서 지식을 하나의 온톨로지로 연결하는 두 번째 솔루션을 준비하고 있습니다.</p>
             </article>
           </div>
         </div>

@@ -125,6 +125,10 @@
     .sol-talos .btn{margin-top:1.6rem;background:#fff;color:var(--ink)}
     .sol-talos .btn:hover{background:var(--strong)}
     .sol-no{font-size:.66rem;font-weight:600;letter-spacing:.08em;color:var(--on-dark-soft);margin-left:.7rem;text-transform:uppercase}
+    .sol-shot{display:block;width:100%;height:auto;margin-top:1.6rem;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+    .sol-next{border:1px dashed var(--hairline-strong);border-radius:var(--r-xxl);padding:2.6rem 2.2rem;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:.6rem;color:var(--muted)}
+    .sol-next .t{font-weight:600;color:var(--muted);font-size:1.05rem}
+    .sol-next .mark-lite{font-weight:800;letter-spacing:.22em;color:var(--muted);font-size:1rem}
     .sol-micky{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-xxl);padding:2.6rem 2.2rem;position:relative;overflow:hidden}
     .sol-micky::before{content:"";position:absolute;width:20rem;height:20rem;border-radius:50%;filter:blur(55px);opacity:.4;top:-7rem;right:-6rem;background:radial-gradient(circle,var(--g-sky),transparent 70%)}
     .sol-micky>*{position:relative}

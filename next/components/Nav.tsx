@@ -15,18 +15,18 @@ export function Nav() {
               솔루션 <span className="caret" />
             </button>
             <div className="drop-menu" role="menu">
-              <Link className="drop-item" href="/solutions/talos" role="menuitem">
-                <span className="t">
-                  TALOS <span className="tag new">Solution 01</span>
-                </span>
-                <span className="d">제조 AX 온톨로지 — 데이터를 연결하면 공장이 답합니다</span>
-              </Link>
               <Link className="drop-item" href="/solutions/micky" role="menuitem">
                 <span className="t">
-                  MICKY <span className="tag new">Solution 02</span>
+                  MICKY <span className="tag new">Solution 01</span>
                 </span>
-                <span className="d">AI 회의록 — 쌓인 회의 맥락이 곧 팀의 에이전트가 됩니다</span>
+                <span className="d">AI 네이티브 조직을 위한 회의록 에이전트 솔루션</span>
               </Link>
+              <div className="drop-item" role="menuitem" aria-disabled="true">
+                <span className="t" style={{ color: 'var(--muted-soft)' }}>
+                  TALOS <span className="tag">준비 중</span>
+                </span>
+                <span className="d">제조 AX 온톨로지 솔루션 — 준비하고 있습니다</span>
+              </div>
             </div>
           </div>
           <Link href="/education">교육</Link>
