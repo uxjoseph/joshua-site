@@ -39,6 +39,7 @@ export const LOGOS = [
 ] as const;
 
 export interface Project {
+  slug: string;
   title: string;
   hook?: string; // 수치 훅 헤드라인 (피처 카드용)
   description: string;
@@ -49,6 +50,7 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'sk-knowledge-ax',
     title: 'SK그룹 전사 경영 지식 AX 전환 및 멀티모달 오케스트레이션',
     hook: '지식자산 75,000건 — 전사 경영 지식이 답하기 시작하다',
     description:
@@ -58,6 +60,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-02.png',
   },
   {
+    slug: 'sk-culture-diagnosis',
     title: 'SK그룹 22개 계열사 조직문화 진단 통합 분석 및 데이터 인텔리전스 대시보드',
     hook: '8주 → 1일 — 22개 계열사 조직문화 진단 자동화',
     description:
@@ -67,6 +70,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-70.png',
   },
   {
+    slug: 'sk-icheon-forum',
     title: 'SK그룹 임원 리더십 포럼 AI 페르소나 라이브 인터랙션 시스템',
     hook: '이천포럼 — 사장단 토론에 AI 페르소나가 라이브로 답하다',
     description:
@@ -76,6 +80,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-60.png',
   },
   {
+    slug: 'sk-ai-capability-platform',
     title: 'SK그룹 전사 AI 역량 혁신 플랫폼 및 구성원 활동 데이터 인텔리전스',
     description:
       'SK그룹 교육 조직의 AI 내재화를 가속하기 위해 4단계 역할 기반 권한 체계와 AI 에이전트 마켓플레이스, 성과 정량 측정 시스템을 통합한 엔터프라이즈 AX 거버넌스 플랫폼입니다.',
@@ -84,6 +89,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-12.png',
   },
   {
+    slug: 'sk-hrd-orchestration',
     title: 'SK그룹 HRD 교육운영 지능화 및 AI 에이전트 오케스트레이션 시스템',
     description:
       '복잡한 교육과정 관리와 신규 담당자의 온보딩을 돕기 위해 Slack 연동 Q&A, D-day 기반 마일스톤 자동 생성 및 체크리스트 추적 기능을 통합한 SK그룹 전사적 AX 솔루션입니다.',
@@ -92,6 +98,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-21.png',
   },
   {
+    slug: 'sk-pi-dashboard',
     title: 'SK그룹 교육그룹 전사 성과지표(PI) 실시간 통합 관리 및 데이터 인텔리전스',
     description:
       'SK그룹 교육 영역의 11개 핵심 성과지표(KPI)를 실시간으로 통합 조망하고 데이터 기반의 빠른 의사결정을 지원하기 위해 수작업 프로세스를 자동화한 엔터프라이즈 PI 대시보드입니다.',
@@ -100,6 +107,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-30.png',
   },
   {
+    slug: 'sk-offline-education',
     title: 'SK그룹 인재개발 AI 오케스트레이션 및 오프라인 교육 운영 통합 플랫폼',
     description:
       '15개 계열사, 수만 명 대상의 오프라인 집합교육 운영 시 발생하는 학습자 취합, 분과 편성, 좌석 배치, 7종 인쇄물 제작 및 AI 설문 분석을 통합 오케스트레이션하는 엔터프라이즈 운영 대시보드입니다.',
@@ -108,6 +116,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-42.png',
   },
   {
+    slug: 'sk-creative-ai-qa',
     title: 'SK그룹 사내 교육 플랫폼 AI 멀티모달 이미지 생성 및 자동 QA 시스템',
     description:
       '교육 홍보물 제작 시간을 수일에서 수 분으로 단축하기 위해 멀티모달 AI 기반 이미지 생성 워크플로우와 Vision QA 자동 품질 검증 파이프라인을 구축한 창의적 AX 솔루션입니다.',
@@ -116,6 +125,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-52.png',
   },
   {
+    slug: 'sk-ceo-signal',
     title: 'SK그룹 CEO 시그널 인텔리전스 및 일일 자동 브리핑 시스템',
     description:
       '다양한 채널에 분산된 시장·경쟁사 시그널을 페르소나별 코멘트와 경쟁사 매트릭스까지 자동 큐레이션하여 매일 텔레그램으로 자동 브리핑하는 CEO 전용 인사이트 인텔리전스 플랫폼입니다.',
@@ -124,6 +134,7 @@ export const PROJECTS: Project[] = [
     image: '/portfolio/ax-2026-80.png',
   },
   {
+    slug: 'sk-english-coach',
     title: 'SK그룹 글로벌 비즈니스 영어 자료 작성·발표 통합 코칭 AI 에이전트',
     description:
       '직무·산업별 영문 콘텐츠 큐레이션과 발음 코칭, 압박 Q&A 롤플레잉, 사내 글로서리 연동까지 단일 에이전트로 통합한 글로벌 비즈니스 커뮤니케이션 AI 코칭 솔루션입니다.',

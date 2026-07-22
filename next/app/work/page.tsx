@@ -19,16 +19,17 @@ export default function WorkPage() {
           <p className="lead reveal">엔터프라이즈 환경에서 실제로 운영 중인 AX 시스템들입니다. 데모가 아니라 배포된 결과물로 말합니다.</p>
           <div className="pf-feature reveal" style={{ marginTop: '3rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
             {PROJECTS.map((p) => (
-              <article className="pf-card" key={p.title}>
+              <Link className="pf-card" href={`/work/${p.slug}`} key={p.slug}>
                 <div className="thumb">
                   <Image src={p.image} alt={p.title} width={640} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                 </div>
                 <div className="pad">
                   <span className="cat">{p.category} · {p.year}</span>
                   <h3>{p.hook ?? p.title}</h3>
-                  <p>{p.description}</p>
+                  <p style={{ display: 'block', overflow: 'visible' }}>{p.description}</p>
+                  <span className="more">자세히 보기 →</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
           <div className="hero-cta reveal" style={{ justifyContent: 'flex-start', marginTop: '3rem' }}>

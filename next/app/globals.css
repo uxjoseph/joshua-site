@@ -164,6 +164,10 @@
     .pf-card .cat{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-soft)}
     .pf-card h3{font-size:1.02rem;margin:.6rem 0 .5rem}
     .pf-card p{font-size:.86rem;color:var(--muted);word-break:keep-all;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .pf-card .more{display:inline-block;margin-top:.9rem;font-size:.84rem;font-weight:600;color:var(--ink)}
+    .proj-facts{display:flex;flex-wrap:wrap;gap:1rem 3rem;margin-top:2.4rem;padding-top:1.6rem;border-top:1px solid var(--hairline)}
+    .proj-facts dt{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-soft)}
+    .proj-facts dd{margin:.3rem 0 0;font-size:.95rem;font-weight:600;color:var(--ink)}
     .pf-list{margin-top:1.4rem;border-top:1px solid var(--hairline)}
     .pf-row{display:grid;grid-template-columns:2.4rem 1fr auto;gap:1rem;align-items:baseline;padding:1.15rem .25rem;border-bottom:1px solid var(--hairline);transition:background .2s}
     .pf-row:hover{background:var(--canvas-soft)}

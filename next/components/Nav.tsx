@@ -9,7 +9,7 @@ export function Nav() {
           <Image src="/JOSHUA.png" alt="JOSHUA" width={110} height={22} style={{ height: 22, width: 'auto' }} priority />
         </Link>
         <nav className="links" aria-label="주요 메뉴">
-          <Link href="/education">교육</Link>
+          <Link href="/work">프로젝트</Link>
           <div className="drop">
             <button type="button" aria-haspopup="true">
               솔루션 <span className="caret" />
@@ -29,7 +29,7 @@ export function Nav() {
               </Link>
             </div>
           </div>
-          <Link href="/work">사례</Link>
+          <Link href="/education">교육</Link>
           {/* 인사이트 메뉴는 콘텐츠 준비 전까지 비노출 (조쉬 지시, 2026-07-22) */}
           <Link href="/#about">회사소개</Link>
         </nav>
