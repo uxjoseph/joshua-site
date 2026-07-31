@@ -29,7 +29,7 @@ function bindConfig() {
     const key = el.getAttribute('data-bind-href');
     if (key === 'CONTACT_EMAIL') el.setAttribute('href', 'mailto:' + CONFIG.CONTACT_EMAIL);
   });
-  document.title = `${CONFIG.BRAND} ${CONFIG.BRAND_EN} — 제조 AX 온톨로지의 시작 | Joshua & Company`;
+  document.title = `${CONFIG.BRAND} ${CONFIG.BRAND_EN} — 흩어진 공장 데이터가 한 화면에서 답합니다 | 제조 AX`;
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 }
@@ -94,67 +94,6 @@ function initReveal() {
   els.forEach((el) => io.observe(el));
 }
 
-/* ---------- product tour player ---------- */
-function initTourPlayer() {
-  const player = document.getElementById('tour-player');
-  if (!player) return;
-  const tabs = Array.from(player.querySelectorAll('.tour-tab'));
-  const panes = Array.from(player.querySelectorAll('.tour-pane'));
-  const INTERVAL = 7000;
-  player.style.setProperty('--tour-interval', INTERVAL + 'ms');
-  let idx = 0;
-  let timer = null;
-  let autoplay = !prefersReducedMotion;
-
-  function select(i, byUser) {
-    idx = i;
-    tabs.forEach((t, k) => {
-      const on = k === i;
-      t.classList.toggle('active', on);
-      t.classList.toggle('autoplaying', on && autoplay);
-      t.setAttribute('aria-selected', String(on));
-    });
-    panes.forEach((p, k) => {
-      p.classList.toggle('active', k === i);
-      p.hidden = k !== i;
-    });
-    if (byUser) stopAutoplay();
-    else if (autoplay) {
-      // 진행바 애니메이션 재시작
-      const t = tabs[i];
-      t.classList.remove('autoplaying');
-      void t.offsetWidth;
-      t.classList.add('autoplaying');
-    }
-  }
-
-  function stopAutoplay() {
-    autoplay = false;
-    if (timer) { clearInterval(timer); timer = null; }
-    tabs.forEach((t) => t.classList.remove('autoplaying'));
-  }
-
-  tabs.forEach((t, i) => t.addEventListener('click', () => select(i, true)));
-
-  if (autoplay) {
-    // 뷰포트에 들어온 뒤 자동재생 시작
-    const io = 'IntersectionObserver' in window
-      ? new IntersectionObserver((entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting && autoplay && !timer) {
-              select(idx, false);
-              timer = setInterval(() => select((idx + 1) % tabs.length, false), INTERVAL);
-            } else if (!e.isIntersecting && timer) {
-              clearInterval(timer); timer = null;
-            }
-          });
-        }, { threshold: 0.35 })
-      : null;
-    if (io) io.observe(player);
-    else timer = setInterval(() => select((idx + 1) % tabs.length, false), INTERVAL);
-  }
-}
-
 /* ---------- ask typewriter ---------- */
 function initAskTyper() {
   const el = document.getElementById('ask-typer');
@@ -186,6 +125,20 @@ function initAskTyper() {
   setTimeout(tick, 1200);
 }
 
+/* ---------- mobile nav menu ---------- */
+function initNavMenu() {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (!toggle || !menu) return;
+  const setOpen = (open) => {
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  };
+  toggle.addEventListener('click', () => setOpen(menu.hidden));
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+}
+
 /* ---------- nav scroll state + sticky CTA ---------- */
 function initScrollUI() {
   const nav = document.getElementById('nav');
@@ -198,6 +151,7 @@ function initScrollUI() {
       const show = half && !nearForm;
       sticky.classList.toggle('visible', show);
       sticky.setAttribute('aria-hidden', String(!show));
+      sticky.toggleAttribute('inert', !show);
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -439,7 +393,7 @@ function initForm() {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok || !body.ok) throw new Error(body.error || '전송에 실패했습니다.');
-      setMsg('신청 완료! 영업일 1일 내 연락드리겠습니다.', true);
+      setMsg('신청 완료! 영업일 1일 내 담당자가 연락드려 30분 화상 미팅 일정을 잡습니다. 준비하실 자료는 없습니다.', true);
       btn.textContent = '신청 완료';
       form.querySelectorAll('input, textarea').forEach((el) => { el.disabled = true; });
       trackLead();
@@ -462,8 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTrustStrip();
   initPixel();
   initReveal();
-  initTourPlayer();
   initAskTyper();
+  initNavMenu();
   initScrollUI();
   initCountUp();
   initGraph();
