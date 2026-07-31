@@ -422,6 +422,38 @@ h3 {
   word-break: keep-all;
 }
 
+/* ============ S3 현장의 말 ============ */
+.voice-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin: 2rem 0 1.75rem;
+  max-width: 780px;
+}
+@media (min-width: 640px) { .voice-grid { grid-template-columns: repeat(2, 1fr); } }
+.voice {
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl) var(--r-xl) var(--r-xl) 4px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--body-strong);
+  word-break: keep-all;
+}
+
+.scenario-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface-strong);
+  border-radius: var(--r-pill);
+  padding: 0.2rem 0.65rem;
+  vertical-align: 0.1em;
+  margin-left: 0.35rem;
+}
+
 /* ============ S3 silo diagram ============ */
 .silo-diagram {
   margin-top: 3rem;
