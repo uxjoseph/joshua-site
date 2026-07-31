@@ -44,7 +44,7 @@ const orgJsonLd = {
     '@type': 'PostalAddress',
     addressCountry: 'KR',
     addressLocality: '서울특별시 구로구',
-    streetAddress: '디지털로26길 43, 엘동 5층 502, 503호',
+    streetAddress: '디지털로26길 43, 엘동 502호',
   },
   sameAs: [SITE.sns.youtube, SITE.sns.linkedin, SITE.sns.threads],
   description:

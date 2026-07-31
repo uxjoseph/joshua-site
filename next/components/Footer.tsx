@@ -32,7 +32,7 @@ export function Footer() {
               <span>
                 서울특별시 구로구 디지털로26길 43,
                 <br />
-                엘동 5층 502, 503호
+                엘동 502호
               </span>
             </div>
           </div>
