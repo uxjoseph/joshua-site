@@ -333,19 +333,85 @@ h3 {
   height: auto;
 }
 
-/* ============ S2.5 product tour ============ */
-.tour-step {
+/* ============ S2.5 product tour (인터랙티브 플레이어) ============ */
+.tour-player {
   display: grid;
-  gap: 2rem;
-  align-items: center;
-  margin-top: 4.5rem;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: start;
 }
-@media (min-width: 1024px) {
-  .tour-step { grid-template-columns: 4fr 7fr; gap: 4rem; }
-  .tour-step-wide { grid-template-columns: 4fr 8fr; }
+@media (min-width: 1024px) { .tour-player { grid-template-columns: 5fr 8fr; gap: 3rem; } }
+
+.tour-steps { display: flex; flex-direction: column; gap: 0.5rem; }
+.tour-tab {
+  display: flex;
+  gap: 1rem;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-xl);
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s, border-color 0.25s;
 }
-.tour-text h3 { margin-bottom: 0.6rem; font-size: 1.35rem; }
-.tour-text > p { color: var(--body); word-break: keep-all; max-width: 26rem; }
+.tour-tab:hover { background: var(--surface-card); }
+.tour-tab.active {
+  background: var(--surface-card);
+  border-color: var(--hairline);
+  box-shadow: var(--shadow-soft);
+}
+.tour-tab-num {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: 1.5rem;
+  color: var(--muted-soft);
+  line-height: 1.2;
+}
+.tour-tab.active .tour-tab-num { color: var(--ink); }
+.tour-tab-body { display: flex; flex-direction: column; gap: 0.3rem; }
+.tour-tab-body strong {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+.tour-tab-body > span {
+  font-size: 0.875rem;
+  color: var(--body);
+  word-break: keep-all;
+  display: none;
+}
+.tour-tab.active .tour-tab-body > span { display: block; }
+/* 자동재생 진행바 */
+.tour-tab::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--ink);
+  opacity: 0;
+}
+.tour-tab.active.autoplaying::after {
+  opacity: 0.85;
+  animation: tour-progress var(--tour-interval, 7s) linear forwards;
+}
+@keyframes tour-progress { from { width: 0; } to { width: 100%; } }
+
+.tour-stage { position: relative; min-height: 320px; }
+.tour-pane { display: none; }
+.tour-pane.active { display: block; animation: pane-in 0.45s ease; }
+@keyframes pane-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.tour-pane .ask-mock { max-width: 560px; margin: 2rem auto 0; }
+.tour-pane .tour-card-img { margin: 0 auto; }
+
 .tour-note {
   margin-top: 1.25rem;
   padding: 0.9rem 1.1rem;

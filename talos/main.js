@@ -94,6 +94,98 @@ function initReveal() {
   els.forEach((el) => io.observe(el));
 }
 
+/* ---------- product tour player ---------- */
+function initTourPlayer() {
+  const player = document.getElementById('tour-player');
+  if (!player) return;
+  const tabs = Array.from(player.querySelectorAll('.tour-tab'));
+  const panes = Array.from(player.querySelectorAll('.tour-pane'));
+  const INTERVAL = 7000;
+  player.style.setProperty('--tour-interval', INTERVAL + 'ms');
+  let idx = 0;
+  let timer = null;
+  let autoplay = !prefersReducedMotion;
+
+  function select(i, byUser) {
+    idx = i;
+    tabs.forEach((t, k) => {
+      const on = k === i;
+      t.classList.toggle('active', on);
+      t.classList.toggle('autoplaying', on && autoplay);
+      t.setAttribute('aria-selected', String(on));
+    });
+    panes.forEach((p, k) => {
+      p.classList.toggle('active', k === i);
+      p.hidden = k !== i;
+    });
+    if (byUser) stopAutoplay();
+    else if (autoplay) {
+      // 진행바 애니메이션 재시작
+      const t = tabs[i];
+      t.classList.remove('autoplaying');
+      void t.offsetWidth;
+      t.classList.add('autoplaying');
+    }
+  }
+
+  function stopAutoplay() {
+    autoplay = false;
+    if (timer) { clearInterval(timer); timer = null; }
+    tabs.forEach((t) => t.classList.remove('autoplaying'));
+  }
+
+  tabs.forEach((t, i) => t.addEventListener('click', () => select(i, true)));
+
+  if (autoplay) {
+    // 뷰포트에 들어온 뒤 자동재생 시작
+    const io = 'IntersectionObserver' in window
+      ? new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && autoplay && !timer) {
+              select(idx, false);
+              timer = setInterval(() => select((idx + 1) % tabs.length, false), INTERVAL);
+            } else if (!e.isIntersecting && timer) {
+              clearInterval(timer); timer = null;
+            }
+          });
+        }, { threshold: 0.35 })
+      : null;
+    if (io) io.observe(player);
+    else timer = setInterval(() => select((idx + 1) % tabs.length, false), INTERVAL);
+  }
+}
+
+/* ---------- ask typewriter ---------- */
+function initAskTyper() {
+  const el = document.getElementById('ask-typer');
+  if (!el || prefersReducedMotion) return;
+  const questions = [
+    '지난주 2라인 불량이 왜 늘었어?',
+    '이 자재 로트가 들어간 다른 작업도 있어?',
+    'MC04 공구는 다음에 언제 갈아야 해?',
+    '이번 달 납기 위험한 주문 있어?',
+  ];
+  let qi = 0, ci = 0, deleting = false;
+  function tick() {
+    const q = questions[qi];
+    if (!deleting) {
+      ci++;
+      el.textContent = q.slice(0, ci);
+      if (ci === q.length) { deleting = true; return setTimeout(tick, 2200); }
+      return setTimeout(tick, 55 + Math.random() * 45);
+    }
+    ci -= 2;
+    if (ci <= 0) {
+      ci = 0; deleting = false; qi = (qi + 1) % questions.length;
+      el.textContent = '';
+      return setTimeout(tick, 500);
+    }
+    el.textContent = q.slice(0, ci);
+    return setTimeout(tick, 18);
+  }
+  setTimeout(tick, 1200);
+}
+
 /* ---------- nav scroll state + sticky CTA ---------- */
 function initScrollUI() {
   const nav = document.getElementById('nav');
@@ -370,6 +462,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTrustStrip();
   initPixel();
   initReveal();
+  initTourPlayer();
+  initAskTyper();
   initScrollUI();
   initCountUp();
   initGraph();
