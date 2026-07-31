@@ -454,27 +454,6 @@ h3 {
   margin-left: 0.35rem;
 }
 
-/* ============ S3 silo diagram ============ */
-.silo-diagram {
-  margin-top: 3rem;
-  max-width: 780px;
-  background: var(--surface-card);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-xxl);
-  padding: clamp(1rem, 3vw, 2.5rem);
-}
-.silo-diagram svg { width: 100%; height: auto; display: block; }
-.silo-box rect { fill: var(--canvas-soft); stroke: var(--hairline-strong); stroke-width: 1; }
-.silo-box text {
-  fill: var(--body);
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 500;
-  text-anchor: middle;
-}
-.silo-lines { stroke: var(--muted-soft) !important; }
-.silo-breaks { stroke: var(--error) !important; opacity: 0.55; }
-
 /* ============ split layout (S4) ============ */
 .split {
   display: grid;
