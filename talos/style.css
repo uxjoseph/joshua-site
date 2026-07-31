@@ -576,6 +576,19 @@ h3 {
 }
 .card-featured .card-meta { color: var(--on-dark-soft) !important; }
 
+/* ============ section visual (도식 이미지 공통) ============ */
+.section-visual {
+  margin-top: 2.5rem;
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xxl);
+  overflow: hidden;
+}
+.section-visual img { display: block; width: 100%; height: auto; }
+/* 여백 많은 도식은 프레임 없이 캔버스에 그대로 */
+.section-visual-flat { background: transparent; border: none; border-radius: 0; margin-top: 1rem; }
+.section-visual-flat img { max-height: 220px; object-fit: cover; }
+
 /* ============ S4.5 usecases ============ */
 .usecase-grid { margin-top: 2.5rem; }
 .uc-tag {
