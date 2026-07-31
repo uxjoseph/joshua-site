@@ -269,7 +269,7 @@ h3 {
   z-index: 1;
   max-width: var(--max-w);
   margin: 4.5rem auto 0;
-  padding: 1.5rem 0 0;
+  padding: 1.5rem 0 2.5rem;
   border-top: 1px solid var(--hairline);
 }
 .trust-anon {
@@ -285,16 +285,141 @@ h3 {
 .hero-visual {
   position: relative;
   z-index: 1;
-  max-width: var(--max-w);
+  max-width: 1080px;
   margin: 3.5rem auto 0;
 }
-.hero-visual img {
+.hero-caption {
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  text-align: center;
+  word-break: keep-all;
+}
+.hero-caption strong { color: var(--body-strong); font-weight: 600; }
+
+/* ============ browser frame (제품 스크린샷 공통) ============ */
+.browser-frame {
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+}
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  background: var(--canvas-soft);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.b-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--hairline-strong);
+}
+.b-url {
+  margin-left: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted-soft);
+  background: var(--surface-strong);
+  border-radius: var(--r-pill);
+  padding: 0.2rem 0.85rem;
+  letter-spacing: 0.02em;
+}
+.browser-frame img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--r-xxl) var(--r-xxl) 0 0;
+}
+
+/* ============ S2.5 product tour ============ */
+.tour-step {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 4.5rem;
+}
+@media (min-width: 1024px) {
+  .tour-step { grid-template-columns: 4fr 7fr; gap: 4rem; }
+  .tour-step-wide { grid-template-columns: 4fr 8fr; }
+}
+.tour-text h3 { margin-bottom: 0.6rem; font-size: 1.35rem; }
+.tour-text > p { color: var(--body); word-break: keep-all; max-width: 26rem; }
+.tour-note {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 2px solid var(--ink);
+  background: var(--surface-card);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: 0.9rem;
+  color: var(--body);
+  word-break: keep-all;
+}
+.tour-note strong { color: var(--ink); font-weight: 600; }
+.tour-card-img {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
   border: 1px solid var(--hairline);
-  border-bottom: none;
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+/* step 01 — 질문 입력 목업 (CSS로 구성) */
+.ask-mock {
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xxl);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-shadow: var(--shadow-soft);
+}
+.ask-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--r-pill);
+  padding: 0.9rem 0.9rem 0.9rem 1.4rem;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: var(--ink);
+  font-weight: 500;
+}
+.ask-q::after {
+  content: "";
+  display: inline-block;
+  width: 1px; height: 1.1em;
+  background: var(--ink);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: caret-blink 1.1s step-end infinite;
+}
+@keyframes caret-blink { 50% { opacity: 0; } }
+.ask-send {
+  flex-shrink: 0;
+  width: 2.4rem; height: 2.4rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--on-primary);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+}
+.ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+}
+.ask-chips span {
+  font-size: 0.8125rem;
+  color: var(--body);
+  background: var(--surface-strong);
+  border-radius: var(--r-pill);
+  padding: 0.4rem 0.9rem;
+  word-break: keep-all;
 }
 
 /* ============ S3 silo diagram ============ */
@@ -615,6 +740,15 @@ h3 {
 }
 .sticky-cta.visible { transform: translateY(0); }
 @media (min-width: 768px) { .sticky-cta { display: none; } }
+
+/* ============ hero load-in (JS 비의존 — 첫 화면은 즉시 렌더) ============ */
+.reveal-hero {
+  animation: hero-rise 0.7s ease var(--d, 0s) both;
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
 
 /* ============ scroll reveal ============ */
 .reveal {

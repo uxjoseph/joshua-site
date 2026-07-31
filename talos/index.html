@@ -13,6 +13,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="preload" as="image" href="/assets/moa-home.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -22,6 +23,7 @@
     <div class="nav-inner">
       <a class="wordmark" href="#top" data-bind="BRAND_EN">TALOS</a>
       <nav class="nav-links" aria-label="주요 섹션">
+        <a href="#tour">제품</a>
         <a href="#problem">문제</a>
         <a href="#approach">접근법</a>
         <a href="#services">서비스</a>
@@ -37,24 +39,107 @@
     <section class="hero" id="hero">
       <canvas id="graph-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
-        <p class="overline reveal">Industrial AX Ontology</p>
-        <h1 class="reveal">제조 AX 온톨로지의 시작,<br /><strong data-bind="BRAND">탈로스</strong></h1>
-        <p class="hero-sub reveal">
-          <strong>데이터를 연결하면, 공장이 답하기 시작합니다.</strong><br />
-          설비·공정·문서·사람의 지식을 하나의 온톨로지로 연결하고,<br class="desktop-br" />
-          6주 안에 현업이 쓰는 AI 앱을 만듭니다.
+        <p class="overline reveal-hero">Industrial AX Ontology</p>
+        <h1 class="reveal-hero" style="--d: 0.06s">흩어진 공장 데이터가,<br /><strong>한 화면에서 답합니다</strong></h1>
+        <p class="hero-sub reveal-hero" style="--d: 0.12s">
+          <strong>현장을 지키는 사람들을 위한 AI.</strong><br />
+          도면·검사·설비·MES·메신저의 지식을 하나의 온톨로지로 연결하고,<br class="desktop-br" />
+          6주 안에 현업이 쓰는 워크스페이스로 배포합니다.
         </p>
-        <div class="hero-cta reveal">
+        <div class="hero-cta reveal-hero" style="--d: 0.18s">
           <a class="btn btn-primary" href="#lead">무료 AX 진단 신청</a>
-          <a class="btn btn-outline" href="#approach">접근법 보기</a>
+          <a class="btn btn-outline" href="#tour">제품 데모 보기</a>
         </div>
+      </div>
+      <div class="hero-visual reveal-hero" style="--d: 0.26s">
+        <figure class="browser-frame" role="img" aria-label="탈로스 현장 워크스페이스 '모아' — 말하듯 물어보면 흩어진 자료를 모아 답하는 홈 화면">
+          <div class="browser-bar" aria-hidden="true">
+            <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+            <span class="b-url">moa.talos.app</span>
+          </div>
+          <img src="/assets/moa-home.webp" alt="" width="2880" height="1800" fetchpriority="high" />
+        </figure>
+        <p class="hero-caption">탈로스가 구축하는 현장 워크스페이스 <strong>모아 MOA</strong> — 데모 화면</p>
       </div>
       <div class="trust-strip reveal" id="trust-strip">
         <!-- SHOW_CLIENT_LOGOS=false → 익명 문구, true → 로고 슬라이더 (main.js에서 렌더) -->
         <p class="trust-anon">정밀부품 · 산업장비 · 대기업 계열 제조사와 협업 중</p>
       </div>
-      <div class="hero-visual reveal">
-        <img src="/assets/hero.webp" alt="온톨로지로 연결된 산업 지식그래프를 표현한 에디토리얼 비주얼" width="1536" height="1024" fetchpriority="high" />
+    </section>
+
+    <!-- S2.5 제품 투어 -->
+    <section class="section section-soft" id="tour">
+      <div class="section-inner">
+        <p class="overline reveal">Product Tour</p>
+        <h2 class="reveal">묻고, 연결된 답을 받고,<br />위험은 <strong>먼저 알려드립니다</strong></h2>
+        <p class="section-body reveal">
+          검색어를 고민할 필요가 없습니다. 현장의 말로 물으면,
+          시스템 경계 너머의 기록들이 하나의 맥락으로 모입니다.
+        </p>
+
+        <div class="tour-step reveal">
+          <div class="tour-text">
+            <p class="card-num">01</p>
+            <h3>물어본다 <span class="card-en">Ask</span></h3>
+            <p>키워드가 아니라 말로 묻습니다. 생산관리팀장의 언어 그대로.</p>
+          </div>
+          <div class="tour-media">
+            <div class="ask-mock" role="img" aria-label="질문 입력 예시 — 지난주 2라인 불량이 왜 늘었어?">
+              <div class="ask-input">
+                <span class="ask-q">지난주 2라인 불량이 왜 늘었어?</span>
+                <span class="ask-send" aria-hidden="true">↑</span>
+              </div>
+              <div class="ask-chips" aria-hidden="true">
+                <span>이 자재 로트가 들어간 다른 작업도 있어?</span>
+                <span>MC04 공구는 다음에 언제 갈아야 해?</span>
+                <span>이번 달 납기 위험한 주문 있어?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-step tour-step-wide reveal">
+          <div class="tour-text">
+            <p class="card-num">02</p>
+            <h3>연결된 답을 받는다 <span class="card-en">Connect</span></h3>
+            <p>
+              도면 변경, 치수검사 이탈, 설비 부하 알림, MES 작업지시,
+              메신저의 인수인계까지 — 흩어져 있던 기록이 하나의 원인 흐름으로 이어집니다.
+            </p>
+            <p class="tour-note">
+              가능한 이유 — <strong>온톨로지.</strong> 품번·설비·로트·사람이
+              시스템 경계를 넘어 서로 연결되어 있기 때문입니다.
+            </p>
+          </div>
+          <div class="tour-media">
+            <figure class="browser-frame" role="img" aria-label="통합 검색 결과 — 도면·품질검사·설비 신호·MES·카카오워크 기록이 한 화면에 연결되어 표시됨">
+              <div class="browser-bar" aria-hidden="true">
+                <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+                <span class="b-url">moa.talos.app/search</span>
+              </div>
+              <img src="/assets/moa-search.webp" alt="" width="2880" height="1800" loading="lazy" />
+            </figure>
+          </div>
+        </div>
+
+        <div class="tour-step reveal">
+          <div class="tour-text">
+            <p class="card-num">03</p>
+            <h3>먼저 알려준다 <span class="card-en">Brief</span></h3>
+            <p>
+              묻기 전에 브리핑합니다. 불량 증가, 공구 교체 시점, 납기 위험 —
+              오늘 확인해야 할 일이 출근과 함께 정리되어 있습니다.
+            </p>
+          </div>
+          <div class="tour-media">
+            <img class="tour-card-img" src="/assets/moa-news.webp" alt="오늘 회사 소식 패널 — 불량 증가·공구 교체·납기 위험을 먼저 알려주는 브리핑 카드" width="876" height="860" loading="lazy" />
+          </div>
+        </div>
+
+        <p class="footnote reveal">
+          위 화면은 <strong data-bind="BRAND_EN">TALOS</strong>가 구축하는 현장 워크스페이스
+          <strong>모아(MOA)</strong>의 데모입니다. 실제 구축 시 귀사의 시스템·데이터·용어에 맞춰 설계됩니다.
+        </p>
       </div>
     </section>
 
