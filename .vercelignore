@@ -1,0 +1,12 @@
+/joshua-site
+*.zip
+/redesign-preview
+/docs
+/public
+/components
+/pages
+/api
+/lib
+/App.tsx
+/index.tsx
+/index.html

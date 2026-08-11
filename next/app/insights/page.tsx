@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ARTICLES } from '@/lib/articles';
 
 export const metadata: Metadata = {
-  title: '인사이트 & 뉴스레터 — AX를 먼저 겪은 사람의 기록',
+  title: '인사이트 & 뉴스레터 - AX를 먼저 겪은 사람의 기록',
   description: 'AX·온톨로지·AI 에이전트에 대한 정의형 인사이트와 조쉬의 뉴스레터. 현장에서 직접 구축하며 배운 것들을 기록합니다.',
   alternates: { canonical: '/insights' },
 };
@@ -27,7 +27,7 @@ export default function InsightsPage() {
             ))}
             <article className="card">
               <span className="cat">Newsletter</span>
-              <h3>조쉬의 뉴스레터 — 아카이브 통합 예정</h3>
+              <h3>조쉬의 뉴스레터 (아카이브 통합 예정)</h3>
               <p>기존 발행분을 joshua.site로 이전하고 있습니다. 새 회차 소식은 문의 페이지에서 구독 신청으로 받아보실 수 있습니다.</p>
             </article>
           </div>

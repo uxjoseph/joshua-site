@@ -28,7 +28,7 @@ export function Nav() {
                 <span className="t" style={{ color: 'var(--muted-soft)' }}>
                   TALOS <span className="tag">준비 중</span>
                 </span>
-                <span className="d">제조 AX 온톨로지 솔루션 — 준비하고 있습니다</span>
+                <span className="d">제조 AX 온톨로지 솔루션, 준비하고 있습니다</span>
               </div>
             </div>
           </div>

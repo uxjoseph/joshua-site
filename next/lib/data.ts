@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'sk-knowledge-ax',
     title: 'SK그룹 전사 경영 지식 AX 전환 및 멀티모달 오케스트레이션',
-    hook: '지식자산 75,000건 — 전사 경영 지식이 답하기 시작하다',
+    hook: '지식자산 75,000건, 전사 경영 지식이 답하기 시작하다',
     description:
       'SK그룹의 핵심 지식 자산 7만 5천 건을 RAG 기반으로 체계화하고, 선대회장의 화법과 음성으로 응답 및 발표자료를 자동 생성하는 엔터프라이즈 AX 시스템입니다.',
     category: 'Enterprise AX',
@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'sk-culture-diagnosis',
     title: 'SK그룹 22개 계열사 조직문화 진단 통합 분석 및 데이터 인텔리전스 대시보드',
-    hook: '8주 → 1일 — 22개 계열사 조직문화 진단 자동화',
+    hook: '8주에서 1일로, 22개 계열사 조직문화 진단 자동화',
     description:
       '22개 계열사 약 3만 4천 건 응답 데이터를 PPT로 수기 정리하며 8주가 소요되던 조직문화 진단 사이클을, Raw XLS 업로드만으로 5개 영역 점수·주관식 분석·Heatmap·Alert까지 1일 내 자동화한 SK그룹 전사 조직문화 인텔리전스 대시보드입니다.',
     category: 'Data Intelligence',
@@ -72,7 +72,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'sk-icheon-forum',
     title: 'SK그룹 임원 리더십 포럼 AI 페르소나 라이브 인터랙션 시스템',
-    hook: '이천포럼 — 사장단 토론에 AI 페르소나가 라이브로 답하다',
+    hook: '이천포럼, 사장단 토론에 AI 페르소나가 라이브로 답하다',
     description:
       '사장단 토론이 사회자 진행에 전적으로 의존하던 SK 이천포럼에서, 사전 학습된 AI 페르소나가 라이브 아바타로 응답하고 모더레이터가 단일 컨트롤 패널에서 송출·자막·패널을 실시간 조정할 수 있도록 구축한 컨버세이셔널 AI 시스템입니다.',
     category: 'Conversational AI',

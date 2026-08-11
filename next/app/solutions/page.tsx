@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: '솔루션 — TALOS · MICKY',
-  description: '온톨로지 기술을 제품으로. 제조 AX 온톨로지 TALOS, AI 회의록·팀 맥락 에이전트 MICKY — 조슈아앤컴퍼니가 직접 만들어 운영하는 솔루션입니다.',
+  title: '솔루션 - TALOS · MICKY',
+  description: '온톨로지 기술을 제품으로. 제조 AX 온톨로지 TALOS, AI 회의록·팀 맥락 에이전트 MICKY까지, 조슈아앤컴퍼니가 직접 만들어 운영하는 솔루션입니다.',
   alternates: { canonical: '/solutions' },
 };
 
@@ -31,7 +31,7 @@ export default function SolutionsPage() {
               <div className="sol-visual">
                 <Image
                   src="/img_micky.webp"
-                  alt="노트북에 띄운 MICKY 대시보드 — 정리된 회의 6건과 요약·액션 카드"
+                  alt="노트북에 띄운 MICKY 대시보드, 정리된 회의 6건과 요약·액션 카드"
                   width={2140}
                   height={1160}
                   sizes="(min-width: 900px) 50vw, 100vw"

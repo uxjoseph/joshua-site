@@ -69,7 +69,7 @@ export default function Home() {
               {LOGOS.map((l) => (
                 <div key={l.name}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={l.src} alt={l.name} height={26} />
+                  <img src={l.src} alt={`조슈아앤컴퍼니 고객사 ${l.name} 로고`} height={26} />
                 </div>
               ))}
             </div>
@@ -86,38 +86,38 @@ export default function Home() {
           <p className="lead reveal">세 단계가 한 팀 안에서 이어질 때, AX는 조직에 남습니다.</p>
           <div className="grid3 reveal">
             <article className="card">
-              <span className="step-en">01 · Learn — 기업교육</span>
+              <span className="step-en">01 · Learn, 기업교육</span>
               <Image className="card-fig" src="/journey-learn.webp" alt="" aria-hidden="true" width={480} height={320} sizes="240px" />
               <h3>조직이 AI를 이해하게 만듭니다</h3>
               <p>카카오뱅크·신한은행·LG전자가 선택한,<br className="br-card" /> 실무에 바로 적용되는 AI 교육.</p>
               <ul>
-                <li>임원 특강 — &lsquo;AI Agent 시대&rsquo; 의사결정 전략</li>
-                <li>직무별 실습 워크숍 — 금융·디자인·제조</li>
-                <li>8주 집중 트레이닝 — 비개발자도 자동화 도구 제작</li>
+                <li>임원 특강: &lsquo;AI Agent 시대&rsquo; 의사결정 전략</li>
+                <li>직무별 실습 워크숍: 금융·디자인·제조</li>
+                <li>8주 집중 트레이닝: 비개발자도 자동화 도구 제작</li>
               </ul>
               <Link className="more" href="/education">교육 사례 보기</Link>
             </article>
             <article className="card">
-              <span className="step-en">02 · Build — AX 구축</span>
+              <span className="step-en">02 · Build, AX 구축</span>
               <Image className="card-fig" src="/journey-build.webp" alt="" aria-hidden="true" width={480} height={320} sizes="240px" />
               <h3>현업이 매일 쓰는 시스템을 만듭니다</h3>
               <p>데모로 끝나는 AI가 아니라, 75,000건 지식자산을<br className="br-card" /> 답하게 만든 실전 구축력.</p>
               <ul>
-                <li>업무 자동화 — 8주 걸리던 리포트를 1일로</li>
+                <li>업무 자동화: 8주 걸리던 리포트를 1일로</li>
                 <li>SKT·디자인 에이전시 출신의 UX 설계</li>
-                <li>MVP 4~8주 — 발견부터 정착까지 책임 리드</li>
+                <li>MVP 4~8주: 발견부터 정착까지 책임 리드</li>
               </ul>
               <Link className="more" href="/work">구축 사례 보기</Link>
             </article>
             <article className="card">
-              <span className="step-en">03 · Run — 솔루션</span>
+              <span className="step-en">03 · Run, 솔루션</span>
               <Image className="card-fig" src="/journey-run.webp" alt="" aria-hidden="true" width={480} height={320} sizes="240px" />
               <h3>온톨로지 위에서 지속 운영합니다</h3>
               <p>구축이 끝나도 AX는 계속됩니다.<br className="br-card" /> 산업 지식을 온톨로지로 연결한 설치형 솔루션.</p>
               <ul>
                 <li>산업 지식그래프(온톨로지) 설계·설치</li>
-                <li>현업 앱 배포 — 6주 내 프로덕션</li>
-                <li>자사 솔루션 — MICKY(팀 지능) · TALOS(제조, 준비 중)</li>
+                <li>현업 앱 배포: 6주 내 프로덕션</li>
+                <li>자사 솔루션: MICKY(팀 지능) · TALOS(제조, 준비 중)</li>
               </ul>
               <Link className="more" href="/solutions">솔루션 보기</Link>
             </article>
@@ -146,7 +146,7 @@ export default function Home() {
               <div className="sol-visual">
                 <Image
                   src="/img_micky.webp"
-                  alt="노트북에 띄운 MICKY 대시보드 — 정리된 회의 6건과 요약·액션 카드"
+                  alt="노트북에 띄운 MICKY 대시보드, 정리된 회의 6건과 요약·액션 카드"
                   width={2140}
                   height={1160}
                   sizes="(min-width: 900px) 50vw, 100vw"
@@ -168,9 +168,9 @@ export default function Home() {
       <section className="section tech-foot is-dark">
         <div className="inner">
           <p className="tech-proof reveal">
-            <span>검증 환경 — <strong>SK그룹 15개 계열사</strong> 운영 시스템</span>
-            <span>데이터 규모 — <strong>75,000건 지식 · 34,000건 응답 분석</strong></span>
-            <span>납품 형태 — <strong>웹 앱 · 대시보드 · 에이전트 · 온톨로지</strong></span>
+            <span>검증 환경: <strong>SK그룹 15개 계열사</strong> 운영 시스템</span>
+            <span>데이터 규모: <strong>75,000건 지식 · 34,000건 응답 분석</strong></span>
+            <span>납품 형태: <strong>웹 앱 · 대시보드 · 에이전트 · 온톨로지</strong></span>
           </p>
         </div>
       </section>
@@ -282,7 +282,7 @@ export default function Home() {
               <div className="reveal contact-copy">
                 <p className="overline">Contact</p>
                 <h2>어디서부터 시작할지,<br /><strong>무료로 빠르게 상담해보세요</strong></h2>
-                <p className="lead">교육이든, 구축이든, 솔루션이든 — 무엇이 먼저인지부터 함께 정리해드립니다.</p>
+                <p className="lead">교육이든, 구축이든, 솔루션이든 무엇이 먼저인지부터 함께 정리해드립니다.</p>
                 <p className="sla">
                   영업일 1일 내 답변드립니다.{' · '}
                   <a href={`mailto:${SITE.email}`} style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>{SITE.email}</a>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'TALOS 탈로스 — 제조 AX 온톨로지 솔루션',
+  title: 'TALOS 탈로스 - 제조 AX 온톨로지 솔루션',
   description:
     '제조 AX 온톨로지의 시작, 탈로스. MES·ERP·도면·현장 기록을 하나의 산업 지식그래프로 연결하고 6주 안에 현업이 쓰는 AI 앱을 배포합니다. 무료 AX 진단으로 시작하세요.',
   alternates: { canonical: '/solutions/talos' },

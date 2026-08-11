@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'MICKY 미키 — AI 회의록·팀 맥락 에이전트',
+  title: 'MICKY 미키 - AI 회의록·팀 맥락 에이전트',
   description:
     '봇 없이 회의를 녹음·분석해 요약·액션·발표자료까지 자동 생성하는 AI 회의록 MICKY. 쌓인 회의 맥락이 팀만 아는 에이전트가 됩니다. 한국어 직급·존댓말 맥락 보존.',
   alternates: { canonical: '/solutions/micky' },
@@ -18,7 +18,7 @@ const jsonLd = {
   url: 'https://micky.joshua.site',
   description: 'AI 회의록·회의 요약 자동 생성 서비스. 봇 없이 기기에서 직접 녹음하고, 회의가 끝나면 요약·액션·발표자료·문서가 완성됩니다. 누적된 회의 맥락이 팀 전용 에이전트가 됩니다.',
   provider: { '@type': 'Organization', name: '주식회사 조슈아앤컴퍼니', url: 'https://joshua.site' },
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW', description: 'Free 플랜 — 월 5시간 녹음' },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW', description: 'Free 플랜: 월 5시간 녹음' },
 };
 
 export default function MickyPage() {

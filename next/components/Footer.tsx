@@ -9,15 +9,15 @@ export function Footer() {
           <div className="foot-brand">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/joshua-logo.svg" alt="조슈아앤컴퍼니" width={128} height={44} />
-            <p>교육부터 구축, 운영까지 — 독립 AX 컨설팅·구현사 조슈아앤컴퍼니입니다.</p>
+            <p>교육부터 구축, 운영까지 함께하는 독립 AX 컨설팅·구현사 조슈아앤컴퍼니입니다.</p>
           </div>
           <div className="foot-cols">
             <div>
               <h4>Services</h4>
               <Link href="/education">기업교육</Link>
               <Link href="/work">AX 구축</Link>
-              <Link href="/solutions/micky">솔루션 — MICKY</Link>
-              <span className="dim">솔루션 — TALOS (준비 중)</span>
+              <Link href="/solutions/micky">솔루션 · MICKY</Link>
+              <span className="dim">솔루션 · TALOS (준비 중)</span>
             </div>
             <div>
               <h4>Company</h4>

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) return {};
   return {
-    title: `${project.hook ?? project.title} — AX 프로젝트`,
+    title: `${project.hook ?? project.title} - AX 프로젝트`,
     description: project.description,
     alternates: { canonical: `/work/${project.slug}` },
     openGraph: { type: 'article', title: project.title, description: project.description, images: [project.image] },

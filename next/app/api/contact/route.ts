@@ -81,7 +81,7 @@ export async function POST(req: Request): Promise<Response> {
     from: FROM_ADDRESS,
     to: NOTIFY_TO,
     replyTo: email,
-    subject: `[joshua.site 문의] ${category} — ${name} (${company})`,
+    subject: `[joshua.site 문의] ${category} - ${name} (${company})`,
     text: notifyText,
   });
 

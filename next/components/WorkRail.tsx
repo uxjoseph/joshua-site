@@ -105,7 +105,7 @@ export function WorkRail({ children }: { children: React.ReactNode }) {
         ref={railRef}
         tabIndex={0}
         role="region"
-        aria-label="프로젝트 목록 — 좌우로 스와이프하거나 화살표 키로 넘기세요"
+        aria-label="프로젝트 목록, 좌우로 스와이프하거나 화살표 키로 넘기세요"
       >
         <div className="pf-track">{children}</div>
       </div>

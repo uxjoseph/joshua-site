@@ -238,7 +238,7 @@ export function WorkFocusRail({ projects }: { projects: Project[] }) {
         ref={stageRef}
         role="group"
         aria-roledescription="캐러셀"
-        aria-label="주요 프로젝트 — 좌우로 넘기세요"
+        aria-label="주요 프로젝트, 좌우로 넘기세요"
         onKeyDown={onKeyDown}
       >
         {projects.map((p, i) => (
@@ -250,7 +250,7 @@ export function WorkFocusRail({ projects }: { projects: Project[] }) {
               itemsRef.current[i] = el;
             }}
             data-on={i === active || undefined}
-            aria-label={`${p.category} · ${p.year} — ${p.hook ?? p.title}`}
+            aria-label={`${p.category} · ${p.year}, ${p.hook ?? p.title}`}
             /* 활성이 아닌 카드를 누르면 이동이 아니라 그 카드로 초점을 옮긴다.
                활성 카드를 누르면 상세로 이동한다(Link 기본 동작).
                판정은 click 이 아니라 pointerdown 시점의 값으로 한다 — 아래 ref 주석 참고. */
