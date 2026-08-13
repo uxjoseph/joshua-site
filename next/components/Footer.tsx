@@ -42,6 +42,7 @@ export function Footer() {
             <span>상호: {SITE.legalName}</span>
             <span>대표: {SITE.ceo}</span>
             <span>사업자등록번호: {SITE.bizNo}</span>
+            <span>전화: 02-3149-6920</span>
           </div>
           <div className="row">
             <a href={SITE.sns.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
