@@ -49,6 +49,9 @@ export function Footer() {
             <a href={SITE.sns.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href={SITE.sns.threads} target="_blank" rel="noopener noreferrer">Threads</a>
           </div>
+          <div className="row">
+            <Link href="/privacy" style={{ fontWeight: 700 }}>개인정보처리방침</Link>
+          </div>
           <span>© {new Date().getFullYear()} JOSHUA All rights reserved.</span>
         </div>
       </div>
