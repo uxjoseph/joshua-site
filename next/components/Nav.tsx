@@ -30,6 +30,7 @@ export function Nav() {
             </div>
           </div>
           <Link href="/education">교육</Link>
+          <Link href="/blog">블로그</Link>
           {/* 인사이트 메뉴는 콘텐츠 준비 전까지 비노출 (조쉬 지시, 2026-07-22) */}
           <Link href="/#about">회사소개</Link>
         </nav>
