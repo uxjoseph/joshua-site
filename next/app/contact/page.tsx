@@ -12,17 +12,21 @@ export default function ContactPage() {
   return (
     <main>
       <section className="section cta" style={{ paddingTop: '9rem' }}>
-        <div className="inner contact-grid">
-          <div className="reveal contact-copy">
-            <p className="overline">Contact</p>
-            <h2>어디서부터 시작할지,<br /><strong>무료로 빠르게 상담해보세요</strong></h2>
-            <p className="lead">교육이든, 구축이든, 솔루션이든 — 무엇이 먼저인지부터 함께 정리해드립니다.</p>
-            <p className="sla">
-              영업일 1일 내 답변드립니다.{' · '}
-              <a href={`mailto:${SITE.email}`} style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>{SITE.email}</a>
-            </p>
+        <div className="inner">
+          <div className="cta-card">
+            <div className="contact-grid">
+              <div className="reveal contact-copy">
+                <p className="overline">Contact</p>
+                <h2>어디서부터 시작할지,<br /><strong>무료로 빠르게 상담해보세요</strong></h2>
+                <p className="lead">교육이든, 구축이든, 솔루션이든 — 무엇이 먼저인지부터 함께 정리해드립니다.</p>
+                <p className="sla">
+                  영업일 1일 내 답변드립니다.{' · '}
+                  <a href={`mailto:${SITE.email}`} style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>{SITE.email}</a>
+                </p>
+              </div>
+              <ContactForm />
+            </div>
           </div>
-          <ContactForm />
         </div>
       </section>
     </main>

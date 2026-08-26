@@ -41,7 +41,7 @@ export default function MickyPage() {
         </div>
       </section>
 
-      <section className="section soft">
+      <section className="section">
         <div className="inner">
           <p className="overline reveal">Why MICKY</p>
           <h2 className="reveal">단순 회의록이 아니라,<br /><strong>팀의 맥락 자산</strong></h2>

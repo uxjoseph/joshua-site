@@ -1,12 +1,15 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 export function Nav() {
   return (
     <header className="nav" id="nav">
       <div className="nav-inner">
-        <Link className="brand" href="/" aria-label="JOSHUA 홈">
-          <Image src="/JOSHUA.png" alt="JOSHUA" width={110} height={22} style={{ height: 22, width: 'auto' }} priority />
+        <Link className="brand" href="/" aria-label="조슈아앤컴퍼니 홈">
+          {/* SVG 는 next/image 의 최적화 대상이 아니다(벡터라 리사이즈가 무의미하고,
+              next.config 에 dangerouslyAllowSVG 를 켜야 한다). 그냥 <img> 로 넣는다.
+              2줄 워드마크라 1줄 로고보다 높이가 커야 각 줄이 읽힌다(32px → 한 줄 약 13px). */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/joshua-logo.svg" alt="조슈아앤컴퍼니" width={93} height={32} />
         </Link>
         <nav className="links" aria-label="주요 메뉴">
           <Link href="/work">프로젝트</Link>

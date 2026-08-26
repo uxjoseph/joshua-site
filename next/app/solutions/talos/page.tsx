@@ -51,7 +51,7 @@ export default function TalosPage() {
         </div>
       </section>
 
-      <section className="section soft">
+      <section className="section">
         <div className="inner">
           <p className="overline reveal">Why Ontology First</p>
           <h2 className="reveal">AI 도입이 실패하는 이유는<br />AI가 아니라, <strong>데이터</strong>입니다</h2>

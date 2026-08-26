@@ -26,7 +26,7 @@ export default function WorkPage() {
                 <div className="pad">
                   <span className="cat">{p.category} · {p.year}</span>
                   <h3>{p.hook ?? p.title}</h3>
-                  <p style={{ display: 'block', overflow: 'visible' }}>{p.description}</p>
+                  <p>{p.description}</p>
                   <span className="more">자세히 보기 →</span>
                 </div>
               </Link>

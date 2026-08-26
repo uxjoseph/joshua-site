@@ -21,12 +21,22 @@ export default function SolutionsPage() {
           </p>
           <div className="sol-grid reveal" style={{ marginTop: '3rem' }}>
             <article className="sol-talos">
-              <span className="mark">MICKY <span className="sol-no">Solution 01 · 팀 지능</span></span>
-              <h3>AI 네이티브 조직을 위한<br /><strong>회의록 에이전트 솔루션</strong></h3>
-              <p>회의만 진행하면 요약·액션·발표자료 같은 산출물이 자동으로 만들어지고, 쌓인 회의 맥락은 팀만 아는 에이전트로 자라납니다.</p>
-              <div className="chips"><span>Bot-Free 녹음</span><span>Meeting-to-X</span><span>팀 지식그래프</span><span>미이행 약속 추적</span></div>
-              <Link className="btn" href="/solutions/micky">MICKY 자세히 보기</Link>
-              <Image className="sol-shot" src="/micky-app.webp" alt="MICKY 앱 화면 — 회의 요약·주요 결정·액션 아이템과 미키 스튜디오" width={896} height={494} />
+              <div className="sol-copy">
+                <span className="mark">MICKY <span className="sol-no">Solution 01 · 팀 지능</span></span>
+                <h3>AI 네이티브 조직을 위한<br /><strong>회의록 에이전트 솔루션</strong></h3>
+                <p>회의만 진행하면 요약·액션·발표자료 같은 산출물이 자동으로 만들어지고, 쌓인 회의 맥락은 팀만 아는 에이전트로 자라납니다.</p>
+                <div className="chips"><span>Bot-Free 녹음</span><span>Meeting-to-X</span><span>팀 지식그래프</span><span>미이행 약속 추적</span></div>
+                <Link className="btn" href="/solutions/micky">MICKY 자세히 보기</Link>
+              </div>
+              <div className="sol-visual">
+                <Image
+                  src="/img_micky.webp"
+                  alt="노트북에 띄운 MICKY 대시보드 — 정리된 회의 6건과 요약·액션 카드"
+                  width={2140}
+                  height={1160}
+                  sizes="(min-width: 900px) 50vw, 100vw"
+                />
+              </div>
             </article>
             <article className="sol-next">
               <span className="tag">준비 중</span>

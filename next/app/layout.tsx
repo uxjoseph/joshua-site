@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     siteName: 'JOSHUA 조슈아앤컴퍼니',
     title: '조슈아앤컴퍼니 — 교육부터 구축, 운영까지 AX 파트너',
     description: 'AI 교육 12개 조직 · 엔터프라이즈 AX 10건 · 온톨로지 솔루션 TALOS·MICKY. 독립 AX 파트너 조슈아앤컴퍼니.',
-    images: ['/JOSHUA.png'],
+    images: ['/joshua-logo.png'],
   },
   robots: { index: true, follow: true },
-  icons: { icon: '/JOSHUA.png' },
+  icons: { icon: '/joshua-logo.png' },
 };
 
 // GEO: Organization 스키마 — AI 검색·지식그래프가 인용할 회사 정본
@@ -38,7 +38,7 @@ const orgJsonLd = {
   name: SITE.legalName,
   alternateName: ['JOSHUA', '조슈아앤컴퍼니', 'Joshua & Company'],
   url: SITE.url,
-  logo: `${SITE.url}/JOSHUA.png`,
+  logo: `${SITE.url}/joshua-logo.png`,
   email: SITE.email,
   telephone: SITE.phone,
   taxID: SITE.bizNo,
@@ -47,7 +47,7 @@ const orgJsonLd = {
     '@type': 'PostalAddress',
     addressCountry: 'KR',
     addressLocality: '서울특별시 구로구',
-    streetAddress: '디지털로26길 43, 엘동 502호',
+    streetAddress: '디지털로26길 43, 엘동 5층 502, 503호',
   },
   sameAs: [SITE.sns.youtube, SITE.sns.linkedin, SITE.sns.threads],
   description:

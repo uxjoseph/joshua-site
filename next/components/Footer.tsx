@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { SITE } from '@/lib/data';
 
 export function Footer() {
   return (
-    <footer>
+    <footer className="site-foot">
       <div className="foot">
         <div className="foot-top">
           <div className="foot-brand">
-            <Image src="/JOSHUA.png" alt="JOSHUA" width={120} height={24} style={{ height: 24, width: 'auto' }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/joshua-logo.svg" alt="조슈아앤컴퍼니" width={128} height={44} />
             <p>교육부터 구축, 운영까지 — 독립 AX 컨설팅·구현사 조슈아앤컴퍼니입니다.</p>
           </div>
           <div className="foot-cols">
@@ -32,7 +32,7 @@ export function Footer() {
               <span>
                 서울특별시 구로구 디지털로26길 43,
                 <br />
-                엘동 502호
+                엘동 5층 502, 503호
               </span>
             </div>
           </div>
@@ -50,6 +50,12 @@ export function Footer() {
           </div>
           <span>© {new Date().getFullYear()} JOSHUA All rights reserved.</span>
         </div>
+      </div>
+      {/* 초대형 워드마크 밴드 — 흰 패널이 위로 걷히면서 드러난다.
+          장식이라 스크린리더는 건너뛴다(위 .foot-brand 에 이미 같은 로고가 있다). */}
+      <div className="foot-mark" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/joshua-logo.svg" alt="" width={601} height={207} />
       </div>
     </footer>
   );

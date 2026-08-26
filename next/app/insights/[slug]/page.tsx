@@ -33,7 +33,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     datePublished: article.datePublished,
     inLanguage: 'ko',
     author: { '@type': 'Person', name: '조쉬 (Josh Kim)', worksFor: { '@type': 'Organization', name: SITE.legalName } },
-    publisher: { '@type': 'Organization', name: SITE.legalName, url: SITE.url, logo: { '@type': 'ImageObject', url: `${SITE.url}/JOSHUA.png` } },
+    publisher: { '@type': 'Organization', name: SITE.legalName, url: SITE.url, logo: { '@type': 'ImageObject', url: `${SITE.url}/joshua-logo.png` } },
     mainEntityOfPage: `${SITE.url}/insights/${article.slug}`,
   };
   const faqLd = article.faq && {
