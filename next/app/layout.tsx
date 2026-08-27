@@ -4,6 +4,7 @@ import { SITE } from '@/lib/data';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { Effects } from '@/components/Effects';
+import { AnalyticsBoot } from '@/components/AnalyticsBoot';
 import './globals.css';
 
 const GTM_ID = 'GTM-WJ4BDQT2';
@@ -105,6 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        <AnalyticsBoot />
         <Nav />
         {children}
         <Footer />

@@ -33,7 +33,7 @@ export default function WorkPage() {
             ))}
           </div>
           <div className="hero-cta reveal" style={{ justifyContent: 'flex-start', marginTop: '3rem' }}>
-            <Link className="btn btn-primary" href="/contact">프로젝트 문의하기</Link>
+            <Link className="btn btn-primary" href="/contact" data-cta-location="page_bottom">프로젝트 문의하기</Link>
           </div>
         </div>
       </section>

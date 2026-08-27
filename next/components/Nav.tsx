@@ -37,7 +37,7 @@ export function Nav() {
           {/* 인사이트 메뉴는 콘텐츠 준비 전까지 비노출 (조쉬 지시, 2026-07-22) */}
           <Link href="/#about">회사소개</Link>
         </nav>
-        <Link className="btn btn-primary btn-sm" href="/contact">
+        <Link className="btn btn-primary btn-sm" href="/contact" data-cta-location="header">
           문의하기
         </Link>
       </div>

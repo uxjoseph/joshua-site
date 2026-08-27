@@ -36,7 +36,7 @@ export default function MickyPage() {
           </p>
           <div className="hero-cta reveal" style={{ justifyContent: 'flex-start' }}>
             <a className="btn btn-primary" href="https://micky.joshua.site" target="_blank" rel="noopener">베타 신청하기</a>
-            <Link className="btn btn-outline" href="/contact">팀 도입 문의</Link>
+            <Link className="btn btn-outline" href="/contact" data-cta-location="page_bottom">팀 도입 문의</Link>
           </div>
         </div>
       </section>

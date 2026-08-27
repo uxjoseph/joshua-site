@@ -83,7 +83,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </dl>
 
           <div className="hero-cta" style={{ justifyContent: 'flex-start', marginTop: '3rem' }}>
-            <Link className="btn btn-primary" href="/contact">이런 프로젝트가 필요하다면</Link>
+            <Link className="btn btn-primary" href="/contact" data-cta-location="page_bottom">이런 프로젝트가 필요하다면</Link>
             <Link className="btn btn-outline" href="/work">전체 프로젝트 보기</Link>
           </div>
         </div>

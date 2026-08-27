@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { mapInquiryType, trackFormError, trackFormView, trackGenerateLead } from '@/lib/gtag';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -19,6 +20,11 @@ const SOURCES = [
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [msg, setMsg] = useState('');
+
+  // 인디코 GA4 스펙: 폼이 실제 화면에 노출된 시점에 consultation_form_view 발화.
+  useEffect(() => {
+    trackFormView();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,10 +52,15 @@ export function ContactForm() {
       if (!res.ok || !body.ok) throw new Error(body.error || '문의 전송에 실패했습니다.');
       setStatus('success');
       setMsg('문의해주셔서 감사합니다. 곧 회신 메일을 보내드리겠습니다.');
+      // 인디코 GA4 스펙: 서버 접수 성공 = generate_lead (핵심 전환).
+      trackGenerateLead(mapInquiryType(data.category));
       form.reset();
     } catch (err) {
       setStatus('error');
-      setMsg(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');
+      const message = err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.';
+      setMsg(message);
+      // 인디코 GA4 스펙: 접수 실패 = consultation_form_error.
+      trackFormError(message);
     }
   };
 

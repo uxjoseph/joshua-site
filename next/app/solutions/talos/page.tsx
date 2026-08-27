@@ -46,7 +46,7 @@ export default function TalosPage() {
           </p>
           <div className="hero-cta reveal" style={{ justifyContent: 'flex-start' }}>
             <a className="btn btn-primary" href="https://talos.joshua.site" target="_blank" rel="noopener">무료 AX 진단 신청</a>
-            <Link className="btn btn-outline" href="/contact">도입 문의</Link>
+            <Link className="btn btn-outline" href="/contact" data-cta-location="page_bottom">도입 문의</Link>
           </div>
         </div>
       </section>

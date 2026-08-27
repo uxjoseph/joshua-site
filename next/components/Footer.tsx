@@ -22,7 +22,7 @@ export function Footer() {
             <div>
               <h4>Company</h4>
               <Link href="/#about">회사소개</Link>
-              <Link href="/contact">문의하기</Link>
+              <Link href="/contact" data-cta-location="page_bottom">문의하기</Link>
               <Link href="/privacy">개인정보처리방침</Link>
             </div>
             <div>

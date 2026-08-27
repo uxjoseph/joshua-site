@@ -44,7 +44,7 @@ export default function Home() {
             <strong>한 팀이 끝까지 맡습니다.</strong>
           </p>
           <div className="hero-cta reveal">
-            <Link className="btn btn-primary" href="/contact">무료 상담하기</Link>
+            <Link className="btn btn-primary" href="/contact" data-cta-location="hero">무료 상담하기</Link>
             {/* 라우트가 아니라 정적 파일이라 next/link 가 아닌 <a> 로 건다.
                 새 탭으로 여는 이유 — 8MB PDF 를 같은 탭에서 열면 사이트가 뷰어에 덮여
                 뒤로가기 말고는 돌아올 길이 없다. */}

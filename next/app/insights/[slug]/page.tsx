@@ -69,7 +69,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </div>
           )}
           <div className="hero-cta" style={{ justifyContent: 'flex-start', marginTop: '3rem' }}>
-            <Link className="btn btn-primary" href="/contact">AX 상담하기</Link>
+            <Link className="btn btn-primary" href="/contact" data-cta-location="page_bottom">AX 상담하기</Link>
             <Link className="btn btn-outline" href="/insights">목록으로</Link>
           </div>
         </div>
