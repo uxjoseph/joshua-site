@@ -55,8 +55,8 @@ export default function Home() {
         <HeroFunnel />
         <div className="hero-inner">
           <div className="proof-band reveal">
-            <div><span className="n">30곳+</span><span className="l">기업교육·강연 진행 조직</span></div>
-            <div><span className="n">20건+</span><span className="l">엔터프라이즈 AX 프로젝트</span></div>
+            <div><span className="n">100곳+</span><span className="l">기업교육·강연 진행 조직</span></div>
+            <div><span className="n">30건+</span><span className="l">엔터프라이즈 AX 프로젝트</span></div>
             <div><span className="n">75,000건</span><span className="l">RAG로 체계화한 지식자산</span></div>
             <div><span className="n">8주→1일</span><span className="l">조직문화 진단 리포트 자동화</span></div>
           </div>
