@@ -7,6 +7,8 @@
  *   form_start (자동) / form_submit (자동) / generate_lead / consultation_form_error
  */
 
+import { fbqLead } from '@/lib/fbpixel';
+
 // GTM/GA4 dataLayer 타입
 declare global {
   interface Window {
@@ -28,8 +30,11 @@ export const trackCtaClick = (location: CtaLocation) =>
 
 export const trackFormView = () => trackEvent('consultation_form_view');
 
-export const trackGenerateLead = (inquiryType: InquiryType) =>
+export const trackGenerateLead = (inquiryType: InquiryType) => {
   trackEvent('generate_lead', { inquiry_type: inquiryType });
+  // Meta 픽셀 표준 이벤트 — 상담 폼 제출 = Lead
+  fbqLead({ content_category: inquiryType });
+};
 
 export const trackFormError = (errorType: string) =>
   trackEvent('consultation_form_error', { error_type: errorType });

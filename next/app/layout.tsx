@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import Script from 'next/script';
 import { SITE } from '@/lib/data';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { Effects } from '@/components/Effects';
 import { AnalyticsBoot } from '@/components/AnalyticsBoot';
+import { MetaPixel } from '@/components/MetaPixel';
 import './globals.css';
 
 const GTM_ID = 'GTM-WJ4BDQT2';
@@ -107,6 +109,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <AnalyticsBoot />
+        {/* Meta 픽셀 — 데이터 세트 "조슈아앤컴퍼니 (joshua.site)", 이벤트 관리자 ASC 광고 계정 (2026-09-10) */}
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <Nav />
         {children}
         <Footer />
