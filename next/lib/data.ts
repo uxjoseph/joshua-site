@@ -11,7 +11,6 @@ export const SITE = {
   address: '서울특별시 구로구 디지털로26길 43, 엘동 5층 502, 503호 (구로동, 대륭포스트타워8차)',
   bizNo: '189-87-03956',
   ceo: '김승권',
-  calendly: 'https://calendly.com/ahnwh331-joshua/30min',
   sns: {
     youtube: 'https://www.youtube.com/@builderjoshkim',
     linkedin: 'https://www.linkedin.com/in/uxjosh/',

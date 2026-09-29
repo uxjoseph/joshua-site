@@ -1,5 +1,4 @@
 import { Resend } from 'resend';
-import { SITE } from '@/lib/data';
 
 // 기존 joshua-site api/contact.ts(Resend) 파이프라인 이식 — 문의 유형에 솔루션, 유입 경로에 AI 검색 추가
 export const runtime = 'edge';
@@ -13,10 +12,8 @@ const AUTO_REPLY_TEXT = `안녕하세요, JOSHUA의 Josh Kim입니다.
 보내주신 문의 잘 받았습니다. JOSHUA에 관심 가져주셔서 감사합니다.
 
 AI 전환(AX)에 대해 더 깊이 이야기 나누고 싶으시다면,
-아래 링크에서 편하신 시간에 30분 커피챗을 잡아주세요.
-줌 또는 구글밋으로 진행됩니다.
-
-${SITE.calendly}
+이 메일에 편하신 시간대를 두세 개 적어 답장 주세요.
+30분 커피챗으로, 줌 또는 구글밋에서 진행됩니다.
 
 간단한 질문이시라면 이 메일에 그대로 답장 주셔도 됩니다.
 확인하는 대로 직접 회신드리겠습니다.
