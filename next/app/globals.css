@@ -404,7 +404,8 @@
     /* 진단 — 왼쪽 설명·축, 오른쪽 레벨 사다리. 사다리는 L5 가 위에 오도록 역순으로 쌓는다 */
     .diag{display:grid;gap:var(--sp-7)}
     @media(min-width:960px){.diag{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}}
-    .diag-fig{display:block;width:100%;max-width:20rem;height:auto;margin:var(--sp-5) 0 0}
+    /* 이미지 바탕(#f8f8f8)과 같은 면을 깔아, 흰 섹션 위에서 회색 사각형이 아니라 카드로 읽히게 한다 */
+    .diag-fig{display:block;width:100%;max-width:20rem;height:auto;margin:var(--sp-5) 0 0;background:var(--canvas-soft);border-radius:var(--r-xl)}
     .axes{display:grid;gap:var(--sp-4);margin-top:var(--sp-5)}
     @media(min-width:640px){.axes{grid-template-columns:repeat(2,1fr)}}
     .axes h3{font-size:1rem;letter-spacing:-.02em;margin-bottom:.3rem}

@@ -25,7 +25,15 @@ wait
 
 for n in track-member track-lead track-exec track-office diagnosis; do
   if [ -f "$TMP/$n.png" ]; then
-    python3 -c "from PIL import Image; im=Image.open('$TMP/$n.png').convert('RGB'); im.thumbnail((960,640)); im.save('$OUT/$n.webp', quality=88)"
+    # 바탕을 카드 면(--canvas-soft #f8f8f8)에 정확히 맞춘다 — 모서리 평균을 248 로 평행 이동
+    python3 - "$TMP/$n.png" "$OUT/$n.webp" <<'PY'
+import sys, numpy as np
+from PIL import Image
+im = Image.open(sys.argv[1]).convert('RGB'); im.thumbnail((960, 640))
+a = np.asarray(im).astype(np.float32); k = 24
+bg = np.concatenate([a[:k,:k], a[:k,-k:], a[-k:,:k], a[-k:,-k:]]).reshape(-1, 3).mean(0)
+Image.fromarray(np.clip(a + (248 - bg), 0, 255).astype(np.uint8)).save(sys.argv[2], quality=88)
+PY
     echo "ok   $OUT/$n.webp"
   else
     echo "FAIL $n (log: $TMP/$n.log)"
