@@ -13,26 +13,8 @@ export function Nav() {
         </Link>
         <nav className="links" aria-label="주요 메뉴">
           <Link href="/work">프로젝트</Link>
-          <div className="drop">
-            <button type="button" aria-haspopup="true">
-              솔루션 <span className="caret" />
-            </button>
-            <div className="drop-menu" role="menu">
-              <Link className="drop-item" href="/solutions/micky" role="menuitem">
-                <span className="t">
-                  MICKY <span className="tag new">Solution 01</span>
-                </span>
-                <span className="d">AI 네이티브 조직을 위한 회의록 에이전트 솔루션</span>
-              </Link>
-              <div className="drop-item" role="menuitem" aria-disabled="true">
-                <span className="t" style={{ color: 'var(--muted-soft)' }}>
-                  TALOS <span className="tag">준비 중</span>
-                </span>
-                <span className="d">제조 AX 온톨로지 솔루션, 준비하고 있습니다</span>
-              </div>
-            </div>
-          </div>
           <Link href="/education">교육</Link>
+          <Link href="/#process">진행 방식</Link>
           <Link href="/blog">블로그</Link>
           {/* 인사이트 메뉴는 콘텐츠 준비 전까지 비노출 (조쉬 지시, 2026-07-22) */}
           <Link href="/#about">회사소개</Link>

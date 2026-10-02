@@ -5,7 +5,7 @@ import { mapInquiryType, trackFormError, trackFormView, trackGenerateLead } from
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
-const CATEGORIES = ['프로젝트 의뢰 (AX 구축)', '기업 교육', '솔루션 도입 (TALOS · MICKY)', '강연·외부 활동', '기타 문의'];
+const CATEGORIES = ['프로젝트 의뢰 (AX 구축)', '기업 교육', '강연·외부 활동', '기타 문의'];
 const SOURCES = [
   '검색 (구글·네이버)',
   'AI 검색 (ChatGPT·Perplexity 등)',

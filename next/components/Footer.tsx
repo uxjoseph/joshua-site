@@ -16,8 +16,7 @@ export function Footer() {
               <h4>Services</h4>
               <Link href="/education">기업교육</Link>
               <Link href="/work">AX 구축</Link>
-              <Link href="/solutions/micky">솔루션 · MICKY</Link>
-              <span className="dim">솔루션 · TALOS (준비 중)</span>
+              <Link href="/#journey">운영 · 내재화</Link>
             </div>
             <div>
               <h4>Company</h4>

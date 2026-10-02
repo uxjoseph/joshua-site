@@ -327,6 +327,8 @@
        br 에 display:none 을 주면 줄바꿈 자체가 사라진다. */
     .br-card{display:none}
     @media(min-width:900px){.br-card{display:inline}}
+    /* br-card 의 반대 — 좁은 화면에서만 끊어 마지막 한 단어가 홀로 떨어지는 걸 막는다 */
+    @media(min-width:600px){.br-m{display:none}}
     .card ul{list-style:none;margin:var(--sp-5) 0 var(--sp-6);padding-top:var(--sp-5);border-top:1px solid var(--hairline);display:flex;flex-direction:column;gap:.75rem}
     .card li{font-size:.875rem;line-height:1.7;color:var(--body);padding-left:1.1rem;position:relative}
     .card li::before{content:"—";position:absolute;left:0;color:var(--hairline-strong)}
@@ -342,36 +344,87 @@
     .card .more:hover{background:var(--ink);border-color:var(--ink);color:#fff}
     .card .more:hover::after{color:#fff;transform:translateX(3px)}
 
-    /* solutions — 면 카드: 테두리 없이 연회색 면으로만 구분한다.
-       카드를 가로로 눕혀 한 장씩 쌓는다. 7fr/5fr 2열이었을 때는 MICKY 카드가 세로로
-       길어지고 TALOS 가 그 옆 빈 면으로 남았는데, 가로 카드로 바꾸면 그 공백이 사라진다. */
-    .sol-grid{display:grid;gap:var(--sp-6);margin-top:var(--sp-7)}
-    .sol-next{background:var(--canvas-soft);border:none;border-radius:var(--r-xl);padding:var(--card-pad)}
-    /* MICKY — 카피 | 비주얼 2단. 이미지가 카드의 위·아래·오른쪽 끝까지 닿아야 하므로
-       카드 자체의 패딩은 0 으로 두고 카피 쪽에만 --card-pad 를 준다. */
-    .sol-talos{background:var(--canvas-soft);border:none;border-radius:var(--r-xl);padding:0;
-      color:var(--body);position:relative;overflow:hidden;display:grid}
-    @media(min-width:900px){.sol-talos{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}}
-    /* justify-content:center — 카피가 이미지 높이의 세로 중앙에 온다 */
-    .sol-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
-      padding:var(--card-pad);position:relative;z-index:1}
-    /* 이미지는 카피 높이에 맞춰 잘린다 — 비율을 유지하면 오른쪽에 빈 면이 생긴다 */
-    .sol-visual{position:relative;overflow:hidden;min-height:14rem}
-    .sol-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-    .sol-talos .mark{font-weight:600;letter-spacing:.12em;color:var(--ink);font-size:.9375rem}
-    .sol-talos h3{font-size:clamp(1.375rem,2.4vw,1.625rem);font-weight:600;letter-spacing:-.03em;margin:var(--sp-4) 0 .6rem;line-height:1.2}
-    .sol-talos p{font-size:.9375rem;line-height:1.75;word-break:keep-all;max-width:34rem;color:var(--body)}
-    .sol-talos .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:var(--sp-4)}
-    /* 칩은 흰 면으로 띄워야 회색 카드 위에서 요소로 읽힌다 */
-    .sol-talos .chips span{font-size:.75rem;font-weight:400;padding:.3rem .8rem;border-radius:var(--pill);border:1px solid var(--hairline);background:var(--canvas);color:var(--muted)}
-    .sol-talos .btn{margin-top:var(--sp-5);background:var(--dark);border-color:var(--dark);color:var(--strong)}
-    .sol-talos .btn:hover{background:var(--glass);border-color:transparent;color:var(--ink)}
-    .sol-no{font-size:.6875rem;font-weight:400;letter-spacing:.02em;color:var(--muted);margin-left:.7rem}
-    .sol-shot{display:block;width:100%;height:auto;margin-top:var(--sp-5);border-radius:var(--r-xl)}
-    .sol-next{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;color:var(--muted)}
-    .sol-next .tag{background:var(--canvas)}
-    .sol-next .t{font-weight:600;color:var(--ink);font-size:1.05rem}
-    .sol-next .mark-lite{font-weight:600;letter-spacing:.12em;color:var(--muted);font-size:.9375rem}
+    /* 고민 카드 — 구매자의 말(따옴표)이 제목이고, 답과 증거가 아래에 붙는다.
+       질문이 먼저 읽혀야 하므로 배지를 두지 않고 따옴표 문장이 가장 크다.
+       증거 줄은 margin-top:auto 로 바닥에 맞춰 2열 높이가 달라도 정렬된다. */
+    .pains{display:grid;gap:var(--sp-4);margin-top:var(--sp-7)}
+    @media(min-width:900px){.pains{grid-template-columns:repeat(2,1fr)}}
+    .pain{background:var(--canvas-soft);border-radius:var(--r-xl);padding:var(--card-pad);display:flex;flex-direction:column}
+    .pain .q{font-size:clamp(1.25rem,2vw,1.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.35;
+      color:var(--ink);word-break:keep-all;margin-bottom:var(--sp-5)}
+    .pain .a{font-size:.9375rem;line-height:1.75;color:var(--muted);word-break:keep-all;margin-bottom:var(--sp-6)}
+    .pain .a strong{color:var(--ink);font-weight:600}
+    .pain .proof{margin-top:auto;padding-top:var(--sp-4);border-top:1px solid var(--hairline);
+      font-size:.8125rem;font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums}
+
+    /* 진행 절차 — 카드 면 없이 윗선 하나로 단계를 끊는다. 고민 카드(면)와 같은
+       화면에 면이 또 나오면 무게가 겹쳐서, 여기는 선으로만 리듬을 만든다. */
+    .steps{list-style:none;padding:0;display:grid;gap:var(--sp-6);margin-top:var(--sp-7)}
+    @media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:var(--sp-5)}}
+    .steps li{border-top:2px solid var(--ink);padding-top:var(--sp-5)}
+    .steps .no{font-size:.8125rem;font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums}
+    .steps h3{font-size:1.125rem;letter-spacing:-.02em;margin:var(--sp-3) 0 .2rem}
+    .steps .dur{display:block;font-size:.8125rem;color:var(--muted);margin-bottom:var(--sp-4)}
+    .steps p{font-size:.9375rem;line-height:1.7;color:var(--muted);word-break:keep-all}
+
+    /* ── 교육 페이지 ── */
+    .edu-proof{margin-top:var(--sp-7)}
+    /* 트랙 4열 — 3열 카드(.card)를 그대로 쓰고 열 수만 늘린다. 4열은 폭이 좁아 1200px 부터 */
+    .grid4{display:grid;gap:var(--sp-4);margin-top:var(--sp-7)}
+    @media(min-width:640px){.grid4{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1200px){.grid4{grid-template-columns:repeat(4,1fr)}}
+    .track .card-fig{max-width:12rem}
+    .track .goal{font-size:.8125rem;color:var(--ink);font-weight:500;margin:-.35rem 0 var(--sp-3)}
+    .track ul{margin-bottom:0}
+
+    /* 6주 흐름 — 7칸 가로 띠. Day 1·2 만 진하게 채워 '교육 당일'이 띠 안에서 두 점으로 보이게 한다.
+       나머지(진단·과제·피드백)는 선만 남겨, 교육 앞뒤가 비어 있지 않다는 걸 칸 수로 보여준다. */
+    .flow{list-style:none;padding:0;margin-top:var(--sp-7);display:grid;gap:.5rem;grid-template-columns:1fr}
+    @media(min-width:640px){.flow{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.flow{grid-template-columns:repeat(7,1fr)}}
+    .flow li{border:1px solid var(--hairline);border-radius:var(--r-lg,14px);padding:var(--sp-4);background:var(--canvas)}
+    .flow li[data-key="day"]{background:var(--ink);border-color:var(--ink)}
+    .flow li[data-key="day"] *{color:#fff}
+    .flow .when{font-size:.75rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+    .flow h3{font-size:.9375rem;letter-spacing:-.02em;margin:.5rem 0 .3rem}
+    .flow p{font-size:.8125rem;line-height:1.55;color:var(--muted);word-break:keep-all}
+
+    .principles{display:grid;gap:var(--sp-5);margin-top:var(--sp-8,4rem);padding-top:var(--sp-6);border-top:1px solid var(--hairline)}
+    @media(min-width:760px){.principles{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1200px){.principles{grid-template-columns:repeat(5,1fr)}}
+    .principles .pno{font-size:.75rem;color:var(--accent);font-weight:500;font-variant-numeric:tabular-nums}
+    .principles h3{font-size:1.0625rem;letter-spacing:-.02em;margin:.4rem 0 .4rem}
+    .principles p{font-size:.875rem;line-height:1.65;color:var(--muted);word-break:keep-all}
+
+    .kit{margin-top:var(--sp-7);background:var(--canvas-soft);border-radius:var(--r-xl);padding:var(--sp-5) var(--card-pad)}
+    .kit-h{font-size:.875rem;font-weight:500;color:var(--ink);margin-bottom:var(--sp-3)}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap}
+    .chips span{font-size:.8125rem;padding:.35rem .85rem;border-radius:var(--pill);border:1px solid var(--hairline);background:var(--canvas);color:var(--body)}
+
+    /* 진단 — 왼쪽 설명·축, 오른쪽 레벨 사다리. 사다리는 L5 가 위에 오도록 역순으로 쌓는다 */
+    .diag{display:grid;gap:var(--sp-7)}
+    @media(min-width:960px){.diag{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}}
+    .diag-fig{display:block;width:100%;max-width:20rem;height:auto;margin:var(--sp-5) 0 0}
+    .axes{display:grid;gap:var(--sp-4);margin-top:var(--sp-5)}
+    @media(min-width:640px){.axes{grid-template-columns:repeat(2,1fr)}}
+    .axes h3{font-size:1rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .axes h3 span{font-size:.75rem;font-weight:500;color:var(--accent);margin-left:.35rem}
+    .axes p{font-size:.875rem;line-height:1.6;color:var(--muted);word-break:keep-all}
+    .levels{list-style:none;padding:0;display:flex;flex-direction:column;gap:.5rem}
+    .levels li{display:flex;gap:var(--sp-4);align-items:center;background:var(--canvas-soft);border-radius:var(--r-xl);padding:var(--sp-4) var(--sp-5)}
+    /* 위로 갈수록 진해지는 단계 — 숫자 대신 면의 농도로 높이를 읽게 한다 */
+    .levels li:nth-child(1){background:var(--ink)}
+    .levels li:nth-child(1) *{color:#fff}
+    .levels li:nth-child(2){background:#dfe3f6}
+    .levels li:nth-child(3){background:#eceef8}
+    .levels .lv{flex:none;width:3rem;font-weight:600;font-size:1.125rem;color:var(--accent);font-variant-numeric:tabular-nums}
+    .levels h3{font-size:1rem;letter-spacing:-.02em}
+    .levels p{font-size:.8125rem;color:var(--muted);margin-top:.15rem;word-break:keep-all}
+
+    .fmt .edu-row{grid-template-columns:7rem 8rem 1fr}
+    .fmt .ti strong{font-weight:500;color:var(--ink);margin-right:.4rem}
+    @media(max-width:640px){.fmt .edu-row{grid-template-columns:6rem 1fr}}
+    .more-orgs{margin-top:var(--sp-5);font-size:.875rem;color:var(--muted);word-break:keep-all}
 
     /* technology — 연회색 밴드 */
     /* 그리드 닷 — 중앙에서 원형으로 퍼져나가는 물결.
@@ -935,30 +988,30 @@
        셀렉터에 .reveal 을 필수로 넣는 이유 — .team 처럼 .reveal 이 없는 컨테이너까지 잡으면
        .in 이 절대 붙지 않아 자식이 영구히 opacity:0 으로 남는다.
        :where() 로 특이도를 0으로 묶어 자식의 자체 스타일과 충돌하지 않게 한다. */
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal{opacity:1;transform:none;transition:none}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*{
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal{opacity:1;transform:none;transition:none}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*{
       opacity:0;transform:translateY(var(--rise,20px)) scale(var(--shrink,1));
       transition:opacity var(--dur,.7s) cubic-bezier(.16,.84,.44,1) calc(var(--reveal-delay,0ms) + var(--i,0)*var(--step,90ms)),
                  transform var(--dur,.7s) cubic-bezier(.16,.84,.44,1) calc(var(--reveal-delay,0ms) + var(--i,0)*var(--step,90ms))}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal.in>*{opacity:1;transform:none}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal.in>*{opacity:1;transform:none}
 
     /* 순번 — 한 번만 정의하고 두 계열이 공유한다. 8번째부터는 상한(대기가 길어지지 않게) */
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(2){--i:1}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(3){--i:2}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(4){--i:3}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(5){--i:4}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(6){--i:5}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(7){--i:6}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(8){--i:7}
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(n+9){--i:8}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(2){--i:1}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(3){--i:2}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(4){--i:3}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(5){--i:4}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(6){--i:5}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(7){--i:6}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(8){--i:7}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*:nth-child(n+9){--i:8}
 
     /* 계열별 파라미터 — 카드는 크고 느리게, 리스트 행은 작고 촘촘하게 */
-    :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline).reveal{--step:130ms;--dur:.8s;--rise:30px;--shrink:.97}
+    :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline).reveal{--step:130ms;--dur:.8s;--rise:30px;--shrink:.97}
     :where(.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal{--step:65ms;--dur:.6s;--rise:14px}
 
     @media(prefers-reduced-motion:reduce){
       .reveal{opacity:1;transform:none;transition:none}
-      :where(.grid3,.sol-grid,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*{opacity:1;transform:none;transition:none}
+      :where(.grid3,.grid4,.pains,.steps,.flow,.principles,.levels,.axes,.tech-grid,.pf-feature,.edu-feature,.ins,.team,.timeline,.pf-list,.edu-tbl,.faq,.proof-band,.tech-proof).reveal>*{opacity:1;transform:none;transition:none}
       /* 히어로 단어 스태거도 함께 끈다 — 이 규칙이 없으면 단어가 마스크 뒤에
          숨은 채로 영영 남는다(투명도가 아니라 위치로 숨기기 때문이다) */
       .hero-inner h1 .w{transform:none;transition:none}

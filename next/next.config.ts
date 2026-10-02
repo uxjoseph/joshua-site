@@ -6,7 +6,10 @@ const nextConfig: NextConfig = {
     return [
       { source: '/newsletter', destination: '/insights', permanent: true },
       { source: '/newsletter/:slug', destination: '/insights', permanent: true },
-      { source: '/talos', destination: '/solutions/talos', permanent: true },
+      // 솔루션 페이지 비노출 — 이미 공유·색인된 주소는 404 대신 홈으로 보낸다
+      { source: '/talos', destination: '/', permanent: false },
+      { source: '/solutions', destination: '/', permanent: false },
+      { source: '/solutions/:path*', destination: '/', permanent: false },
     ];
   },
   // inblog 서브디렉토리 연동 (인디코 제공 코드, 2026-08-26)

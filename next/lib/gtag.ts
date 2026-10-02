@@ -43,7 +43,6 @@ export const trackFormError = (errorType: string) =>
  * ContactForm의 문의 유형 카테고리를 인디코 스펙의 inquiry_type으로 매핑.
  * - '프로젝트 의뢰 (AX 구축)' → 'ax_build'
  * - '기업 교육' → 'education'
- * - '솔루션 도입 (TALOS · MICKY)' → 'solution'
  * - '강연·외부 활동' / '기타 문의' → 'other'
  */
 export function mapInquiryType(category: string): InquiryType {
