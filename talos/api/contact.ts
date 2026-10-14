@@ -6,17 +6,19 @@ export const config = { runtime: 'edge' };
 const FROM_ADDRESS = 'TALOS by Joshua & Company <hello@joshua.site>';
 const NOTIFY_TO = 'hello@joshua.site';
 
-const AUTO_REPLY_SUBJECT = '[TALOS] 무료 AX 진단 신청이 접수되었습니다';
+const AUTO_REPLY_SUBJECT = '[TALOS] 무료 도입 진단 신청이 접수되었습니다';
 
 const AUTO_REPLY_TEXT = `안녕하세요, TALOS by Joshua & Company입니다.
 
-무료 AX 진단 신청이 정상 접수되었습니다.
-영업일 1일 내에 담당 컨설턴트가 연락드리겠습니다.
+제조 AI ERP 무료 도입 진단 신청이 정상 접수되었습니다.
+영업일 1일 내에 담당자가 연락드리겠습니다.
 
 진행 순서는 다음과 같습니다.
-1. 30분 화상 미팅 — 현황과 목표를 듣습니다
-2. 현장 워크숍 — 데이터 현황을 함께 진단합니다
-3. 진단 리포트 — 유스케이스 우선순위를 제안드립니다
+1. 30분 화상 미팅 — 공정과 지금 쓰는 시스템을 듣습니다
+2. 도입 진단(2주) — ERP·MES·엑셀 현황을 함께 살펴봅니다
+3. 진단 리포트 — 어느 공정·모듈부터 바꿀지 우선순위를 제안드립니다
+
+진행 여부는 리포트를 보신 뒤 정하시면 됩니다.
 
 궁금하신 점은 이 메일에 그대로 답장 주시면 됩니다.
 
