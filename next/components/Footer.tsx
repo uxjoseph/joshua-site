@@ -27,7 +27,8 @@ export function Footer() {
             <div>
               <h4>Contact</h4>
               <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-              <span>{SITE.phone}</span>
+              <a href={`tel:${SITE.tel}`}>{SITE.tel}</a>
+              <a href={`tel:${SITE.phone}`}>{SITE.phone}</a>
               <span>
                 서울특별시 구로구 디지털로26길 43,
                 <br />
@@ -41,7 +42,7 @@ export function Footer() {
             <span>상호: {SITE.legalName}</span>
             <span>대표: {SITE.ceo}</span>
             <span>사업자등록번호: {SITE.bizNo}</span>
-            <span>전화: 02-3149-6920</span>
+            <span>전화: {SITE.tel}</span>
           </div>
           <div className="row">
             <a href={SITE.sns.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
