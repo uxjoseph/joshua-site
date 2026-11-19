@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { LOGOS, PROJECTS, EDUCATION, TEAM, FAQS, SITE } from '@/lib/data';
+import { LOGOS, PROJECTS, EDUCATION, TEAM, FAQS, SITE, EDU_2026_NEXT, EDU_2026_DONE, EDU_2026_ONLINE, EDU_LOGO, type EduLog } from '@/lib/data';
 import { ContactForm } from '@/components/ContactForm';
 import { HeroFunnel } from '@/components/HeroFunnel';
 import { WorkFocusRail } from '@/components/WorkFocusRail';
@@ -52,9 +52,29 @@ const STEPS = [
   { no: '04', title: '운영 · 확산', dur: '유지보수 · 확장', body: '안정화와 유지보수로 시스템을 지키고, 검증된 방식을 다음 부서와 과제로 넓힙니다.' },
 ];
 
+function LiveRow({ e }: { e: EduLog }) {
+  const logo = EDU_LOGO[e.org];
+  return (
+    <li className={`live-row${e.status ? ' is-' + e.status : ''}`}>
+      <span className="lg">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {logo ? <img src={logo} alt={`${e.org} 로고`} loading="lazy" /> : null}
+      </span>
+      <span className="dt">{e.date}</span>
+      <span className="bd">
+        <span className="og">{e.org}</span>
+        <span className="tt">{e.title}</span>
+      </span>
+      <span className="st">{e.status === 'ongoing' ? '진행 중' : e.status === 'upcoming' ? '예정' : e.date === '온라인' ? '온라인' : '완료'}</span>
+    </li>
+  );
+}
+
 export default function Home() {
   const eduFeatured = EDUCATION.filter((e) => e.image).slice(0, 4);
-  const eduRest = EDUCATION.filter((e) => !eduFeatured.includes(e));
+  const liveAll = [...EDU_2026_NEXT, ...EDU_2026_DONE, ...EDU_2026_ONLINE];
+  const liveTop = liveAll.slice(0, 14);
+  const liveRest = liveAll.slice(14);
 
   return (
     <main>
@@ -223,7 +243,27 @@ export default function Home() {
             <Link className="sec-link reveal" href="/education">교육 전체 보기</Link>
           </div>
           <p className="lead reveal">90분 실기 진단으로 레벨을 나누고, 자기 업무로 실습하고, 4주 뒤 같은 잣대로 다시 잽니다. 만족도 설문이 아니라 레벨 변화로 성과를 보고하실 수 있습니다.</p>
-          <div className="edu-feature reveal">
+
+          {/* 2026 라이브 이력 — 교육 페이지와 같은 데이터·같은 순서(진행 중·예정 → 완료 최신순).
+              첫 화면엔 최근 것만, 나머지는 펼쳐서 본다. JS 없이 <details> 로 처리한다. */}
+          <div className="live-head reveal">
+            <span className="live-dot" aria-hidden="true" />
+            <span>2026 교육·강연 현황</span>
+            <span className="live-sum">
+              진행 중·예정 <strong>{EDU_2026_NEXT.length}건</strong> · 올해 완료 <strong>{EDU_2026_DONE.length + EDU_2026_ONLINE.length}건</strong>
+            </span>
+          </div>
+          <ol className="live-list reveal">
+            {liveTop.map((e) => <LiveRow key={e.date + e.org + e.title} e={e} />)}
+          </ol>
+          <details className="live-more">
+            <summary>2026년 전체 {EDU_2026_NEXT.length + EDU_2026_DONE.length + EDU_2026_ONLINE.length}건 보기</summary>
+            <ol className="live-list">
+              {liveRest.map((e) => <LiveRow key={e.date + e.org + e.title} e={e} />)}
+            </ol>
+          </details>
+          <p className="more-orgs">2026년 11월 19일 기준 · 일정이 확정된 건만 실었습니다.</p>
+          <div className="edu-feature edu-feature-after reveal">
             {eduFeatured.map((e) => (
               <article className="edu-card" key={e.client + e.title}>
                 <div className="thumb">
@@ -235,15 +275,6 @@ export default function Home() {
                   <span className="yr">{e.year}</span>
                 </div>
               </article>
-            ))}
-          </div>
-          <div className="edu-tbl reveal">
-            {eduRest.map((e) => (
-              <div className="edu-row" key={e.client + e.title}>
-                <span className="yr">{e.year}</span>
-                <span className="cl">{e.client}</span>
-                <span className="ti">{e.title}</span>
-              </div>
             ))}
           </div>
         </div>
