@@ -30,7 +30,6 @@ export const LOGOS = [
   { name: '델 테크놀로지스', src: '/logos/dell.svg' },
   { name: '세일즈포스', src: '/logos/salesforce.svg' },
   { name: '신한', src: '/logos/shinhan.svg' },
-  { name: '매드업', src: '/logos/madup.svg' },
   { name: '이노션', src: '/logos/innocean.svg' },
   { name: '뷰티셀렉션', src: '/logos/beautyselection.png' },
   { name: 'LG U+', src: '/logos/lguplus.svg' },

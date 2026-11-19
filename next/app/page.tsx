@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         </div>
         <div className="logos reveal">
-          {/* 로고 16개가 이미 '국내외 선도 기업'을 말한다 — 라벨만 남긴다 */}
+          {/* 로고 15개가 이미 '국내외 선도 기업'을 말한다 — 라벨만 남긴다 */}
           <p>Partners &amp; Clients</p>
           <div className="marquee">
             <div className="marquee-track" id="logo-track">
