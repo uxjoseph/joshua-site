@@ -167,6 +167,83 @@ export const EDUCATION: Education[] = [
   { year: '2025', client: '충남대학교', title: 'AI RISE 학술회 초청 강의', description: '충남대학교 AI RISE 학술회에 초청 연사로 참여해, 산업 현장의 AI 에이전트 도입 사례와 학계가 주목해야 할 실무 이슈를 공유했습니다.', image: '/portfolio/education/IMG_0345.jpg' },
 ];
 
+/* 2026년 교육·강연 이력. hello@joshua.site 메일(일정 확정·교안 전달·강사료 정산 기록)로 확인한 건만 싣는다.
+   금액·에이전시·담당자 정보는 싣지 않는다. 최종 확인 2026-11-19. */
+export interface EduLog {
+  date: string; // MM.DD, 기간이면 MM.DD–MM.DD, 날짜 미상이면 MM월
+  org: string;
+  title: string;
+  status?: 'ongoing' | 'upcoming';
+}
+
+export const EDU_2026_NEXT: EduLog[] = [
+  { date: '11–12월', org: 'HD현대중공업', title: '사외 생성형 AI 실습교육 · 20회 40시간 정규 과정', status: 'ongoing' },
+  { date: '11.24–25', org: 'LG전자 UX연구소', title: '디자이너를 위한 AI 디자인 워크숍 2일 과정', status: 'upcoming' },
+  { date: '11.27', org: '엘리스그룹 이어드림스쿨', title: 'AI 분석·개발 교육생 대상 현직자 특강', status: 'upcoming' },
+  { date: '12.03', org: '텔레칩스', title: '임직원 명사특강 · 해커톤 이후 AI를 실무로 연결하기', status: 'upcoming' },
+  { date: '12.04', org: '신한금융그룹', title: '그룹 AX 컨퍼런스 강연', status: 'upcoming' },
+  { date: '12.10', org: 'COMEUP 2026', title: 'Future Talk · AI를 도입했는데 왜 회사는 그대로일까', status: 'upcoming' },
+];
+
+export const EDU_2026_DONE: EduLog[] = [
+  { date: '11.18', org: '연세대학교', title: 'AI 리더십 최고위과정 6기 · AI 네이티브가 되는 방법' },
+  { date: '11.07', org: '코리아 AI 아카데미', title: 'AIX 프로티어 후속 세미나 · AI 네이티브가 되는 방법' },
+  { date: '10.30', org: '한국증권금융', title: '임직원 AI 특강 · AI 네이티브가 되는 방법' },
+  { date: '10.29', org: '리스페이스', title: '기업 고객 초청 행사 강연' },
+  { date: '10.21', org: '경기창조경제혁신센터', title: '창업가정신포럼 · AI 네이티브 컴퍼니를 만드는 방법' },
+  { date: '10.17', org: '인텔', title: '인텔 AI 세미나 강연' },
+  { date: '09–10월', org: '한국엔젤투자협회', title: '강남구 초기창업자 AX 창업가 과정 · 6주' },
+  { date: '09.17', org: '글로벌 스타트업 센터', title: '외국인 창업가 대상 AI 워크숍' },
+  { date: '09.07·11', org: '고용노동부 미래내일 일경험', title: '리모트 인턴십 AI 활용력 특강 · 대학생 108명' },
+  { date: '09.03', org: 'KB금융그룹', title: 'CIO·IT 경영진 대상 AI 특강' },
+  { date: '09.01', org: '아산나눔재단', title: '전 직원 AX 실습 워크숍' },
+  { date: '08.27', org: '한빛미디어', title: '도서 세미나 · 클로드 코드로 내 일상을 10x 레버리지하기' },
+  { date: '08.27', org: '서울시 미래청년일자리', title: '클로드로 끝내는 스마트 워크 특강' },
+  { date: '08.20', org: 'AI Summit Seoul 2026', title: 'AI 네이티브 컴퍼니 강연 · AI Native 팀 패널 모더레이터' },
+  { date: '08.18', org: '강남 취·창업허브센터', title: '강남 스타트업 포럼 · AI 네이티브 기업을 만드는 방법' },
+  { date: '07.30', org: '크래프톤', title: 'AI Frontier Cofathon 패널 토크 사회' },
+  { date: '07.30', org: '한빛미디어', title: '『클로드 에이전트 협업의 기술』 웨비나' },
+  { date: '07.21', org: '딥테크 창업사관학교', title: '보육기업 대표 대상 AI 네이티브 기업 구현 세미나' },
+  { date: '07월', org: 'SK아카데미', title: 'SK그룹 신입구성원 AI 에이전트 부트캠프' },
+  { date: '07.04', org: '서울메타위크 메타콘', title: 'AI Native Company · 나만의 AI 직원들과 일하는 법' },
+  { date: '06.26', org: '하이브랩', title: 'UI/UX 직군 특강 · 피그마 MCP와 LLM으로 디자인 자동화' },
+  { date: '06.26', org: 'ETRI', title: '클로드 코드와 멀티 에이전트로 일상 자동화하기 세미나' },
+  { date: '06.25', org: '플로우 AX Festa', title: 'AX 리더십 패널 토크' },
+  { date: '06.18', org: 'LG유플러스', title: 'AI 인사이트 강연 · AI 네이티브 기업의 현주소와 방향' },
+  { date: '06.18', org: '아이티인포', title: '델 파트너 고객 세미나 · AI 네이티브 조직을 만드는 방법' },
+  { date: '06.09–08월', org: '한국엔젤투자협회', title: '강남구 예비창업자 솔로프리너 과정 · 10주' },
+  { date: '06.04–09.03', org: 'LG인화원', title: 'LG그룹 임원교육 EnDP · AI for Company 4회' },
+  { date: '06.02', org: '델 테크놀로지스', title: '파트너사 마케터 대상 세미나 연사' },
+  { date: '05.27', org: '델 테크놀로지스', title: '마케팅팀 특강 · AI 에이전트로 AI Native Company 도약하기' },
+  { date: '05.22', org: '삼성생명', title: '입사 1주년 임직원 143명 대상 강연' },
+  { date: '05.21', org: 'Claude Bloom 밋업', title: 'AI Native Company 구축하는 방법' },
+  { date: '05.15', org: '현대건설 기술교육원', title: '직업훈련생 대상 생성형 AI 문서 자동화 실습' },
+  { date: '04–05월', org: 'LG전자 UX연구소', title: 'AI 시대 디자이너의 역할 세미나 · 바이브코딩 2일 워크숍' },
+  { date: '04.30', org: '구름', title: 'COMMIT WORKSHOP · Claude Code와 일상 자동화 7시간' },
+  { date: '04.29', org: '누리미디어', title: '클로드 코워크 입문과 실습' },
+  { date: '04.25', org: 'SK이노베이션', title: '계열사 임원 AX 역량 강화 AIM 과정 · Claude Cowork 실습' },
+  { date: '04.24', org: 'SK하이닉스', title: '임원 AI Leadership 워크숍' },
+  { date: '04.23', org: '전자신문인터넷', title: 'AI 네이티브 기업 사례·전략 세미나 연사' },
+  { date: '04.21', org: '카카오모빌리티', title: '프로덕트 디자이너 대상 바이브코딩·피그마 MCP 실습' },
+  { date: '04.20', org: 'SK mySUNI', title: 'AI CAMP · 클로드 코드와 바이브 코딩 2일 워크숍' },
+  { date: '04.14', org: '삼성금융연수원', title: '디지털 임원 연구회 · AI 에이전트 라이브 시연' },
+  { date: '03월', org: '밀리의 서재', title: '임직원 150명 대상 Claude Code·Cowork 업무 자동화 실습' },
+  { date: '03.20', org: '월급쟁이부자들', title: 'Claude Cowork 실무와 서브에이전트 오케스트레이션' },
+  { date: '02.20', org: '카카오뱅크', title: '리더 200명 대상 AI 에이전트 특강' },
+  { date: '02.05–04.09', org: '뷰티셀렉션', title: 'Claude Code 업무 자동화 사내 과정 · 9회' },
+  { date: '02.03', org: 'MKYU', title: '플러스 휴먼 스쿨 라이브 강의 · AI 활용 케이스 스터디' },
+  { date: '01.28', org: '충남대학교', title: 'RISE 사업단 AI 에이전트 특강' },
+  { date: '01.21', org: '데브멘토', title: '솔로프리너 수익화 강연' },
+  { date: '01월', org: '신한은행', title: '동계 청년 인턴 대상 AI 일잘러들의 협업 방식' },
+];
+
+export const EDU_2026_ONLINE: EduLog[] = [
+  { date: '온라인', org: '휴넷', title: 'Claude Cowork로 시작하는 바이브 워킹 입문' },
+  { date: '온라인', org: '한국능률협회', title: '직장인과 리더를 위한 클로드 코워크 활용법' },
+  { date: '온라인', org: '클래스101', title: '2시간 업무 자동화 소수정예 클래스' },
+  { date: '온라인', org: '알라딘 아카데미', title: '클로드 코드와 일상 자동화' },
+];
+
 export const TEAM = [
   { name: '조쉬', role: 'CEO / Visionary', description: 'AI 오케스트레이션 총괄 및 비즈니스 전략 설계. 다양한 기업의 AX 혁신을 이끌고 있습니다.', image: '/team-josh.png' },
   { name: '정재호', role: '개발팀장 / FDE', description: '다양한 산업군의 비즈니스 워크플로우를 기술적으로 해석하고 최적의 AI 아키텍처를 구현합니다.', image: '/team-jaeho.jpg' },

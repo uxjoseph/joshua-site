@@ -799,6 +799,13 @@
     .edu-row .cl{font-weight:500;color:var(--ink);font-size:.9375rem}
     .edu-row .ti{font-size:.9375rem;color:var(--body);word-break:keep-all}
     @media(max-width:640px){.edu-row{grid-template-columns:3rem 1fr}.edu-row .ti{grid-column:2}}
+    /* 2026 이력 표 — 날짜가 기간(02.05–04.09)이라 날짜·기관 칸을 넓힌다 */
+    .y26-h{font-size:1rem;font-weight:600;color:var(--ink);margin:var(--sp-7) 0 0}
+    .edu-tbl.y26{margin-top:var(--sp-3)}
+    .y26 .edu-row{grid-template-columns:6.75rem 11rem 1fr}
+    .y26-tag{display:inline-block;margin-left:.5rem;font-size:.75rem;font-weight:500;color:var(--accent);
+      background:var(--accent-wash);border-radius:var(--badge-r);padding:.15rem .6rem;vertical-align:1px}
+    @media(max-width:640px){.y26 .edu-row{grid-template-columns:5.75rem 1fr}.y26 .edu-row .ti{grid-column:2}}
 
     /* insights — .card 를 그대로 쓰고 .cat 만 배지로 */
     .ins{display:grid;gap:var(--sp-4);margin-top:var(--sp-7)}

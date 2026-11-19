@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { EDUCATION } from '@/lib/data';
+import { EDUCATION, EDU_2026_DONE, EDU_2026_NEXT, EDU_2026_ONLINE } from '@/lib/data';
 
 export const metadata: Metadata = {
   title: '기업 AI 교육 - 진단하고, 가르치고, 다시 진단합니다',
@@ -251,6 +251,55 @@ export default function EducationPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 2026 이력 — 메일로 확인한 일정만 싣는다. 예정·진행 중을 위에, 완료는 최신순 */}
+      <section className="section" id="track-2026">
+        <div className="inner">
+          <p className="overline reveal">2026 Track Record</p>
+          <h2 className="reveal">올해만 <strong>{EDU_2026_DONE.length + EDU_2026_ONLINE.length}건의 교육과 강연</strong>을<br />직접 진행했습니다</h2>
+          <p className="lead reveal">
+            임원 특강부터 여러 주에 걸친 실습 과정, 컨퍼런스 연사, 온라인 강의까지 2026년에 진행한 일정을 그대로 옮겨 적었습니다.
+            지금도 {EDU_2026_NEXT.length}건이 진행 중이거나 예정돼 있습니다.
+          </p>
+
+          <h3 className="y26-h reveal">진행 중 · 예정</h3>
+          <div className="edu-tbl y26 reveal">
+            {EDU_2026_NEXT.map((e) => (
+              <div className="edu-row" key={e.date + e.org}>
+                <span className="yr">{e.date}</span>
+                <span className="cl">{e.org}</span>
+                <span className="ti">
+                  {e.title}
+                  <span className="y26-tag">{e.status === 'ongoing' ? '진행 중' : '예정'}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="y26-h reveal">완료 · 현장 교육과 강연 {EDU_2026_DONE.length}건</h3>
+          <div className="edu-tbl y26 reveal">
+            {EDU_2026_DONE.map((e) => (
+              <div className="edu-row" key={e.date + e.org + e.title}>
+                <span className="yr">{e.date}</span>
+                <span className="cl">{e.org}</span>
+                <span className="ti">{e.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="y26-h reveal">완료 · 온라인 과정 {EDU_2026_ONLINE.length}건</h3>
+          <div className="edu-tbl y26 reveal">
+            {EDU_2026_ONLINE.map((e) => (
+              <div className="edu-row" key={e.org}>
+                <span className="yr">{e.date}</span>
+                <span className="cl">{e.org}</span>
+                <span className="ti">{e.title}</span>
+              </div>
+            ))}
+          </div>
+          <p className="more-orgs reveal">2026년 11월 19일 기준 · 일정이 확정된 건만 실었습니다.</p>
         </div>
       </section>
 
