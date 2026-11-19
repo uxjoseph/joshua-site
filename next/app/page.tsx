@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { LOGOS, PROJECTS, EDUCATION, TEAM, FAQS, SITE, EDU_2026_NEXT, EDU_2026_DONE, EDU_2026_ONLINE, EDU_LOGO, type EduLog } from '@/lib/data';
+import { LOGOS, PROJECTS, EDUCATION, TEAM, FAQS, SITE, EDU_2026_NEXT, EDU_2026_DONE, EDU_2026_ONLINE, EDU_LOGO, EDU_LOGO_W, type EduLog } from '@/lib/data';
 import { ContactForm } from '@/components/ContactForm';
 import { HeroFunnel } from '@/components/HeroFunnel';
 import { WorkFocusRail } from '@/components/WorkFocusRail';
@@ -58,7 +58,7 @@ function LiveRow({ e }: { e: EduLog }) {
     <li className={`live-row${e.status ? ' is-' + e.status : ''}`}>
       <span className="lg">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        {logo ? <img src={logo} alt={`${e.org} 로고`} loading="lazy" /> : null}
+        {logo ? <img src={logo} alt={`${e.org} 로고`} loading="lazy" style={{ width: EDU_LOGO_W[logo] ?? 96 }} /> : null}
       </span>
       <span className="dt">{e.date}</span>
       <span className="bd">
